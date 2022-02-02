@@ -1,0 +1,13 @@
+# run: buf generate
+# see https://github.com/johanbrandhorst/grpc-gateway-boilerplate/blob/master/buf.gen.yaml
+version: v1beta1
+plugins:
+  - name: js
+    out: src/client
+    opt: import_style=commonjs,binary
+  - name: grpc-web
+    out: src/client
+    path: node_modules/.bin/protoc-gen-ts
+    opt:
+      - import_style=commonjs,binary
+      - service=grpc-web
