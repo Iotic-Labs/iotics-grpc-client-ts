@@ -25,8 +25,7 @@ build: deps-go deps-node deps-buf deps-proto lint generate dist
 clean:
 	rm -rf buf.lock dist node_modules src/client yarn.lock
 
-dist:
-dist-update:
+dist dist-update:
 	yarn build
 
 generate: src/client
