@@ -20,7 +20,7 @@ PROTOC_URL = "https://github.com/protocolbuffers/protobuf/releases/download/v$(P
 ## High level targets ##
 ########################
 
-build: deps-go deps-node deps-buf deps-proto lint generate dist
+build: deps-proto deps-go deps-buf lint deps-node generate dist
 
 clean:
 	rm -rf buf.lock dist node_modules src/client yarn.lock
@@ -39,15 +39,14 @@ list:
 	$(BUF) ls-files
 
 publish:
-	@echo "WIP"
+	yarn publish --access public
 
 
 #######################
 ## Low level targets ##
 #######################
 
-deps-proto: iotics-api.git
-iotics-api.git:
+deps-proto:
 	git submodule update --init --recursive
 
 deps-proto-update:

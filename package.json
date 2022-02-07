@@ -1,6 +1,6 @@
 {
   "name": "@iotics/grpc-client",
-  "version": "1.0.0",
+  "version": "0.0.1-dev.22",
   "description": "Library for making gRPC-Web requests to IOTICSpace from a browser.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
