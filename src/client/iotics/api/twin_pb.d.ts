@@ -87,11 +87,49 @@ export namespace ListAllTwinsResponse {
     payload?: ListAllTwinsResponse.Payload.AsObject,
   }
 
+  export class TwinDetails extends jspb.Message {
+    hasId(): boolean;
+    clearId(): void;
+    getId(): iotics_api_common_pb.TwinID | undefined;
+    setId(value?: iotics_api_common_pb.TwinID): void;
+
+    getVisibility(): iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap];
+    setVisibility(value: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap]): void;
+
+    hasLocation(): boolean;
+    clearLocation(): void;
+    getLocation(): iotics_api_common_pb.GeoLocation | undefined;
+    setLocation(value?: iotics_api_common_pb.GeoLocation): void;
+
+    clearPropertiesList(): void;
+    getPropertiesList(): Array<iotics_api_common_pb.Property>;
+    setPropertiesList(value: Array<iotics_api_common_pb.Property>): void;
+    addProperties(value?: iotics_api_common_pb.Property, index?: number): iotics_api_common_pb.Property;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): TwinDetails.AsObject;
+    static toObject(includeInstance: boolean, msg: TwinDetails): TwinDetails.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: TwinDetails, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TwinDetails;
+    static deserializeBinaryFromReader(message: TwinDetails, reader: jspb.BinaryReader): TwinDetails;
+  }
+
+  export namespace TwinDetails {
+    export type AsObject = {
+      id?: iotics_api_common_pb.TwinID.AsObject,
+      visibility: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap],
+      location?: iotics_api_common_pb.GeoLocation.AsObject,
+      propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
+    }
+  }
+
   export class Payload extends jspb.Message {
     clearTwinsList(): void;
-    getTwinsList(): Array<Twin>;
-    setTwinsList(value: Array<Twin>): void;
-    addTwins(value?: Twin, index?: number): Twin;
+    getTwinsList(): Array<ListAllTwinsResponse.TwinDetails>;
+    setTwinsList(value: Array<ListAllTwinsResponse.TwinDetails>): void;
+    addTwins(value?: ListAllTwinsResponse.TwinDetails, index?: number): ListAllTwinsResponse.TwinDetails;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Payload.AsObject;
@@ -105,7 +143,7 @@ export namespace ListAllTwinsResponse {
 
   export namespace Payload {
     export type AsObject = {
-      twinsList: Array<Twin.AsObject>,
+      twinsList: Array<ListAllTwinsResponse.TwinDetails.AsObject>,
     }
   }
 }
