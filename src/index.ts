@@ -26,7 +26,7 @@ export {
   VisibilityUpdate,
   GeoLocationUpdate,
   Twin,
-  FeedMeta,
+  FeedMeta,ListAllTwinsRequest,ListAllTwinsResponse
 } from './client/iotics/api/twin_pb';
 export { describeFeedApi, shareFeedDataApi } from './feeds';
 export { search } from './search';
@@ -34,3 +34,5 @@ export type { ISearchResult } from './search';
 export { Scope, Visibility as TwinVisibility, describeTwinApi, upsertTwinApi, updateTwinApi, deleteTwinApi } from './twins';
 export { follow, Status } from './interest';
 export type { IInterestResult } from './interest';
+export {listAllTwins} from './listAllTwins'
+export type { IListResult } from './listAllTwins';

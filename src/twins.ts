@@ -10,6 +10,8 @@ import {
     GeoLocationUpdate,
     DeleteTwinResponse,
     DeleteTwinRequest,
+    ListAllTwinsRequest,
+    ListAllTwinsResponse
 } from './client/iotics/api/twin_pb';
 import { GeoLocation, Headers, Property, PropertyUpdate, TwinID } from './client/iotics/api/common_pb';
 import { UpsertFeedWithMeta } from './client/iotics/api/feed_pb';
@@ -276,3 +278,4 @@ export const deleteTwinApi = async (
         });
     });
 };
+
