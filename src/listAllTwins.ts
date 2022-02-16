@@ -8,15 +8,14 @@ import {
 import { Headers, Range, Limit, Offset } from "./client/iotics/api/common_pb";
 import { getShortUUID } from "./helpers";
 
-const PAGE_LENGTH = 100;
-const STATUS_OK = "OK";
+export const LIST_ALL_TWINS_PAGE_LENGTH = 100;
 
 export interface IListResult {
-    status: string;
+    error?: string;
     results?: ListAllTwinsResponse.Payload;
 }
 
-const listResult: IListResult = { status: "INIT" };
+const listResult: IListResult = {};
 
 const requestListAllTwins = (
     client: TwinAPIClient,
@@ -35,8 +34,8 @@ const requestListAllTwins = (
     headers.setClientappid(clientAppId);
     headers.setClientref(`${clientAppId}_page${page}`);
     headers.setTransactionrefList([clientAppId]);
-    limit.setValue(PAGE_LENGTH);
-    offset.setValue(PAGE_LENGTH * page);
+    limit.setValue(LIST_ALL_TWINS_PAGE_LENGTH);
+    offset.setValue(LIST_ALL_TWINS_PAGE_LENGTH * page);
     range.setLimit(limit);
     range.setOffset(offset);
     request.setRange(range);
@@ -64,7 +63,7 @@ const callBackListAllTwins = (
         if (error) {
             // eslint-disable-next-line no-console
             console.warn("listAllTwinsApi:", error);
-            listResult.status = `ERROR ${error.message}`;
+            listResult.error = `ERROR ${error.message}`;
             listResult.results = undefined;
             emit(listResult);
             emit(END);
@@ -74,7 +73,7 @@ const callBackListAllTwins = (
             const msg = "ERROR: Response message is null.";
             // eslint-disable-next-line no-console
             console.warn(msg);
-            listResult.status = msg;
+            listResult.error = msg;
             listResult.results = undefined;
             emit(listResult);
             emit(END);
@@ -85,18 +84,18 @@ const callBackListAllTwins = (
             const msg = "listAllTwinsApi: Payload is empty.";
             // eslint-disable-next-line no-console
             console.warn(msg);
-            listResult.status = msg;
+            listResult.error = msg;
             listResult.results = undefined;
             emit(listResult);
             emit(END);
             return;
         }
 
-        listResult.status = STATUS_OK;
+        listResult.error = undefined;
         listResult.results = payload;
         emit(listResult);
 
-        if (twins && twins.length >= PAGE_LENGTH) {
+        if (twins && twins.length >= LIST_ALL_TWINS_PAGE_LENGTH) {
             requestListAllTwins(
                 client,
                 clientAppId,
@@ -104,6 +103,8 @@ const callBackListAllTwins = (
                 page + 1,
                 listCallback
             );
+        } else {
+            emit(END);
         }
     };
     return listCallback;
