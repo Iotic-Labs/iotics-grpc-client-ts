@@ -43,6 +43,9 @@ Should contain a summary of the changes in [CHANGELOG.md](./CHANGELOG.md) under 
 
 
 ### Releasing
+> **Note:**
+> Currently this package is not easy to use,
+> hence it may contain breaking changes between patches until v2 is realeased.
 * Update package version in [package.json](./package.json) for the release:
   ```bash
   yarn version --no-git-tag-version --patch
@@ -57,7 +60,7 @@ Should contain a summary of the changes in [CHANGELOG.md](./CHANGELOG.md) under 
 * Commit changes and create a [PR](https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare).
 * Once PR is merged, tag the commit:
   ```bash
-  _ver=vX.X.X
+  _ver=vX.X.X  # _ver="v$(grep version package.json |cut -d'"' -f4)"
   git tag -a "$_ver" -m "$_ver"
   git push origin "$_ver"
   ```
