@@ -6,16 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+### Added
+- Copyright and license information
 
 
 ## [1.0.1] - 2022-02-17
 ### Changed
--   Improvements in `listAllTwins` for better pagination and error handlings.
+- Improvements in `listAllTwins` for better pagination and error handlings.
 
 
 ## [1.0.0] - 2022-02-16
 ### Added
--   Initial release of `iotics-grpc-client-ts`.
+- Initial release of `iotics-grpc-client-ts`.
 
 
 [Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.0.1...HEAD
