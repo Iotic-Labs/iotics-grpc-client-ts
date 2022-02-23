@@ -34,7 +34,7 @@
     "gRPC"
   ],
   "author": "Iotic Labs",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Iotic-Labs/iotics-grpc-client-ts/issues"
   },
