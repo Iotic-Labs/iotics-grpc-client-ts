@@ -8,6 +8,10 @@ yarn add @iotics/grpc-client
 ```
 
 
+# Examples
+* [ts-node](./examples/tsnode/README.md) - example usages within Node.js runtime environment.
+
+
 ## Contributing
 
 

@@ -1,0 +1,16 @@
+# Iotics gRPC-Web example with ts-node
+An example project showing how to use the Iotics gRPC-Web TypeScript client in Node.js runtime environment
+to communicate with IOTICSpaces to e.g. search twin models.
+
+
+## Quick start
+* `yarn` - install dependencies.
+* Set a URL to the gRPC-Web server of the space you want to send queries to and an access token:
+  ```bash
+   export GRPC_URL=
+   export GRPC_TOKEN=
+  ```
+* Run an example:
+  * [`searchModels.ts`](./src/searchModels.ts) - look for twin models using RDF property, in a GLOBAL scope:
+    * `yarn search-twin-models` - default timeout: 3 seconds.
+    * `GRPC_TIMEOUT=0.2 yarn search-twin-models` - search with custom timeout.
