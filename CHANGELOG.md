@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+### Added
+- gRPC export in the main file to be used with Node.js based projects utilising the
+  [`setDefaultTransport`](https://github.com/improbable-eng/grpc-web/tree/master/client/grpc-web-node-http-transport).
+- An example usage of search run with the `ts-node`.
+
 ### Fixed
 - Missing `whatwg-fetch` dependency.
 

@@ -18,6 +18,8 @@
 
 import "whatwg-fetch";
 
+export { grpc } from '@improbable-eng/grpc-web';
+
 export {
     FeedID,
     TwinID,
@@ -71,3 +73,4 @@ export { follow, Status } from "./interest";
 export type { IInterestResult } from "./interest";
 export { listAllTwins, LIST_ALL_TWINS_PAGE_LENGTH } from "./listAllTwins";
 export type { IListResult } from "./listAllTwins";
+export { PropertyType, createProperty } from "./properties";
