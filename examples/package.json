@@ -4,7 +4,8 @@
   "description": "Example usage of Iotics gRPC-Web client.",
   "private": true,
   "scripts": {
-    "search-twin-models": "ts-node src/searchModels.ts"
+    "search-twin-models": "ts-node src/searchModels.ts",
+    "run-sparql-query": "ts-node src/sparqlQuery.ts"
   },
   "devDependencies": {
     "@improbable-eng/grpc-web": "^0.15.0",

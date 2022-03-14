@@ -10,10 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - gRPC export in the main file to be used with Node.js based projects utilising the
   [`setDefaultTransport`](https://github.com/improbable-eng/grpc-web/tree/master/client/grpc-web-node-http-transport).
 - An example usage of search run with the `ts-node`.
+- Regenerated client files from v0.0.8 of [api](https://github.com/Iotic-Labs/api)
+- Created thin wrapper of sparqlQuery RPC call
+- Created example of calling sparqlQuery wrapper to run a simple query
 
 ### Fixed
 - Missing `whatwg-fetch` dependency.
-
 
 ## [1.0.2] - 2022-03-08
 ### Added

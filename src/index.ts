@@ -18,7 +18,7 @@
 
 import "whatwg-fetch";
 
-export { grpc } from '@improbable-eng/grpc-web';
+export { grpc } from "@improbable-eng/grpc-web";
 
 export {
     FeedID,
@@ -74,3 +74,10 @@ export type { IInterestResult } from "./interest";
 export { listAllTwins, LIST_ALL_TWINS_PAGE_LENGTH } from "./listAllTwins";
 export type { IListResult } from "./listAllTwins";
 export { PropertyType, createProperty } from "./properties";
+export {
+    SparqlQueryRequest,
+    SparqlQueryResponse,
+    SparqlResultType,
+} from "./client/iotics/api/meta_pb";
+export { sparqlQuery } from "./sparqlQuery";
+export type { IQueryResult } from "./sparqlQuery";
