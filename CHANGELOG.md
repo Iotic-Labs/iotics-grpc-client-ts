@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+## [1.1.0] - 2022-03-24
 ### Added
 - gRPC export in the main file to be used with Node.js based projects utilising the
   [`setDefaultTransport`](https://github.com/improbable-eng/grpc-web/tree/master/client/grpc-web-node-http-transport).
@@ -32,7 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release of `iotics-grpc-client-ts`.
 
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/releases/tag/v1.0.0
