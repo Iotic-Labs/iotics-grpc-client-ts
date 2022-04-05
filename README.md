@@ -1,5 +1,5 @@
 # Iotics gRPC-Web
-A JavaScript/TypeScript browser client for doing calls to Iotics API.
+A JavaScript/TypeScript client for interacting with Iotics API.
 
 
 ## Usage
@@ -9,7 +9,7 @@ yarn add @iotics/grpc-client
 
 
 # Examples
-* [ts-node](./examples/tsnode/README.md) - example usages within Node.js runtime environment.
+* [ts-node](./examples/README.md) - example usages within Node.js runtime environment.
 
 
 ## Contributing
