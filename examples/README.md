@@ -15,5 +15,5 @@ to communicate with IOTICSpaces to e.g. search twin models.
   * [`searchModels.ts`](./src/searchModels.ts) - look for twin models using RDF property, in a GLOBAL scope:
     * `yarn search-twin-models` - default timeout: 3 seconds.
     * `GRPC_TIMEOUT=0.2 yarn search-twin-models` - search with custom timeout.
-  * [`sparqlQuery.ts`](./src/sparqQuery.ts) - Run a sparql query which returns the labels of all the model twins in the LOCAL scope:
+  * [`sparqlQuery.ts`](./src/sparqlQuery.ts) - Run a sparql query which returns the labels of all the model twins in the LOCAL scope:
     * `yarn run-sparql-query` - default timeout: 3 seconds.
