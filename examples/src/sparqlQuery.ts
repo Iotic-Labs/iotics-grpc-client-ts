@@ -33,6 +33,7 @@ import {
     IQueryResult,
     sparqlQuery,
     SparqlResultType,
+    GRPCStatusCodes,
 } from "../../src";
 
 const DEFAULT_TIMEOUT = 3; // Seconds
@@ -87,11 +88,13 @@ function* sparqlQueryResultsWatcher(channel: EventChannel<IQueryResult>) {
                 console.info("Query results:");
                 console.info(message?.results.data);
             } else {
-                if (message?.status?.code === 16) {
+                if (message?.status?.code === GRPCStatusCodes.UNAUTHENTICATED) {
                     console.warn(
                         "The GRPC_TOKEN has expired please set another one."
                     );
-                } else if (message?.status?.code !== 2) {
+                } else if (
+                    message?.status?.code !== GRPCStatusCodes.DEADLINE_EXCEEDED
+                ) {
                     // if not context deadline exceeded messages
                     console.warn("Query error:", message?.status);
                 }

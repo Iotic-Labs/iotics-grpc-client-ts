@@ -158,7 +158,9 @@ const handleDataResponse = (
  * otherwise return undefined
  */
 const checkDecodeData = (hostData: Map<number, IChunk>): string | undefined => {
-    const seqNums = [...hostData.keys()].sort();
+    const seqNums = [...hostData.keys()].sort(function (seqNum1, seqNum2) {
+        return seqNum1 - seqNum2;
+    });
     const lastSeqNum: number = seqNums[seqNums.length - 1];
 
     if (!hostData.get(lastSeqNum)?.lastValue) {
