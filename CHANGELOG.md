@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- sparqlQuery returns no results where there are > 9 chunks returned.
+
 ## [1.1.0] - 2022-03-24
 ### Added
 - gRPC export in the main file to be used with Node.js based projects utilising the
