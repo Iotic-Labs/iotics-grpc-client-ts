@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "search-twin-models": "ts-node src/searchModels.ts",
-    "run-sparql-query": "ts-node src/sparqlQuery.ts"
+    "run-sparql-query": "ts-node src/sparqlQuery.ts",
+    "run-describe-twin": "ts-node src/describeTwin.ts"
   },
   "devDependencies": {
     "@improbable-eng/grpc-web": "^0.15.0",

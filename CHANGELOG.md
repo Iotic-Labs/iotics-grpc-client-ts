@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+### Changed
+- Changed describeTwinApi call to now also take a remote host id in order to describe twins in remote spaces
 
 ## [1.1.1] - 2022-04-12
 ### Fixed
