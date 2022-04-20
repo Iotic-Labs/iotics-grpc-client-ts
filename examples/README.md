@@ -17,3 +17,5 @@ to communicate with IOTICSpaces to e.g. search twin models.
     * `GRPC_TIMEOUT=0.2 yarn search-twin-models` - search with custom timeout.
   * [`sparqlQuery.ts`](./src/sparqlQuery.ts) - Run a sparql query which returns the labels of all the model twins in the LOCAL scope:
     * `yarn run-sparql-query` - default timeout: 3 seconds.
+  * [`describeTwin.ts`](./src/describeTwin.ts) - Describe a twin, set TWIN_DID and optionally REMOTE_HOST_ID environment variables: 
+    * `TWIN_DID=did:iotics:abcdefg yarn run-describe-twin`
