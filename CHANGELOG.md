@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+## [1.2.0] - 2022-04-22
 ### Changed
 - Changed describeTwinApi call to now also take a remote host id in order to describe twins in remote spaces
 
@@ -40,7 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release of `iotics-grpc-client-ts`.
 
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.0.1...v1.0.2
