@@ -83,14 +83,26 @@ export const search = (
         const metadata = new grpc.Metadata();
         metadata.set('authorization', `bearer ${accessToken}`);
 
-        let lastPage = 0;
-
         // receive results
         const searchResponsesHeaders = new pbCommonModel.SubscriptionHeaders();
         searchResponsesHeaders.setClientappid(clientAppId);
         const searchResponseStream = client.receiveAllSearchResponses(searchResponsesHeaders, metadata);
 
+        let lastPage = 0;
         searchResponseStream.on('data', (handler) => {
+            const twins = handler.getPayload()?.getTwinsList();
+            const twinsCount = twins?.length ?? 0;
+            const clientRef = handler.getHeaders()!.getClientref();
+            const page = parseInt(clientRef.split('_page')[1], 10);
+            if (twinsCount >= PAGE_LENGTH && page >= lastPage) {
+                lastPage += 1;
+                requestResultsPage(client, clientAppId, metadata, searchRequestPayload, scope, lastPage, emit);
+            }
+            if (twinsCount === 0 && page > 0) {
+                // Do not emit redundant responses if paginated search is called with global scope.
+                return;
+            }
+
             const searchResponsePayload = handler.getPayload();
             if (!searchResponsePayload) {
                 // eslint-disable-next-line no-console
@@ -113,15 +125,6 @@ export const search = (
                 status: 'OK',
                 results: searchResponsePayload,
             } as ISearchResult);
-
-            const twins = handler.getPayload()?.getTwinsList();
-            const clientRef = handler.getHeaders()!.getClientref();
-            const page = parseInt(clientRef.split('_page')[1], 10);
-
-            if (twins && twins.length >= PAGE_LENGTH && page >= lastPage) {
-                lastPage += 1;
-                requestResultsPage(client, clientAppId, metadata, searchRequestPayload, scope, lastPage, emit);
-            }
         });
 
         searchResponseStream.on('end', () => {
