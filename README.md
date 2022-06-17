@@ -35,7 +35,7 @@ yarn add @iotics/grpc-client
   git checkout "tags/$_ver"
   popd
   make generate-update
-  # Address usages of the new client in `src` and update "Unreleased" section in CHANGELOG.md
+  # After addressing the changes of the new client in `src`, please update "Unreleased" section in CHANGELOG.md
   git add CHANGELOG.md iotics-api.git src
   git commit -m "Update Iotics API to $_ver"
   git push

@@ -78,9 +78,12 @@ export {
     SparqlQueryRequest,
     SparqlQueryResponse,
     SparqlResultType,
+    SparqlUpdateRequest,
+    SparqlUpdateResponse
 } from "./client/iotics/api/meta_pb";
 export { sparqlQuery } from "./sparqlQuery";
 export type { IQueryResult } from "./sparqlQuery";
+export { sparqlUpdate } from "./sparqlUpdate";
 
 // https://grpc.github.io/grpc/core/md_doc_statuscodes.html
 export enum GRPCStatusCodes {
