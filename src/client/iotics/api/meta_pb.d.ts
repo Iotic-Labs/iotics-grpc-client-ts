@@ -137,6 +137,78 @@ export namespace SparqlQueryResponse {
   }
 }
 
+export class SparqlUpdateRequest extends jspb.Message {
+  hasHeaders(): boolean;
+  clearHeaders(): void;
+  getHeaders(): iotics_api_common_pb.Headers | undefined;
+  setHeaders(value?: iotics_api_common_pb.Headers): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): SparqlUpdateRequest.Payload | undefined;
+  setPayload(value?: SparqlUpdateRequest.Payload): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SparqlUpdateRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SparqlUpdateRequest): SparqlUpdateRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SparqlUpdateRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SparqlUpdateRequest;
+  static deserializeBinaryFromReader(message: SparqlUpdateRequest, reader: jspb.BinaryReader): SparqlUpdateRequest;
+}
+
+export namespace SparqlUpdateRequest {
+  export type AsObject = {
+    headers?: iotics_api_common_pb.Headers.AsObject,
+    payload?: SparqlUpdateRequest.Payload.AsObject,
+  }
+
+  export class Payload extends jspb.Message {
+    getUpdate(): Uint8Array | string;
+    getUpdate_asU8(): Uint8Array;
+    getUpdate_asB64(): string;
+    setUpdate(value: Uint8Array | string): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Payload.AsObject;
+    static toObject(includeInstance: boolean, msg: Payload): Payload.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Payload, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Payload;
+    static deserializeBinaryFromReader(message: Payload, reader: jspb.BinaryReader): Payload;
+  }
+
+  export namespace Payload {
+    export type AsObject = {
+      update: Uint8Array | string,
+    }
+  }
+}
+
+export class SparqlUpdateResponse extends jspb.Message {
+  hasHeaders(): boolean;
+  clearHeaders(): void;
+  getHeaders(): iotics_api_common_pb.Headers | undefined;
+  setHeaders(value?: iotics_api_common_pb.Headers): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SparqlUpdateResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SparqlUpdateResponse): SparqlUpdateResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SparqlUpdateResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SparqlUpdateResponse;
+  static deserializeBinaryFromReader(message: SparqlUpdateResponse, reader: jspb.BinaryReader): SparqlUpdateResponse;
+}
+
+export namespace SparqlUpdateResponse {
+  export type AsObject = {
+    headers?: iotics_api_common_pb.Headers.AsObject,
+  }
+}
+
 export interface SparqlResultTypeMap {
   SPARQL_JSON: 0;
   SPARQL_XML: 1;

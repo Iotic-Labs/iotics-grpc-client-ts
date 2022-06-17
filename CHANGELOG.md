@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+- Update Iotics API to v0.0.9
+- Regenerated client files from v0.0.9 of [api](https://github.com/Iotic-Labs/api)
+- Created wrapper of SPARQLUpdate RPC call
+- Created example of calling sparqlUpdate wrapper to run a simple query
 
 ## [1.2.0] - 2022-04-22
 ### Changed

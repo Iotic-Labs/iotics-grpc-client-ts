@@ -19,6 +19,15 @@ MetaAPI.SparqlQuery = {
   responseType: iotics_api_meta_pb.SparqlQueryResponse
 };
 
+MetaAPI.SparqlUpdate = {
+  methodName: "SparqlUpdate",
+  service: MetaAPI,
+  requestStream: false,
+  responseStream: false,
+  requestType: iotics_api_meta_pb.SparqlUpdateRequest,
+  responseType: iotics_api_meta_pb.SparqlUpdateResponse
+};
+
 exports.MetaAPI = MetaAPI;
 
 function MetaAPIClient(serviceHost, options) {
@@ -60,6 +69,37 @@ MetaAPIClient.prototype.sparqlQuery = function sparqlQuery(requestMessage, metad
     },
     cancel: function () {
       listeners = null;
+      client.close();
+    }
+  };
+};
+
+MetaAPIClient.prototype.sparqlUpdate = function sparqlUpdate(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(MetaAPI.SparqlUpdate, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
       client.close();
     }
   };
