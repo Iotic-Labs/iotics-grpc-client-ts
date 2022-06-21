@@ -79,6 +79,10 @@ DELETE DATA {
     console.info("SparQL Update.");
 
     try {
+        console.log("Doing initial query");
+        runSparqlQuery(query);
+        await sleep(1000);
+        
         console.log("Doing update");
         let results = await sparqlUpdate(token, url, update, timeoutInS);
         console.log(JSON.stringify(results.toObject(), undefined, 4));
