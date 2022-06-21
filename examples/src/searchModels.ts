@@ -73,7 +73,7 @@ function* searchModelsWatcher(channel: EventChannel<ISearchResult>) {
     try {
         // Use while loop to ensure that all result messages are handled, i.e. results from remote spaces.
         while (true) {
-            console.info('Waiting for a message… ');
+            // console.info('Waiting for a message… ');
             const message: ISearchResult = yield take(channel);
             const hostId = message.results?.getRemotehostid()?.getValue() ?? 'local';
             const twinCount = message.results?.getTwinsList().length ?? 0;
