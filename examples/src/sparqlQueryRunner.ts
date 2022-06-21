@@ -41,7 +41,7 @@ const DEFAULT_TIMEOUT = 3; // Seconds
 // Enable the use of gRPC-Web in NodeJS.
 grpc.setDefaultTransport(NodeHttpTransport());
 
-function* runWithQery(
+function* runWithQuery(
     grpcUrl: string,
     accessToken: string,
     timeoutInS: number,
@@ -121,7 +121,7 @@ export function runSparqlQuery(query: string) {
     // Run the query and listen for results:
     const sagaTask = runSaga(
         {},
-        runWithQery as Saga,
+        runWithQuery as Saga,
         url,
         token,
         timeoutInS,

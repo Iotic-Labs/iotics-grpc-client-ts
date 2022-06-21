@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+## [1.3.0] - 2022-05-21
+### Changed
 - Update Iotics API to v0.0.9
 - Regenerated client files from v0.0.9 of [api](https://github.com/Iotic-Labs/api)
 - Created wrapper of SPARQLUpdate RPC call
@@ -46,7 +49,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release of `iotics-grpc-client-ts`.
 
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.0.2...v1.1.0
