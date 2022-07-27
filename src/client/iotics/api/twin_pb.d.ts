@@ -2,9 +2,9 @@
 // file: iotics/api/twin.proto
 
 import * as jspb from "google-protobuf";
-import * as google_protobuf_wrappers_pb from "google-protobuf/google/protobuf/wrappers_pb";
 import * as iotics_api_common_pb from "../../iotics/api/common_pb";
 import * as iotics_api_feed_pb from "../../iotics/api/feed_pb";
+import * as iotics_api_input_pb from "../../iotics/api/input_pb";
 
 export class Twin extends jspb.Message {
   hasId(): boolean;
@@ -430,6 +430,28 @@ export namespace FeedMeta {
   }
 }
 
+export class InputMeta extends jspb.Message {
+  hasInputid(): boolean;
+  clearInputid(): void;
+  getInputid(): iotics_api_common_pb.InputID | undefined;
+  setInputid(value?: iotics_api_common_pb.InputID): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InputMeta.AsObject;
+  static toObject(includeInstance: boolean, msg: InputMeta): InputMeta.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: InputMeta, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InputMeta;
+  static deserializeBinaryFromReader(message: InputMeta, reader: jspb.BinaryReader): InputMeta;
+}
+
+export namespace InputMeta {
+  export type AsObject = {
+    inputid?: iotics_api_common_pb.InputID.AsObject,
+  }
+}
+
 export class DescribeTwinResponse extends jspb.Message {
   hasHeaders(): boolean;
   clearHeaders(): void;
@@ -468,6 +490,11 @@ export namespace DescribeTwinResponse {
     setFeedsList(value: Array<FeedMeta>): void;
     addFeeds(value?: FeedMeta, index?: number): FeedMeta;
 
+    clearInputsList(): void;
+    getInputsList(): Array<InputMeta>;
+    setInputsList(value: Array<InputMeta>): void;
+    addInputs(value?: InputMeta, index?: number): InputMeta;
+
     clearPropertiesList(): void;
     getPropertiesList(): Array<iotics_api_common_pb.Property>;
     setPropertiesList(value: Array<iotics_api_common_pb.Property>): void;
@@ -487,6 +514,7 @@ export namespace DescribeTwinResponse {
     export type AsObject = {
       location?: iotics_api_common_pb.GeoLocation.AsObject,
       feedsList: Array<FeedMeta.AsObject>,
+      inputsList: Array<InputMeta.AsObject>,
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
     }
   }
@@ -757,6 +785,11 @@ export namespace UpsertTwinRequest {
     setFeedsList(value: Array<iotics_api_feed_pb.UpsertFeedWithMeta>): void;
     addFeeds(value?: iotics_api_feed_pb.UpsertFeedWithMeta, index?: number): iotics_api_feed_pb.UpsertFeedWithMeta;
 
+    clearInputsList(): void;
+    getInputsList(): Array<iotics_api_input_pb.UpsertInputWithMeta>;
+    setInputsList(value: Array<iotics_api_input_pb.UpsertInputWithMeta>): void;
+    addInputs(value?: iotics_api_input_pb.UpsertInputWithMeta, index?: number): iotics_api_input_pb.UpsertInputWithMeta;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Payload.AsObject;
     static toObject(includeInstance: boolean, msg: Payload): Payload.AsObject;
@@ -774,6 +807,7 @@ export namespace UpsertTwinRequest {
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
       location?: iotics_api_common_pb.GeoLocation.AsObject,
       feedsList: Array<iotics_api_feed_pb.UpsertFeedWithMeta.AsObject>,
+      inputsList: Array<iotics_api_input_pb.UpsertInputWithMeta.AsObject>,
     }
   }
 }

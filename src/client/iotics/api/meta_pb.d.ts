@@ -5,6 +5,62 @@ import * as jspb from "google-protobuf";
 import * as google_rpc_status_pb from "../../google/rpc/status_pb";
 import * as iotics_api_common_pb from "../../iotics/api/common_pb";
 
+export class ExplorerRequest extends jspb.Message {
+  hasHeaders(): boolean;
+  clearHeaders(): void;
+  getHeaders(): iotics_api_common_pb.Headers | undefined;
+  setHeaders(value?: iotics_api_common_pb.Headers): void;
+
+  getScope(): iotics_api_common_pb.ScopeMap[keyof iotics_api_common_pb.ScopeMap];
+  setScope(value: iotics_api_common_pb.ScopeMap[keyof iotics_api_common_pb.ScopeMap]): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): ExplorerRequest.Payload | undefined;
+  setPayload(value?: ExplorerRequest.Payload): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExplorerRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ExplorerRequest): ExplorerRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ExplorerRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExplorerRequest;
+  static deserializeBinaryFromReader(message: ExplorerRequest, reader: jspb.BinaryReader): ExplorerRequest;
+}
+
+export namespace ExplorerRequest {
+  export type AsObject = {
+    headers?: iotics_api_common_pb.Headers.AsObject,
+    scope: iotics_api_common_pb.ScopeMap[keyof iotics_api_common_pb.ScopeMap],
+    payload?: ExplorerRequest.Payload.AsObject,
+  }
+
+  export class Payload extends jspb.Message {
+    getResultcontenttype(): SparqlResultTypeMap[keyof SparqlResultTypeMap];
+    setResultcontenttype(value: SparqlResultTypeMap[keyof SparqlResultTypeMap]): void;
+
+    getKeyword(): string;
+    setKeyword(value: string): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Payload.AsObject;
+    static toObject(includeInstance: boolean, msg: Payload): Payload.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Payload, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Payload;
+    static deserializeBinaryFromReader(message: Payload, reader: jspb.BinaryReader): Payload;
+  }
+
+  export namespace Payload {
+    export type AsObject = {
+      resultcontenttype: SparqlResultTypeMap[keyof SparqlResultTypeMap],
+      keyword: string,
+    }
+  }
+}
+
 export class SparqlQueryRequest extends jspb.Message {
   hasHeaders(): boolean;
   clearHeaders(): void;
