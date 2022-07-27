@@ -398,6 +398,26 @@ export namespace FeedID {
   }
 }
 
+export class InputID extends jspb.Message {
+  getValue(): string;
+  setValue(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InputID.AsObject;
+  static toObject(includeInstance: boolean, msg: InputID): InputID.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: InputID, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InputID;
+  static deserializeBinaryFromReader(message: InputID, reader: jspb.BinaryReader): InputID;
+}
+
+export namespace InputID {
+  export type AsObject = {
+    value: string,
+  }
+}
+
 export class Value extends jspb.Message {
   getLabel(): string;
   setLabel(value: string): void;
@@ -527,13 +547,6 @@ export namespace PropertyUpdate {
     addedList: Array<Property.AsObject>,
   }
 }
-
-export interface PointTypeMap {
-  FEED: 0;
-  CONTROL: 1;
-}
-
-export const PointType: PointTypeMap;
 
 export interface VisibilityMap {
   PRIVATE: 0;

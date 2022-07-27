@@ -22,10 +22,20 @@ type MetaAPISparqlUpdate = {
   readonly responseType: typeof iotics_api_meta_pb.SparqlUpdateResponse;
 };
 
+type MetaAPIExplorerQuery = {
+  readonly methodName: string;
+  readonly service: typeof MetaAPI;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof iotics_api_meta_pb.ExplorerRequest;
+  readonly responseType: typeof iotics_api_meta_pb.SparqlQueryResponse;
+};
+
 export class MetaAPI {
   static readonly serviceName: string;
   static readonly SparqlQuery: MetaAPISparqlQuery;
   static readonly SparqlUpdate: MetaAPISparqlUpdate;
+  static readonly ExplorerQuery: MetaAPIExplorerQuery;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -70,5 +80,6 @@ export class MetaAPIClient {
     requestMessage: iotics_api_meta_pb.SparqlUpdateRequest,
     callback: (error: ServiceError|null, responseMessage: iotics_api_meta_pb.SparqlUpdateResponse|null) => void
   ): UnaryResponse;
+  explorerQuery(requestMessage: iotics_api_meta_pb.ExplorerRequest, metadata?: grpc.Metadata): ResponseStream<iotics_api_meta_pb.SparqlQueryResponse>;
 }
 
