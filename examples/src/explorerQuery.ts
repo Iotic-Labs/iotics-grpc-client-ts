@@ -21,11 +21,11 @@ import { EventChannel } from "redux-saga";
 
 import {
     grpc,
+    explorerQuery,
     GRPCStatusCodes,
     IQueryResult,
     Scope,
     SparqlResultType,
-    sparqlQuery,
 } from "../../src";
 import { channelToGenerator } from "../../src/helpers";
 
@@ -35,23 +35,11 @@ grpc.setDefaultTransport(NodeHttpTransport());
 
 function main() {
     // query for all of the models and return their labels
-    const query = `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-         PREFIX iotics: <http://data.iotics.com/iotics#>
-         PREFIX ioticsApp: <https://data.iotics.com/app#>
-         
-         SELECT ?label
-         WHERE
-         {
-             ?twin rdf:type iotics:DigitalTwin .
-             ?twin rdf:type ioticsApp:Model .
-             ?twin rdfs:label ?label .
-         }
-         ORDER BY ?label`;
-    runSparqlQuery(query);
+    const keyword = `waterloo`;
+    runExplorerQuery(keyword);
 }
 
-export const runSparqlQuery = async (query: string) => {
+export const runExplorerQuery = async (keyword: string) => {
     // Get values from environment variables:
     const url = process.env.GRPC_URL;
     const token = process.env.GRPC_TOKEN;
@@ -68,14 +56,14 @@ export const runSparqlQuery = async (query: string) => {
         process.exit(1);
     }
 
-    console.info(`Sparql Query for twin models in "${url}".`);
+    console.info(`Explorer Query for twin models in "${url}".`);
 
-    const channel: EventChannel<IQueryResult> = sparqlQuery(
+    const channel: EventChannel<IQueryResult> = explorerQuery(
         token,
         url,
-        query,
-        Scope.LOCAL,
-        SparqlResultType.SPARQL_JSON,
+        keyword,
+        Scope.GLOBAL,
+        SparqlResultType.RDF_TURTLE,
         timeoutInS
     ) as EventChannel<IQueryResult>;
 
