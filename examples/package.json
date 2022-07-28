@@ -7,6 +7,7 @@
     "search-twin-models": "ts-node src/searchModels.ts",
     "run-describe-twin": "ts-node src/describeTwin.ts",
     "run-sparql-query": "ts-node src/sparqlQuery.ts",
+    "run-explorer-query": "ts-node src/explorerQuery.ts",
     "run-sparql-update": "ts-node src/sparqlUpdate.ts"
 
   },
