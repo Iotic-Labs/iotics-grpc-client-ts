@@ -36,7 +36,7 @@ import {
     explorerQuery,
 } from "../../src";
 
-const DEFAULT_TIMEOUT = 30; // Seconds
+const DEFAULT_TIMEOUT = 60; // Seconds
 
 // Enable the use of gRPC-Web in NodeJS.
 grpc.setDefaultTransport(NodeHttpTransport());
@@ -52,8 +52,8 @@ function* runWithQuery(
         accessToken,
         grpcUrl,
         keyword,
-        Scope.LOCAL,
-        SparqlResultType.SPARQL_JSON,
+        Scope.GLOBAL,
+        SparqlResultType.RDF_TURTLE,
         timeoutInS
     );
     yield fork(explorerQueryResultsWatcher, channel);
@@ -62,31 +62,40 @@ function* runWithQuery(
 function* explorerQueryResultsWatcher(channel: EventChannel<IQueryResult>) {
     // Handle query results in here:
     try {
-        try {
-            console.info("Wait for a message...");
-            const message: IQueryResult = yield take(channel);
-            console.info("Message received with status:", message.status);
-            if (message.status.message === "OK" && message?.results) {
-                console.info(
-                    "Host id:",
-                    message?.results.hostId ?? "local host"
-                );
-                console.info("Query results:");
-                console.info(message?.results.data);
-            } else {
-                if (message?.status?.code === GRPCStatusCodes.UNAUTHENTICATED) {
-                    console.warn(
-                        "The GRPC_TOKEN has expired please set another one."
+        while (true) {
+            try {
+                console.info("Wait for a message...");
+                const message: IQueryResult = yield take(channel);
+                console.info("Message received with status:", message.status);
+                if (message.status.message === "OK" && message?.results) {
+                    console.info(
+                        "Host id:",
+                        message?.results.hostId ?? "local host"
                     );
-                } else if (
-                    message?.status?.code !== GRPCStatusCodes.DEADLINE_EXCEEDED
-                ) {
-                    // if not context deadline exceeded messages
-                    console.warn("Query error:", message?.status);
+                    console.info("Query results:");
+                    console.info(message?.results.data);
+                } else {
+                    if (
+                        message?.status?.code ===
+                        GRPCStatusCodes.UNAUTHENTICATED
+                    ) {
+                        console.warn(
+                            "The GRPC_TOKEN has expired please set another one."
+                        );
+                    } else if (
+                        message?.status?.code !==
+                        GRPCStatusCodes.DEADLINE_EXCEEDED
+                    ) {
+                        // if not context deadline exceeded messages
+                        console.warn("Query error:", message?.status);
+                    }
                 }
+            } catch (error) {
+                console.warn(
+                    "Unhandled explorerQueryResultsWatcher error:",
+                    error
+                );
             }
-        } catch (error) {
-            console.warn("Unhandled explorerQueryResultsWatcher error:", error);
         }
     } finally {
         const cancelledEffect: CancelledEffect = yield cancelled();
@@ -127,7 +136,7 @@ export function runExplorerQuery(keyword: string) {
         timeoutInS,
         keyword
     );
-
+        console.log('Keyword: ',keyword)
     // Set timeout after which to stop listening for results.
     setTimeout(() => sagaTask.cancel(), timeoutInMs);
 }

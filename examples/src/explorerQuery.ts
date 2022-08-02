@@ -17,11 +17,16 @@
  */
 
  import { runExplorerQuery } from "./explorerQueryRunner";
+import {
+     runExplorerQuerySearch,
+     
+ } from "./explorerQuerySearch";
 
  function main() {
      // query for all of the models and return their labels
-     const keyword = `model`;
-     runExplorerQuery(keyword);
+     const keyword = `steve`;
+     runExplorerQuery(keyword)
+    //  runExplorerQuerySearch(keyword);
  }
  
  main();
