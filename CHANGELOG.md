@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+- Update Iotics API to v0.0.11
+- Regenerated client files from v0.0.11 of [api](https://github.com/Iotic-Labs/api)
+- Added wrapper of ExplorerRequest
+- Added example to use a keyword to initiate ExplorerRequest
 
 ## [1.3.0] - 2022-05-21
 ### Changed

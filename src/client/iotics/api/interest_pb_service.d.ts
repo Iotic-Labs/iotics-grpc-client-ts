@@ -49,6 +49,15 @@ type InterestAPIDeleteInterest = {
   readonly responseType: typeof iotics_api_interest_pb.DeleteInterestResponse;
 };
 
+type InterestAPISendInputMessage = {
+  readonly methodName: string;
+  readonly service: typeof InterestAPI;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof iotics_api_interest_pb.SendInputMessageRequest;
+  readonly responseType: typeof iotics_api_interest_pb.SendInputMessageResponse;
+};
+
 export class InterestAPI {
   static readonly serviceName: string;
   static readonly FetchInterests: InterestAPIFetchInterests;
@@ -56,6 +65,7 @@ export class InterestAPI {
   static readonly ListAllInterests: InterestAPIListAllInterests;
   static readonly CreateInterest: InterestAPICreateInterest;
   static readonly DeleteInterest: InterestAPIDeleteInterest;
+  static readonly SendInputMessage: InterestAPISendInputMessage;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -126,6 +136,15 @@ export class InterestAPIClient {
   deleteInterest(
     requestMessage: iotics_api_interest_pb.DeleteInterestRequest,
     callback: (error: ServiceError|null, responseMessage: iotics_api_interest_pb.DeleteInterestResponse|null) => void
+  ): UnaryResponse;
+  sendInputMessage(
+    requestMessage: iotics_api_interest_pb.SendInputMessageRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: iotics_api_interest_pb.SendInputMessageResponse|null) => void
+  ): UnaryResponse;
+  sendInputMessage(
+    requestMessage: iotics_api_interest_pb.SendInputMessageRequest,
+    callback: (error: ServiceError|null, responseMessage: iotics_api_interest_pb.SendInputMessageResponse|null) => void
   ): UnaryResponse;
 }
 

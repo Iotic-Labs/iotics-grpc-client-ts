@@ -16,24 +16,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
- import { runSparqlQuery } from "./sparqlQueryRunner";
+ import { runExplorerQuery } from "./explorerQueryRunner";
+import {
+     runExplorerQuerySearch,
+     
+ } from "./explorerQuerySearch";
 
  function main() {
      // query for all of the models and return their labels
-     const query = `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-         PREFIX iotics: <http://data.iotics.com/iotics#>
-         PREFIX ioticsApp: <https://data.iotics.com/app#>
-         
-         SELECT ?label
-         WHERE
-         {
-             ?twin rdf:type iotics:DigitalTwin .
-             ?twin rdf:type ioticsApp:Model .
-             ?twin rdfs:label ?label .
-         }
-         ORDER BY ?label`;
-     runSparqlQuery(query);
+     const keyword = `steve`;
+     runExplorerQuery(keyword)
+    //  runExplorerQuerySearch(keyword);
  }
  
  main();

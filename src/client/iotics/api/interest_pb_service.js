@@ -55,6 +55,15 @@ InterestAPI.DeleteInterest = {
   responseType: iotics_api_interest_pb.DeleteInterestResponse
 };
 
+InterestAPI.SendInputMessage = {
+  methodName: "SendInputMessage",
+  service: InterestAPI,
+  requestStream: false,
+  responseStream: false,
+  requestType: iotics_api_interest_pb.SendInputMessageRequest,
+  responseType: iotics_api_interest_pb.SendInputMessageResponse
+};
+
 exports.InterestAPI = InterestAPI;
 
 function InterestAPIClient(serviceHost, options) {
@@ -199,6 +208,37 @@ InterestAPIClient.prototype.deleteInterest = function deleteInterest(requestMess
     callback = arguments[1];
   }
   var client = grpc.unary(InterestAPI.DeleteInterest, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+InterestAPIClient.prototype.sendInputMessage = function sendInputMessage(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(InterestAPI.SendInputMessage, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

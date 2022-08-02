@@ -5,6 +5,163 @@ import * as jspb from "google-protobuf";
 import * as google_protobuf_wrappers_pb from "google-protobuf/google/protobuf/wrappers_pb";
 import * as iotics_api_common_pb from "../../iotics/api/common_pb";
 import * as iotics_api_feed_pb from "../../iotics/api/feed_pb";
+import * as iotics_api_input_pb from "../../iotics/api/input_pb";
+
+export class InputInterest extends jspb.Message {
+  hasSendertwinid(): boolean;
+  clearSendertwinid(): void;
+  getSendertwinid(): iotics_api_common_pb.TwinID | undefined;
+  setSendertwinid(value?: iotics_api_common_pb.TwinID): void;
+
+  hasDestinput(): boolean;
+  clearDestinput(): void;
+  getDestinput(): InputInterest.DestinationInput | undefined;
+  setDestinput(value?: InputInterest.DestinationInput): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InputInterest.AsObject;
+  static toObject(includeInstance: boolean, msg: InputInterest): InputInterest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: InputInterest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InputInterest;
+  static deserializeBinaryFromReader(message: InputInterest, reader: jspb.BinaryReader): InputInterest;
+}
+
+export namespace InputInterest {
+  export type AsObject = {
+    sendertwinid?: iotics_api_common_pb.TwinID.AsObject,
+    destinput?: InputInterest.DestinationInput.AsObject,
+  }
+
+  export class DestinationInput extends jspb.Message {
+    hasInput(): boolean;
+    clearInput(): void;
+    getInput(): iotics_api_input_pb.Input | undefined;
+    setInput(value?: iotics_api_input_pb.Input): void;
+
+    hasHostid(): boolean;
+    clearHostid(): void;
+    getHostid(): iotics_api_common_pb.HostID | undefined;
+    setHostid(value?: iotics_api_common_pb.HostID): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): DestinationInput.AsObject;
+    static toObject(includeInstance: boolean, msg: DestinationInput): DestinationInput.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: DestinationInput, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): DestinationInput;
+    static deserializeBinaryFromReader(message: DestinationInput, reader: jspb.BinaryReader): DestinationInput;
+  }
+
+  export namespace DestinationInput {
+    export type AsObject = {
+      input?: iotics_api_input_pb.Input.AsObject,
+      hostid?: iotics_api_common_pb.HostID.AsObject,
+    }
+  }
+}
+
+export class SendInputMessageRequest extends jspb.Message {
+  hasHeaders(): boolean;
+  clearHeaders(): void;
+  getHeaders(): iotics_api_common_pb.Headers | undefined;
+  setHeaders(value?: iotics_api_common_pb.Headers): void;
+
+  hasArgs(): boolean;
+  clearArgs(): void;
+  getArgs(): SendInputMessageRequest.Arguments | undefined;
+  setArgs(value?: SendInputMessageRequest.Arguments): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): SendInputMessageRequest.Payload | undefined;
+  setPayload(value?: SendInputMessageRequest.Payload): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SendInputMessageRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: SendInputMessageRequest): SendInputMessageRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SendInputMessageRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SendInputMessageRequest;
+  static deserializeBinaryFromReader(message: SendInputMessageRequest, reader: jspb.BinaryReader): SendInputMessageRequest;
+}
+
+export namespace SendInputMessageRequest {
+  export type AsObject = {
+    headers?: iotics_api_common_pb.Headers.AsObject,
+    args?: SendInputMessageRequest.Arguments.AsObject,
+    payload?: SendInputMessageRequest.Payload.AsObject,
+  }
+
+  export class Payload extends jspb.Message {
+    hasMessage(): boolean;
+    clearMessage(): void;
+    getMessage(): iotics_api_input_pb.InputMessage | undefined;
+    setMessage(value?: iotics_api_input_pb.InputMessage): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Payload.AsObject;
+    static toObject(includeInstance: boolean, msg: Payload): Payload.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Payload, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Payload;
+    static deserializeBinaryFromReader(message: Payload, reader: jspb.BinaryReader): Payload;
+  }
+
+  export namespace Payload {
+    export type AsObject = {
+      message?: iotics_api_input_pb.InputMessage.AsObject,
+    }
+  }
+
+  export class Arguments extends jspb.Message {
+    hasInterest(): boolean;
+    clearInterest(): void;
+    getInterest(): InputInterest | undefined;
+    setInterest(value?: InputInterest): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Arguments.AsObject;
+    static toObject(includeInstance: boolean, msg: Arguments): Arguments.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Arguments, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Arguments;
+    static deserializeBinaryFromReader(message: Arguments, reader: jspb.BinaryReader): Arguments;
+  }
+
+  export namespace Arguments {
+    export type AsObject = {
+      interest?: InputInterest.AsObject,
+    }
+  }
+}
+
+export class SendInputMessageResponse extends jspb.Message {
+  hasHeaders(): boolean;
+  clearHeaders(): void;
+  getHeaders(): iotics_api_common_pb.Headers | undefined;
+  setHeaders(value?: iotics_api_common_pb.Headers): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SendInputMessageResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: SendInputMessageResponse): SendInputMessageResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: SendInputMessageResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SendInputMessageResponse;
+  static deserializeBinaryFromReader(message: SendInputMessageResponse, reader: jspb.BinaryReader): SendInputMessageResponse;
+}
+
+export namespace SendInputMessageResponse {
+  export type AsObject = {
+    headers?: iotics_api_common_pb.Headers.AsObject,
+  }
+}
 
 export class Interest extends jspb.Message {
   hasFollowertwinid(): boolean;

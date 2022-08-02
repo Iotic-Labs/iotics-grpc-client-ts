@@ -7,6 +7,7 @@ import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/t
 import * as google_rpc_status_pb from "../../google/rpc/status_pb";
 import * as iotics_api_common_pb from "../../iotics/api/common_pb";
 import * as iotics_api_feed_pb from "../../iotics/api/feed_pb";
+import * as iotics_api_input_pb from "../../iotics/api/input_pb";
 
 export class SearchRequest extends jspb.Message {
   hasHeaders(): boolean;
@@ -177,6 +178,34 @@ export namespace SearchResponse {
     }
   }
 
+  export class InputDetails extends jspb.Message {
+    hasInput(): boolean;
+    clearInput(): void;
+    getInput(): iotics_api_input_pb.Input | undefined;
+    setInput(value?: iotics_api_input_pb.Input): void;
+
+    clearPropertiesList(): void;
+    getPropertiesList(): Array<iotics_api_common_pb.Property>;
+    setPropertiesList(value: Array<iotics_api_common_pb.Property>): void;
+    addProperties(value?: iotics_api_common_pb.Property, index?: number): iotics_api_common_pb.Property;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): InputDetails.AsObject;
+    static toObject(includeInstance: boolean, msg: InputDetails): InputDetails.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: InputDetails, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): InputDetails;
+    static deserializeBinaryFromReader(message: InputDetails, reader: jspb.BinaryReader): InputDetails;
+  }
+
+  export namespace InputDetails {
+    export type AsObject = {
+      input?: iotics_api_input_pb.Input.AsObject,
+      propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
+    }
+  }
+
   export class TwinDetails extends jspb.Message {
     hasId(): boolean;
     clearId(): void;
@@ -201,6 +230,11 @@ export namespace SearchResponse {
     setFeedsList(value: Array<SearchResponse.FeedDetails>): void;
     addFeeds(value?: SearchResponse.FeedDetails, index?: number): SearchResponse.FeedDetails;
 
+    clearInputsList(): void;
+    getInputsList(): Array<SearchResponse.InputDetails>;
+    setInputsList(value: Array<SearchResponse.InputDetails>): void;
+    addInputs(value?: SearchResponse.InputDetails, index?: number): SearchResponse.InputDetails;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TwinDetails.AsObject;
     static toObject(includeInstance: boolean, msg: TwinDetails): TwinDetails.AsObject;
@@ -218,6 +252,7 @@ export namespace SearchResponse {
       visibility: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap],
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
       feedsList: Array<SearchResponse.FeedDetails.AsObject>,
+      inputsList: Array<SearchResponse.InputDetails.AsObject>,
     }
   }
 
