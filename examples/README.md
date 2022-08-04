@@ -21,3 +21,6 @@ to communicate with IOTICSpaces to e.g. search twin models.
     * `TWIN_DID=did:iotics:abcdefg yarn run-describe-twin`
   * [`sparqlUpdate.ts`](./src/sparqlUpdate.ts) - Run a sparql update which creates, queries and deletes nodes in a custom graph:
     * `yarn run-sparql-update` - default timeout: 5 seconds.
+  * [`explorerQuery.ts`](./src/explorerQuery.ts) - Run an explorer query which returns the twins that matches with the keyword 'waterloo' in the GLOBAL scope:
+    * `yarn run-explorer-query` - default timeout: 10 seconds.
+

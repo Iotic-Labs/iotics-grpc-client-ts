@@ -29,7 +29,7 @@ import {
 } from "../../src";
 import { channelToGenerator } from "../../src/helpers";
 
-const DEFAULT_TIMEOUT = 10;
+const DEFAULT_TIMEOUT = 3;
 // Enable the use of gRPC-Web in NodeJS.
 grpc.setDefaultTransport(NodeHttpTransport());
 
