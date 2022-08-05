@@ -18,6 +18,7 @@
 
 import { grpc } from '@improbable-eng/grpc-web';
 import { END, eventChannel } from 'redux-saga';
+import { NotUndefined } from '@redux-saga/types';
 
 import { getShortUUID } from './helpers';
 import { Scope } from './twins';
@@ -39,7 +40,7 @@ const requestResultsPage = (
     searchRequestPayload: pbSearchModel.SearchRequest.Payload,
     scope: Scope,
     page: number,
-    emit: (input: unknown) => void,
+    emit: (input: NotUndefined | END) => void,
 ) => {
     const request = new pbSearchModel.SearchRequest();
     const header = new pbCommonModel.Headers();

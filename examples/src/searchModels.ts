@@ -15,19 +15,9 @@
  * limitations under the License.
  * SPDX-License-Identifier: Apache-2.0
  */
-import { NodeHttpTransport } from "@improbable-eng/grpc-web-node-http-transport";
-import {
-    EventChannel,
-    Saga,
-    runSaga,
-} from 'redux-saga';
-import {
-    CancelledEffect,
-    call,
-    cancelled,
-    fork,
-    take,
-} from 'redux-saga/effects'
+import { NodeHttpTransport } from '@improbable-eng/grpc-web-node-http-transport';
+import { EventChannel, runSaga, Saga } from 'redux-saga';
+import { call, cancelled, CancelledEffect, fork, take } from 'redux-saga/effects';
 
 import {
     ISearchResult,
@@ -41,13 +31,13 @@ import {
     search,
 } from '../../src';
 
-const DEFAULT_TIMEOUT = 3;  // Seconds
+const DEFAULT_TIMEOUT = 3; // Seconds
 
 // Enable the use of gRPC-Web in NodeJS.
 grpc.setDefaultTransport(NodeHttpTransport());
 
 const RDF_PROPERTY_TYPE = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
-const RDF_PROPERTY_TYPE_VALUE_MODEL = 'https://data.iotics.com/app#Model'
+const RDF_PROPERTY_TYPE_VALUE_MODEL = 'https://data.iotics.com/app#Model';
 
 function* searchModels(grpcUrl: string, accessToken: string) {
     // Prepare search criteria in here:
@@ -78,9 +68,7 @@ function* searchModelsWatcher(channel: EventChannel<ISearchResult>) {
             const hostId = message.results?.getRemotehostid()?.getValue() ?? 'local';
             const twinCount = message.results?.getTwinsList().length ?? 0;
             hosts.set(hostId, (hosts.get(hostId) ?? 0) + twinCount);
-            console.info(
-                `Status: "${message.status}" host (ID): "${hostId}" number of twins found: ${twinCount}.`,
-            );
+            console.info(`Status: "${message.status}" host (ID): "${hostId}" number of twins found: ${twinCount}.`);
         }
     } finally {
         const cancelledEffect: CancelledEffect = yield cancelled();

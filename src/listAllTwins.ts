@@ -16,15 +16,15 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { grpc } from "@improbable-eng/grpc-web";
-import { END, eventChannel } from "redux-saga";
-import { ListAllTwinsRequest, ListAllTwinsResponse } from ".";
-import {
-    TwinAPIClient,
-    ServiceError,
-} from "./client/iotics/api/twin_pb_service";
-import { Headers, Range, Limit, Offset } from "./client/iotics/api/common_pb";
-import { getShortUUID } from "./helpers";
+import { grpc } from '@improbable-eng/grpc-web';
+import { END, eventChannel } from 'redux-saga';
+import { NotUndefined } from '@redux-saga/types';
+
+import { ListAllTwinsRequest, ListAllTwinsResponse } from '.';
+import { Headers, Limit, Offset, Range } from './client/iotics/api/common_pb';
+import { ServiceError, TwinAPIClient } from './client/iotics/api/twin_pb_service';
+
+import { getShortUUID } from './helpers';
 
 export const LIST_ALL_TWINS_PAGE_LENGTH = 100;
 
@@ -40,7 +40,7 @@ const requestListAllTwins = (
     clientAppId: string,
     metadata: grpc.Metadata,
     page: number,
-    callback: any
+    callback: any,
 ) => {
     const request = new ListAllTwinsRequest();
     const headers = new Headers();
@@ -63,24 +63,21 @@ const requestListAllTwins = (
 };
 
 const callBackListAllTwins = (
-    emit: (input: unknown) => void,
+    emit: (input: NotUndefined | END) => void,
     client: TwinAPIClient,
     clientAppId: string,
-    metadata: grpc.Metadata
+    metadata: grpc.Metadata,
 ) => {
-    const listCallback = (
-        error: ServiceError | null,
-        responseMessage: ListAllTwinsResponse | null
-    ) => {
+    const listCallback = (error: ServiceError | null, responseMessage: ListAllTwinsResponse | null) => {
         const headers = responseMessage?.getHeaders();
         const clientRef = headers?.getClientref();
-        const page = parseInt(clientRef!.split("_page")[1], 10);
+        const page = parseInt(clientRef!.split('_page')[1], 10);
         const payload = responseMessage?.getPayload();
         const twins = payload?.getTwinsList();
 
         if (error) {
             // eslint-disable-next-line no-console
-            console.warn("listAllTwinsApi:", error);
+            console.warn('listAllTwinsApi:', error);
             listResult.error = `ERROR ${error.message}`;
             listResult.results = undefined;
             emit(listResult);
@@ -88,7 +85,7 @@ const callBackListAllTwins = (
             return;
         }
         if (responseMessage == null) {
-            const msg = "ERROR: Response message is null.";
+            const msg = 'ERROR: Response message is null.';
             // eslint-disable-next-line no-console
             console.warn(msg);
             listResult.error = msg;
@@ -99,7 +96,7 @@ const callBackListAllTwins = (
         }
 
         if (!payload) {
-            const msg = "listAllTwinsApi: Payload is empty.";
+            const msg = 'listAllTwinsApi: Payload is empty.';
             // eslint-disable-next-line no-console
             console.warn(msg);
             listResult.error = msg;
@@ -114,13 +111,7 @@ const callBackListAllTwins = (
         emit(listResult);
 
         if (twins && twins.length >= LIST_ALL_TWINS_PAGE_LENGTH) {
-            requestListAllTwins(
-                client,
-                clientAppId,
-                metadata,
-                page + 1,
-                listCallback
-            );
+            requestListAllTwins(client, clientAppId, metadata, page + 1, listCallback);
         } else {
             emit(END);
         }
@@ -132,7 +123,7 @@ export const listAllTwins = (hostAddress: string, accessToken: string) => {
     const client = new TwinAPIClient(hostAddress);
     const metadata = new grpc.Metadata();
     const clientAppId = getShortUUID();
-    metadata.set("authorization", `bearer ${accessToken}`);
+    metadata.set('authorization', `bearer ${accessToken}`);
 
     return eventChannel((emit) => {
         requestListAllTwins(
@@ -140,7 +131,7 @@ export const listAllTwins = (hostAddress: string, accessToken: string) => {
             clientAppId,
             metadata,
             0,
-            callBackListAllTwins(emit, client, clientAppId.toString(), metadata)
+            callBackListAllTwins(emit, client, clientAppId.toString(), metadata),
         );
         return () => {
             // the subscriber must return an unsubscribe function

@@ -16,19 +16,20 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import shortUUID from "short-uuid";
-import { END, EventChannel } from "redux-saga";
+import shortUUID from 'short-uuid';
+import { END, EventChannel } from 'redux-saga';
+import { NotUndefined } from '@redux-saga/types';
 
 export const getShortUUID = () => shortUUID().new();
 
- /**
-  * According to the given channel it takes message(s) from the channel, waits for the message
-  * and yields the message until there is nothing to take from the channel. The message(s) can be
-  * consumed by a generator iterator.
-  * @param channel EventChannel
-  * @yields an event channel message which can be consumed by a generator iterator
-  */
-export async function* channelToGenerator<T>(channel: EventChannel<T>) {
+/**
+ * According to the given channel it takes message(s) from the channel, waits for the message
+ * and yields the message until there is nothing to take from the channel. The message(s) can be
+ * consumed by a generator iterator.
+ * @param channel EventChannel
+ * @yields an event channel message which can be consumed by a generator iterator
+ */
+export async function* channelToGenerator<T extends NotUndefined>(channel: EventChannel<T>) {
     const createTakePromise = (channel: EventChannel<T>): Promise<T | END> => {
         return new Promise((res, rej) => {
             channel.take((data: T | END) => {

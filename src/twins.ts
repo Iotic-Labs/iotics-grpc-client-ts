@@ -16,7 +16,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { grpc } from "@improbable-eng/grpc-web";
+import { grpc } from '@improbable-eng/grpc-web';
 import {
     DescribeTwinResponse,
     DescribeTwinRequest,
@@ -28,18 +28,11 @@ import {
     GeoLocationUpdate,
     DeleteTwinResponse,
     DeleteTwinRequest,
-} from "./client/iotics/api/twin_pb";
-import {
-    GeoLocation,
-    Headers,
-    HostID,
-    Property,
-    PropertyUpdate,
-    TwinID,
-} from "./client/iotics/api/common_pb";
-import { UpsertFeedWithMeta } from "./client/iotics/api/feed_pb";
-import { TwinAPIClient } from "./client/iotics/api/twin_pb_service";
-import { getShortUUID } from "./helpers";
+} from './client/iotics/api/twin_pb';
+import { GeoLocation, Headers, HostID, Property, PropertyUpdate, TwinID } from './client/iotics/api/common_pb';
+import { UpsertFeedWithMeta } from './client/iotics/api/feed_pb';
+import { TwinAPIClient } from './client/iotics/api/twin_pb_service';
+import { getShortUUID } from './helpers';
 
 /**
  * Scope is a request parameter used to apply a scope to a given request.
@@ -72,12 +65,12 @@ export const describeTwinApi = async (
     clientAppId: string,
     twinId: string,
     remoteHostId?: string,
-    transactionRef?: string
+    transactionRef?: string,
 ) => {
     return new Promise<DescribeTwinResponse.Payload>((resolve, reject) => {
         const client = new TwinAPIClient(hostAddress);
         const metadata = new grpc.Metadata();
-        metadata.set("authorization", `bearer ${accessToken}`);
+        metadata.set('authorization', `bearer ${accessToken}`);
         const request = new DescribeTwinRequest();
         const headers = new Headers();
         headers.setClientappid(clientAppId);
@@ -102,12 +95,12 @@ export const describeTwinApi = async (
         client.describeTwin(request, metadata, (error, responseMessage) => {
             if (error) {
                 // eslint-disable-next-line no-console
-                console.warn("describeTwinApi:", error);
+                console.warn('describeTwinApi:', error);
                 reject(error);
                 return;
             }
             if (responseMessage == null) {
-                const msg = "describeTwinApi: Response message is null.";
+                const msg = 'describeTwinApi: Response message is null.';
                 // eslint-disable-next-line no-console
                 console.warn(msg);
                 reject(new Error(msg));
@@ -115,7 +108,7 @@ export const describeTwinApi = async (
             }
             const payload = responseMessage.getPayload();
             if (!payload) {
-                const msg = "describeTwinApi: Payload is empty.";
+                const msg = 'describeTwinApi: Payload is empty.';
                 // eslint-disable-next-line no-console
                 console.warn(msg);
                 reject(new Error(msg));
@@ -136,12 +129,12 @@ export const upsertTwinApi = async (
     properties: Array<Property>,
     feedsList: Array<UpsertFeedWithMeta>,
     geoLocation: GeoLocation | undefined,
-    transactionRef?: string
+    transactionRef?: string,
 ) => {
     return new Promise<UpsertTwinResponse.Payload>((resolve, reject) => {
         const client = new TwinAPIClient(hostAddress);
         const metadata = new grpc.Metadata();
-        metadata.set("authorization", `bearer ${accessToken}`);
+        metadata.set('authorization', `bearer ${accessToken}`);
         const request = new UpsertTwinRequest();
         const headers = new Headers();
         headers.setClientappid(clientAppId);
@@ -165,12 +158,12 @@ export const upsertTwinApi = async (
         client.upsertTwin(request, metadata, (error, responseMessage) => {
             if (error) {
                 // eslint-disable-next-line no-console
-                console.warn("upsertTwinApi:", error);
+                console.warn('upsertTwinApi:', error);
                 reject(error);
                 return;
             }
             if (responseMessage == null) {
-                const msg = "upsertTwinApi: Response message is null.";
+                const msg = 'upsertTwinApi: Response message is null.';
                 // eslint-disable-next-line no-console
                 console.warn(msg);
                 reject(new Error(msg));
@@ -178,7 +171,7 @@ export const upsertTwinApi = async (
             }
             const responsePayload = responseMessage.getPayload();
             if (!responsePayload) {
-                const msg = "upsertTwinApi: Payload is empty.";
+                const msg = 'upsertTwinApi: Payload is empty.';
                 // eslint-disable-next-line no-console
                 console.warn(msg);
                 reject(new Error(msg));
@@ -198,12 +191,12 @@ export const updateTwinApi = async (
     visibilityUpdate?: VisibilityUpdate,
     propertyUpdate?: PropertyUpdate,
     geoLocationUpdate?: GeoLocationUpdate,
-    transactionRef?: string
+    transactionRef?: string,
 ) => {
     return new Promise<UpdateTwinResponse.Payload>((resolve, reject) => {
         const client = new TwinAPIClient(hostAddress);
         const metadata = new grpc.Metadata();
-        metadata.set("authorization", `bearer ${accessToken}`);
+        metadata.set('authorization', `bearer ${accessToken}`);
         const request = new UpdateTwinRequest();
         const headers = new Headers();
         headers.setClientappid(clientAppId);
@@ -234,12 +227,12 @@ export const updateTwinApi = async (
         client.updateTwin(request, metadata, (error, responseMessage) => {
             if (error) {
                 // eslint-disable-next-line no-console
-                console.warn("updateTwinApi:", error);
+                console.warn('updateTwinApi:', error);
                 reject(error);
                 return;
             }
             if (responseMessage == null) {
-                const msg = "updateTwinApi: Response message is null.";
+                const msg = 'updateTwinApi: Response message is null.';
                 // eslint-disable-next-line no-console
                 console.warn(msg);
                 reject(new Error(msg));
@@ -247,7 +240,7 @@ export const updateTwinApi = async (
             }
             const responsePayload = responseMessage.getPayload();
             if (!responsePayload) {
-                const msg = "updateTwinApi: Payload is empty.";
+                const msg = 'updateTwinApi: Payload is empty.';
                 // eslint-disable-next-line no-console
                 console.warn(msg);
                 reject(new Error(msg));
@@ -264,12 +257,12 @@ export const deleteTwinApi = async (
     clientRef: string,
     clientAppId: string,
     twinId: string,
-    transactionRef?: string
+    transactionRef?: string,
 ) => {
     return new Promise<DeleteTwinResponse.Payload>((resolve, reject) => {
         const client = new TwinAPIClient(hostAddress);
         const metadata = new grpc.Metadata();
-        metadata.set("authorization", `bearer ${accessToken}`);
+        metadata.set('authorization', `bearer ${accessToken}`);
         const request = new DeleteTwinRequest();
         const headers = new Headers();
         headers.setClientappid(clientAppId);
@@ -288,12 +281,12 @@ export const deleteTwinApi = async (
         client.deleteTwin(request, metadata, (error, responseMessage) => {
             if (error) {
                 // eslint-disable-next-line no-console
-                console.warn("deleteTwinApi:", error);
+                console.warn('deleteTwinApi:', error);
                 reject(error);
                 return;
             }
             if (responseMessage == null) {
-                const msg = "deleteTwinApi: Response message is null.";
+                const msg = 'deleteTwinApi: Response message is null.';
                 // eslint-disable-next-line no-console
                 console.warn(msg);
                 reject(new Error(msg));
@@ -301,7 +294,7 @@ export const deleteTwinApi = async (
             }
             const responsePayload = responseMessage.getPayload();
             if (!responsePayload) {
-                const msg = "deleteTwinApi: Payload is empty.";
+                const msg = 'deleteTwinApi: Payload is empty.';
                 // eslint-disable-next-line no-console
                 console.warn(msg);
                 reject(new Error(msg));

@@ -1,0 +1,6 @@
+dist*
+node_modules
+proto
+**/src/client
+.eslintrc.js
+.eslintrc.base.js

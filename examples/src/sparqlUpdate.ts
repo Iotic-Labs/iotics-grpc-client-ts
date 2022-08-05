@@ -16,30 +16,27 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-import { NodeHttpTransport } from "@improbable-eng/grpc-web-node-http-transport";
+import { NodeHttpTransport } from '@improbable-eng/grpc-web-node-http-transport';
 import {
     // Note the import - it is important for setting default transport to Node for the same instance of gRPC that
     // the `@iotics/grpc-client` is using (in a case of multiple `node_modules`).
     grpc,
     sparqlUpdate,
     GRPCStatusCodes,
-} from "../../src";
-import { DEFAULT_TIMEOUT } from "../../src/sparqlUpdate";
-import { runSparqlQuery } from "./sparqlQueryRunner";
+} from '../../src';
+import { DEFAULT_TIMEOUT } from '../../src/sparqlUpdate';
+import { runSparqlQuery } from './sparqlQuery';
 
 // Enable the use of gRPC-Web in NodeJS.
 grpc.setDefaultTransport(NodeHttpTransport());
-
 
 async function main() {
     // Get values from environment variables:
     const url = process.env.GRPC_URL;
     const token = process.env.GRPC_TOKEN;
-    const timeoutInS = parseFloat(
-        process.env.GRPC_TIMEOUT ?? DEFAULT_TIMEOUT.toString()
-    );
+    const timeoutInS = parseFloat(process.env.GRPC_TIMEOUT ?? DEFAULT_TIMEOUT.toString());
     let update = `
 PREFIX iotg: <http://data.iotics.com/graph#>
 INSERT DATA {
@@ -76,37 +73,35 @@ DELETE DATA {
         process.exit(1);
     }
 
-    console.info("SparQL Update.");
+    console.info('SparQL Update.');
 
     try {
-        console.log("Doing initial query");
+        console.log('Doing initial query');
         runSparqlQuery(query);
         await sleep(1000);
-        
-        console.log("Doing update");
+
+        console.log('Doing update');
         let results = await sparqlUpdate(token, url, update, timeoutInS);
         console.log(JSON.stringify(results.toObject(), undefined, 4));
         await sleep(timeoutInS * 1000);
 
-        console.log("Doing query");
+        console.log('Doing query');
         runSparqlQuery(query);
 
         // Changes are visible via SparqlQuery , within 5 seconds
         await sleep(timeoutInS * 1000);
-        console.log("Doing cleanup");
+        console.log('Doing cleanup');
         results = await sparqlUpdate(token, url, cleanup, timeoutInS);
         console.log(JSON.stringify(results.toObject(), undefined, 4));
-        console.log("Doing RE-QUERY (bindings should be empty)");
+        console.log('Doing RE-QUERY (bindings should be empty)');
         runSparqlQuery(query);
     } catch (error: any) {
         if (error?.code === GRPCStatusCodes.UNAUTHENTICATED) {
-            console.info(
-                "Your GRPC_TOKEN may have expired please try setting another one"
-            );
+            console.info('Your GRPC_TOKEN may have expired please try setting another one');
         }
 
         if (error?.code === GRPCStatusCodes.UNKNOWN) {
-            console.log("Response closed without headers");
+            console.log('Response closed without headers');
         }
     }
 }

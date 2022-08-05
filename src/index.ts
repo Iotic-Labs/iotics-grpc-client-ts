@@ -16,9 +16,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import "whatwg-fetch";
+import 'whatwg-fetch';
 
-export { grpc } from "@improbable-eng/grpc-web";
+export { grpc } from '@improbable-eng/grpc-web';
 
 export {
     FeedID,
@@ -33,18 +33,10 @@ export {
     StringLiteral,
     Uri,
     Visibility,
-} from "./client/iotics/api/common_pb";
-export {
-    DescribeFeedResponse,
-    Feed,
-    UpsertFeedWithMeta,
-} from "./client/iotics/api/feed_pb";
-export { FetchInterestResponse } from "./client/iotics/api/interest_pb";
-export {
-    ResponseType,
-    SearchRequest,
-    SearchResponse,
-} from "./client/iotics/api/search_pb";
+} from './client/iotics/api/common_pb';
+export { DescribeFeedResponse, Feed, UpsertFeedWithMeta } from './client/iotics/api/feed_pb';
+export { FetchInterestResponse } from './client/iotics/api/interest_pb';
+export { ResponseType, SearchRequest, SearchResponse } from './client/iotics/api/search_pb';
 export {
     DescribeTwinResponse,
     UpsertTwinRequest,
@@ -57,10 +49,10 @@ export {
     FeedMeta,
     ListAllTwinsRequest,
     ListAllTwinsResponse,
-} from "./client/iotics/api/twin_pb";
-export { describeFeedApi, shareFeedDataApi } from "./feeds";
-export { search } from "./search";
-export type { ISearchResult } from "./search";
+} from './client/iotics/api/twin_pb';
+export { describeFeedApi, shareFeedDataApi } from './feeds';
+export { search } from './search';
+export type { ISearchResult } from './search';
 export {
     Scope,
     Visibility as TwinVisibility,
@@ -68,24 +60,24 @@ export {
     upsertTwinApi,
     updateTwinApi,
     deleteTwinApi,
-} from "./twins";
-export { follow, Status } from "./interest";
-export type { IInterestResult } from "./interest";
-export { listAllTwins, LIST_ALL_TWINS_PAGE_LENGTH } from "./listAllTwins";
-export type { IListResult } from "./listAllTwins";
-export { PropertyType, createProperty } from "./properties";
+} from './twins';
+export { follow, Status } from './interest';
+export type { IInterestResult } from './interest';
+export { listAllTwins, LIST_ALL_TWINS_PAGE_LENGTH } from './listAllTwins';
+export type { IListResult } from './listAllTwins';
+export { PropertyType, createProperty } from './properties';
 export {
     SparqlQueryRequest,
     SparqlQueryResponse,
     SparqlResultType,
     SparqlUpdateRequest,
-    SparqlUpdateResponse
-} from "./client/iotics/api/meta_pb";
-export { sparqlQuery } from "./sparqlQuery";
-export { explorerQuery } from "./explorerQuery";
-export type { IQueryResult } from "./sparqlQuery";
-export { sparqlUpdate } from "./sparqlUpdate";
-export { channelToGenerator } from "./helpers";
+    SparqlUpdateResponse,
+} from './client/iotics/api/meta_pb';
+export { sparqlQuery } from './sparqlQuery';
+export { explorerQuery } from './explorerQuery';
+export type { IQueryResult } from './sparqlQuery';
+export { sparqlUpdate } from './sparqlUpdate';
+export { channelToGenerator } from './helpers';
 
 // https://grpc.github.io/grpc/core/md_doc_statuscodes.html
 export enum GRPCStatusCodes {

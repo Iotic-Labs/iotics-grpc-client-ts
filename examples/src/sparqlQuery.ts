@@ -16,18 +16,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { NodeHttpTransport } from "@improbable-eng/grpc-web-node-http-transport";
-import { EventChannel } from "redux-saga";
+import { NodeHttpTransport } from '@improbable-eng/grpc-web-node-http-transport';
+import { EventChannel } from 'redux-saga';
 
-import {
-    grpc,
-    GRPCStatusCodes,
-    IQueryResult,
-    Scope,
-    SparqlResultType,
-    sparqlQuery,
-} from "../../src";
-import { channelToGenerator } from "../../src/helpers";
+import { grpc, GRPCStatusCodes, IQueryResult, Scope, sparqlQuery, SparqlResultType } from '../../src';
+import { channelToGenerator } from '../../src/helpers';
 
 const DEFAULT_TIMEOUT = 3;
 // Enable the use of gRPC-Web in NodeJS.
@@ -55,9 +48,7 @@ export const runSparqlQuery = async (query: string) => {
     // Get values from environment variables:
     const url = process.env.GRPC_URL;
     const token = process.env.GRPC_TOKEN;
-    const timeoutInS = parseFloat(
-        process.env.GRPC_TIMEOUT ?? DEFAULT_TIMEOUT.toString()
-    );
+    const timeoutInS = parseFloat(process.env.GRPC_TIMEOUT ?? DEFAULT_TIMEOUT.toString());
 
     if (!url) {
         console.error('Required "GRPC_URL" environment variable is not set!');
@@ -76,25 +67,23 @@ export const runSparqlQuery = async (query: string) => {
         query,
         Scope.LOCAL,
         SparqlResultType.SPARQL_JSON,
-        timeoutInS
+        timeoutInS,
     ) as EventChannel<IQueryResult>;
 
     const searchGenerator = channelToGenerator(channel);
 
     for await (const message of searchGenerator) {
         const msg = message as IQueryResult;
-        console.info("Message received with status:", msg.status);
-        if (msg.status.message === "OK" && msg.results) {
-            console.info("Query results:");
+        console.info('Message received with status:', msg.status);
+        if (msg.status.message === 'OK' && msg.results) {
+            console.info('Query results:');
             console.info(msg.results.data);
         } else {
             if (msg.status?.code === GRPCStatusCodes.UNAUTHENTICATED) {
-                console.warn(
-                    "The GRPC_TOKEN has expired please set another one."
-                );
+                console.warn('The GRPC_TOKEN has expired please set another one.');
             } else if (msg.status?.code !== GRPCStatusCodes.DEADLINE_EXCEEDED) {
                 // if not context deadline exceeded messages
-                console.warn("Query error:", msg.status);
+                console.warn('Query error:', msg.status);
             }
         }
     }
