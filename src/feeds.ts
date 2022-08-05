@@ -90,15 +90,15 @@ export const describeFeedApi = async (
 };
 
 export const shareFeedDataApi = async (
-  hostAddress: string,
-  accessToken: string,
-  clientAppId: string,
-  clientRef: string,
-  twinId: string,
-  feedId: string,
-  data: Record<string, string | number>,
-  occurredAt?: Date,
-  transactionRef?: string,
+    hostAddress: string,
+    accessToken: string,
+    clientAppId: string,
+    clientRef: string,
+    twinId: string,
+    feedId: string,
+    data: Record<string, string | number>,
+    occurredAt?: Date,
+    transactionRef?: string,
 ) => {
     return new Promise<pbFeedModel.ShareFeedDataResponse>((resolve, reject) => {
         const client = new FeedAPIClient(hostAddress);

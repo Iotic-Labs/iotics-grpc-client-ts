@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+- Added Prettier formatter script via `yarn prettier:write`
+- Added linting script via `yarn lint`
+- Added precommit script via `yarn precommit`
+- Fixed examples/sparqlUpdate.ts invalid import
+- Added github action for linting
 
 ## [1.4.0] - 2022-08-04
 ### Changed

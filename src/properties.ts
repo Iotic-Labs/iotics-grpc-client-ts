@@ -15,13 +15,7 @@
  * limitations under the License.
  * SPDX-License-Identifier: Apache-2.0
  */
-import {
-    LangLiteral,
-    Literal,
-    Property,
-    StringLiteral,
-    Uri,
-} from './client/iotics/api/common_pb';
+import { LangLiteral, Literal, Property, StringLiteral, Uri } from './client/iotics/api/common_pb';
 
 export enum PropertyType {
     Uri = 'Uri',

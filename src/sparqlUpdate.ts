@@ -16,18 +16,32 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { grpc } from "@improbable-eng/grpc-web";
-import { Timestamp } from "google-protobuf/google/protobuf/timestamp_pb";
-import * as pbMetaService from "./client/iotics/api/meta_pb_service";
+import { grpc } from '@improbable-eng/grpc-web';
+import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
+import * as pbMetaService from './client/iotics/api/meta_pb_service';
 
-import {
-    SparqlUpdateRequest,
-    SparqlUpdateResponse,
-} from "./client/iotics/api/meta_pb";
-import * as pbCommonModel from "./client/iotics/api/common_pb";
-import { getShortUUID } from "./helpers";
+import { SparqlUpdateRequest, SparqlUpdateResponse } from './client/iotics/api/meta_pb';
+import * as pbCommonModel from './client/iotics/api/common_pb';
+import { getShortUUID } from './helpers';
 
 export const DEFAULT_TIMEOUT = 5; // Seconds
+
+const createRequest = (timeout: number, update: string): SparqlUpdateRequest => {
+    const request = new SparqlUpdateRequest();
+    const headers = new pbCommonModel.Headers();
+
+    const clientAppId = getShortUUID();
+    headers.setClientappid(clientAppId);
+    headers.setTransactionrefList([clientAppId]);
+    headers.setRequesttimeout(Timestamp.fromDate(new Date(Date.now() + 1000 * timeout)));
+    request.setHeaders(headers);
+
+    const updatePayload = new SparqlUpdateRequest.Payload();
+    updatePayload.setUpdate(btoa(update));
+    request.setPayload(updatePayload);
+
+    return request;
+};
 
 /**
  * Allows to insert/update/delete metadata in a set of explicitly specified graphs as well as query said metadata
@@ -45,24 +59,24 @@ export const sparqlUpdate = (
     accessToken: string,
     grpcUrl: string,
     update: string,
-    timeout: number = DEFAULT_TIMEOUT
+    timeout: number = DEFAULT_TIMEOUT,
 ) => {
     return new Promise<SparqlUpdateResponse>((resolve, reject) => {
         const request = createRequest(timeout, update);
 
         const metadata = new grpc.Metadata();
-        metadata.set("authorization", `bearer ${accessToken}`);
+        metadata.set('authorization', `bearer ${accessToken}`);
 
         const client = new pbMetaService.MetaAPIClient(grpcUrl);
         client.sparqlUpdate(request, metadata, (error, responseMessage) => {
             if (error) {
                 // eslint-disable-next-line no-console
-                console.warn("sparqlUpdateApi:", error);
+                console.warn('sparqlUpdateApi:', error);
                 reject(error);
                 return;
             }
             if (responseMessage == null) {
-                const msg = "sparqlUpdateApi: Response message is null.";
+                const msg = 'sparqlUpdateApi: Response message is null.';
                 // eslint-disable-next-line no-console
                 console.warn(msg);
                 reject(new Error(msg));
@@ -70,7 +84,7 @@ export const sparqlUpdate = (
             }
 
             if (!responseMessage) {
-                const msg = "sparqlUpdateApi: Payload is empty.";
+                const msg = 'sparqlUpdateApi: Payload is empty.';
                 // eslint-disable-next-line no-console
                 console.warn(msg);
                 reject(new Error(msg));
@@ -79,26 +93,4 @@ export const sparqlUpdate = (
             resolve(responseMessage);
         });
     });
-};
-
-const createRequest = (
-    timeout: number,
-    update: string
-): SparqlUpdateRequest => {
-    const request = new SparqlUpdateRequest();
-    const headers = new pbCommonModel.Headers();
-
-    const clientAppId = getShortUUID();
-    headers.setClientappid(clientAppId);
-    headers.setTransactionrefList([clientAppId]);
-    headers.setRequesttimeout(
-        Timestamp.fromDate(new Date(Date.now() + 1000 * timeout))
-    );
-    request.setHeaders(headers);
-
-    const updatePayload = new SparqlUpdateRequest.Payload();
-    updatePayload.setUpdate(btoa(update));
-    request.setPayload(updatePayload);
-
-    return request;
 };

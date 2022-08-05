@@ -15,15 +15,15 @@
  * limitations under the License.
  * SPDX-License-Identifier: Apache-2.0
  */
-import { NodeHttpTransport } from "@improbable-eng/grpc-web-node-http-transport";
+import { NodeHttpTransport } from '@improbable-eng/grpc-web-node-http-transport';
 import {
     // Note the import - it is important for setting default transport to Node for the same instance of gRPC that
     // the `@iotics/grpc-client` is using (in a case of multiple `node_modules`).
     grpc,
     describeTwinApi,
     GRPCStatusCodes,
-} from "../../src";
-import { getShortUUID } from "../../src/helpers";
+} from '../../src';
+import { getShortUUID } from '../../src/helpers';
 
 // Enable the use of gRPC-Web in NodeJS.
 grpc.setDefaultTransport(NodeHttpTransport());
@@ -46,29 +46,18 @@ async function main() {
         process.exit(1);
     }
     if (!twinDid) {
-        console.error(
-            'Required "TWIN_DID" twin to be described variable is not set!'
-        );
+        console.error('Required "TWIN_DID" twin to be described variable is not set!');
         process.exit(1);
     }
 
     console.info(`Describe twin "${twinDid}".`);
 
     try {
-        const results = await describeTwinApi(
-            url,
-            token,
-            getShortUUID(),
-            getShortUUID(),
-            twinDid,
-            remoteHostId
-        );
+        const results = await describeTwinApi(url, token, getShortUUID(), getShortUUID(), twinDid, remoteHostId);
         console.log(JSON.stringify(results.toObject(), undefined, 4));
     } catch (error: any) {
         if (error?.code === GRPCStatusCodes.UNAUTHENTICATED) {
-            console.info(
-                "Your GRPC_TOKEN may have expired please try setting another one"
-            );
+            console.info('Your GRPC_TOKEN may have expired please try setting another one');
         }
     }
 }

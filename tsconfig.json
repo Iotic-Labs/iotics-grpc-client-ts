@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "target": "es2015",
     "allowJs": true,
@@ -16,5 +17,6 @@
     "declaration": true,
     "lib": ["DOM", "ESNext", "ESNext.AsyncIterable"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

@@ -1,0 +1,31 @@
+name: post-checks
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  client-checks:
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: "--max_old_space_size=4096"
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup nodejs v16.13.2
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.13.2"
+          cache: npm
+      - name: install yarn
+        run: npm install -g yarn
+      - name: install package files
+        run: |
+          yarn install
+      - name: install examples package files
+        working-directory: ./examples
+        run: |
+          yarn install
+      - name: linting
+        run: |
+          yarn lint

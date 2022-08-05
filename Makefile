@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-BUF_VERSION:=0.52.0
+BUF_VERSION:=1.6.0
 PROTOC_VERSION:=3.17.3
 
 GOPATH=$(shell go env GOPATH)
@@ -84,7 +84,7 @@ endif
 
 deps-node: node_modules
 deps-node-update node_modules:
-	yarn install
+	yarn install && cd examples && yarn install
 
 deps-buf: buf.lock
 deps-buf-update buf.lock:
