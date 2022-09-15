@@ -16,8 +16,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
 import { NodeHttpTransport } from '@improbable-eng/grpc-web-node-http-transport';
 import {
     // Note the import - it is important for setting default transport to Node for the same instance of gRPC that
@@ -28,6 +26,7 @@ import {
 } from '../../src';
 import { DEFAULT_TIMEOUT } from '../../src/sparqlUpdate';
 import { runSparqlQuery } from './sparqlQuery';
+import { sleep } from './helpers';
 
 // Enable the use of gRPC-Web in NodeJS.
 grpc.setDefaultTransport(NodeHttpTransport());

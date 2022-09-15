@@ -235,6 +235,16 @@ export namespace SearchResponse {
     setInputsList(value: Array<SearchResponse.InputDetails>): void;
     addInputs(value?: SearchResponse.InputDetails, index?: number): SearchResponse.InputDetails;
 
+    hasCreatedat(): boolean;
+    clearCreatedat(): void;
+    getCreatedat(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCreatedat(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+    hasUpdatedat(): boolean;
+    clearUpdatedat(): void;
+    getUpdatedat(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUpdatedat(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TwinDetails.AsObject;
     static toObject(includeInstance: boolean, msg: TwinDetails): TwinDetails.AsObject;
@@ -253,6 +263,8 @@ export namespace SearchResponse {
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
       feedsList: Array<SearchResponse.FeedDetails.AsObject>,
       inputsList: Array<SearchResponse.InputDetails.AsObject>,
+      createdat?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+      updatedat?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
   }
 

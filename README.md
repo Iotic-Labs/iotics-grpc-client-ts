@@ -29,6 +29,7 @@ yarn add @iotics/grpc-client
   from [Iotics API](https://github.com/Iotic-Labs/api) repo)  
   use the following as guidelines:
   ```bash
+  git submodule update --init
   _ver=vX.X.X
   pushd iotics-api.git
   git fetch --tags

@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+- Update Iotics API to v0.0.13
+- Added wrappers and example for Inputs
 - Added Prettier formatter script via `yarn prettier:write`
 - Added linting script via `yarn lint`
 - Added precommit script via `yarn precommit`
@@ -61,7 +63,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release of `iotics-grpc-client-ts`.
 
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.4.0...HEAD
 [1.4.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.1.1...v1.2.0

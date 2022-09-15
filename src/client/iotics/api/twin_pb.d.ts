@@ -2,6 +2,7 @@
 // file: iotics/api/twin.proto
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as iotics_api_common_pb from "../../iotics/api/common_pb";
 import * as iotics_api_feed_pb from "../../iotics/api/feed_pb";
 import * as iotics_api_input_pb from "../../iotics/api/input_pb";
@@ -106,6 +107,16 @@ export namespace ListAllTwinsResponse {
     setPropertiesList(value: Array<iotics_api_common_pb.Property>): void;
     addProperties(value?: iotics_api_common_pb.Property, index?: number): iotics_api_common_pb.Property;
 
+    hasCreatedat(): boolean;
+    clearCreatedat(): void;
+    getCreatedat(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCreatedat(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+    hasUpdatedat(): boolean;
+    clearUpdatedat(): void;
+    getUpdatedat(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUpdatedat(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TwinDetails.AsObject;
     static toObject(includeInstance: boolean, msg: TwinDetails): TwinDetails.AsObject;
@@ -122,6 +133,8 @@ export namespace ListAllTwinsResponse {
       visibility: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap],
       location?: iotics_api_common_pb.GeoLocation.AsObject,
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
+      createdat?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+      updatedat?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
   }
 
@@ -500,6 +513,16 @@ export namespace DescribeTwinResponse {
     setPropertiesList(value: Array<iotics_api_common_pb.Property>): void;
     addProperties(value?: iotics_api_common_pb.Property, index?: number): iotics_api_common_pb.Property;
 
+    hasCreatedat(): boolean;
+    clearCreatedat(): void;
+    getCreatedat(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCreatedat(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+    hasUpdatedat(): boolean;
+    clearUpdatedat(): void;
+    getUpdatedat(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUpdatedat(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): MetaResult.AsObject;
     static toObject(includeInstance: boolean, msg: MetaResult): MetaResult.AsObject;
@@ -516,6 +539,8 @@ export namespace DescribeTwinResponse {
       feedsList: Array<FeedMeta.AsObject>,
       inputsList: Array<InputMeta.AsObject>,
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
+      createdat?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+      updatedat?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
   }
 

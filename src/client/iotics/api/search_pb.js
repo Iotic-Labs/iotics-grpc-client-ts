@@ -1681,7 +1681,9 @@ proto.iotics.api.SearchResponse.TwinDetails.toObject = function(includeInstance,
     feedsList: jspb.Message.toObjectList(msg.getFeedsList(),
     proto.iotics.api.SearchResponse.FeedDetails.toObject, includeInstance),
     inputsList: jspb.Message.toObjectList(msg.getInputsList(),
-    proto.iotics.api.SearchResponse.InputDetails.toObject, includeInstance)
+    proto.iotics.api.SearchResponse.InputDetails.toObject, includeInstance),
+    createdat: (f = msg.getCreatedat()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    updatedat: (f = msg.getUpdatedat()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1746,6 +1748,16 @@ proto.iotics.api.SearchResponse.TwinDetails.deserializeBinaryFromReader = functi
       var value = new proto.iotics.api.SearchResponse.InputDetails;
       reader.readMessage(value,proto.iotics.api.SearchResponse.InputDetails.deserializeBinaryFromReader);
       msg.addInputs(value);
+      break;
+    case 12:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedat(value);
+      break;
+    case 13:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setUpdatedat(value);
       break;
     default:
       reader.skipField();
@@ -1821,6 +1833,22 @@ proto.iotics.api.SearchResponse.TwinDetails.serializeBinaryToWriter = function(m
       11,
       f,
       proto.iotics.api.SearchResponse.InputDetails.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreatedat();
+  if (f != null) {
+    writer.writeMessage(
+      12,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpdatedat();
+  if (f != null) {
+    writer.writeMessage(
+      13,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -2029,6 +2057,80 @@ proto.iotics.api.SearchResponse.TwinDetails.prototype.addInputs = function(opt_v
  */
 proto.iotics.api.SearchResponse.TwinDetails.prototype.clearInputsList = function() {
   return this.setInputsList([]);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp createdAt = 12;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.iotics.api.SearchResponse.TwinDetails.prototype.getCreatedat = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 12));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.iotics.api.SearchResponse.TwinDetails} returns this
+*/
+proto.iotics.api.SearchResponse.TwinDetails.prototype.setCreatedat = function(value) {
+  return jspb.Message.setWrapperField(this, 12, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.iotics.api.SearchResponse.TwinDetails} returns this
+ */
+proto.iotics.api.SearchResponse.TwinDetails.prototype.clearCreatedat = function() {
+  return this.setCreatedat(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.iotics.api.SearchResponse.TwinDetails.prototype.hasCreatedat = function() {
+  return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp updatedAt = 13;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.iotics.api.SearchResponse.TwinDetails.prototype.getUpdatedat = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 13));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.iotics.api.SearchResponse.TwinDetails} returns this
+*/
+proto.iotics.api.SearchResponse.TwinDetails.prototype.setUpdatedat = function(value) {
+  return jspb.Message.setWrapperField(this, 13, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.iotics.api.SearchResponse.TwinDetails} returns this
+ */
+proto.iotics.api.SearchResponse.TwinDetails.prototype.clearUpdatedat = function() {
+  return this.setUpdatedat(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.iotics.api.SearchResponse.TwinDetails.prototype.hasUpdatedat = function() {
+  return jspb.Message.getField(this, 13) != null;
 };
 
 
