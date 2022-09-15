@@ -20,20 +20,14 @@ import { grpc } from '@improbable-eng/grpc-web';
 import { END, eventChannel } from 'redux-saga';
 import { BoolValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 
-import { getShortUUID } from './helpers';
+import { createInputObj, getShortUUID, Status, TOKEN_EXPIRED_STATUS_CODE } from './helpers';
 import * as pbCommonModel from './client/iotics/api/common_pb';
 import { Feed } from './client/iotics/api/feed_pb';
-import { FetchInterestRequest, Interest } from './client/iotics/api/interest_pb';
+import { FetchInterestRequest, Interest, SendInputMessageRequest } from './client/iotics/api/interest_pb';
 import * as pbInterestService from './client/iotics/api/interest_pb_service';
 import * as pbInterestModel from './client/iotics/api/interest_pb';
-
-const TOKEN_EXPIRED_STATUS_CODE = 16;
-
-export enum Status {
-    ERROR = 'ERROR',
-    OK = 'OK',
-    TOKEN_EXPIRED = 'TOKEN_EXPIRED',
-}
+import { InputMessage } from './client/iotics/api/input_pb';
+import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
 
 export interface IInterestResult {
     status: string;
@@ -124,5 +118,86 @@ export const follow = (
         return () => {
             fetchResponseStream.cancel();
         };
+    });
+};
+
+/**
+ * Sends a message to the input of a local or remote twin.
+ *
+ * @param message What to send the remote twin, usually in the form of an object with keys matching the input's Values
+ * @param senderTwinId The twin sending the message
+ * @param receiverTwinId The twin receiving the message
+ * @param inputId The ID of the input where the message will be sent
+ * @param remoteHostId If the receiver twin is remote, its host ID (undefined if local)
+ * @param headers optional request headers
+ *
+ * Returns: Response object indicating success
+ */
+export const sendInputMessage = (
+    accessToken: string,
+    grpcUrl: string,
+    message: Object,
+    senderTwinId: string,
+    receiverTwinId: string,
+    inputId: string,
+    remoteHostId?: string,
+) => {
+    return new Promise<pbInterestModel.SendInputMessageResponse>((resolve, reject) => {
+        const client = new pbInterestService.InterestAPIClient(grpcUrl);
+        const clientAppId = getShortUUID();
+        const metadata = new grpc.Metadata();
+        metadata.set('authorization', `bearer ${accessToken}`);
+
+        const headers = new pbCommonModel.Headers();
+        headers.setClientappid(clientAppId);
+        headers.setTransactionrefList([clientAppId]);
+
+        const destinationInput = new pbInterestModel.InputInterest.DestinationInput();
+        destinationInput.setInput(createInputObj(receiverTwinId, inputId));
+
+        if (remoteHostId) {
+            const hostIdObj = new pbCommonModel.HostID();
+            hostIdObj.setValue(remoteHostId);
+            destinationInput.setHostid(hostIdObj);
+        }
+
+        const inputInterest = new pbInterestModel.InputInterest();
+        const senderTwinIdObj = new pbCommonModel.TwinID();
+        senderTwinIdObj.setValue(senderTwinId);
+        inputInterest.setSendertwinid(senderTwinIdObj);
+        inputInterest.setDestinput(destinationInput);
+
+        const inputMessage = new InputMessage();
+        const currentTimestamp = new Timestamp();
+        currentTimestamp.fromDate(new Date());
+        inputMessage.setOccurredat(currentTimestamp);
+        inputMessage.setMime('application/json');
+        inputMessage.setData(new TextEncoder().encode(JSON.stringify(message)));
+
+        const request = new SendInputMessageRequest();
+        request.setHeaders(headers);
+        const args = new SendInputMessageRequest.Arguments();
+        args.setInterest(inputInterest);
+        request.setArgs(args);
+        const payload = new SendInputMessageRequest.Payload();
+        payload.setMessage(inputMessage);
+        request.setPayload(payload);
+
+        return client.sendInputMessage(request, metadata, (error, responseMessage) => {
+            if (error) {
+                // eslint-disable-next-line no-console
+                console.warn('sendInputMessage:', error);
+                reject(error);
+                return;
+            }
+            if (responseMessage == null) {
+                const msg = 'sendInputMessage: Response message is null.';
+                // eslint-disable-next-line no-console
+                console.warn(msg);
+                reject(new Error(msg));
+                return;
+            }
+            resolve(responseMessage);
+        });
     });
 };

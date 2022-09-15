@@ -15,6 +15,8 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
+var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+goog.object.extend(proto, google_protobuf_timestamp_pb);
 var iotics_api_common_pb = require('../../iotics/api/common_pb.js');
 goog.object.extend(proto, iotics_api_common_pb);
 var iotics_api_feed_pb = require('../../iotics/api/feed_pb.js');
@@ -1257,7 +1259,9 @@ proto.iotics.api.ListAllTwinsResponse.TwinDetails.toObject = function(includeIns
     visibility: jspb.Message.getFieldWithDefault(msg, 2, 0),
     location: (f = msg.getLocation()) && iotics_api_common_pb.GeoLocation.toObject(includeInstance, f),
     propertiesList: jspb.Message.toObjectList(msg.getPropertiesList(),
-    iotics_api_common_pb.Property.toObject, includeInstance)
+    iotics_api_common_pb.Property.toObject, includeInstance),
+    createdat: (f = msg.getCreatedat()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    updatedat: (f = msg.getUpdatedat()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1312,6 +1316,16 @@ proto.iotics.api.ListAllTwinsResponse.TwinDetails.deserializeBinaryFromReader = 
       var value = new iotics_api_common_pb.Property;
       reader.readMessage(value,iotics_api_common_pb.Property.deserializeBinaryFromReader);
       msg.addProperties(value);
+      break;
+    case 6:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedat(value);
+      break;
+    case 7:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setUpdatedat(value);
       break;
     default:
       reader.skipField();
@@ -1371,6 +1385,22 @@ proto.iotics.api.ListAllTwinsResponse.TwinDetails.serializeBinaryToWriter = func
       5,
       f,
       iotics_api_common_pb.Property.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreatedat();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpdatedat();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -1503,6 +1533,80 @@ proto.iotics.api.ListAllTwinsResponse.TwinDetails.prototype.addProperties = func
  */
 proto.iotics.api.ListAllTwinsResponse.TwinDetails.prototype.clearPropertiesList = function() {
   return this.setPropertiesList([]);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp createdAt = 6;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.iotics.api.ListAllTwinsResponse.TwinDetails.prototype.getCreatedat = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.iotics.api.ListAllTwinsResponse.TwinDetails} returns this
+*/
+proto.iotics.api.ListAllTwinsResponse.TwinDetails.prototype.setCreatedat = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.iotics.api.ListAllTwinsResponse.TwinDetails} returns this
+ */
+proto.iotics.api.ListAllTwinsResponse.TwinDetails.prototype.clearCreatedat = function() {
+  return this.setCreatedat(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.iotics.api.ListAllTwinsResponse.TwinDetails.prototype.hasCreatedat = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp updatedAt = 7;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.iotics.api.ListAllTwinsResponse.TwinDetails.prototype.getUpdatedat = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.iotics.api.ListAllTwinsResponse.TwinDetails} returns this
+*/
+proto.iotics.api.ListAllTwinsResponse.TwinDetails.prototype.setUpdatedat = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.iotics.api.ListAllTwinsResponse.TwinDetails} returns this
+ */
+proto.iotics.api.ListAllTwinsResponse.TwinDetails.prototype.clearUpdatedat = function() {
+  return this.setUpdatedat(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.iotics.api.ListAllTwinsResponse.TwinDetails.prototype.hasUpdatedat = function() {
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
@@ -4061,7 +4165,9 @@ proto.iotics.api.DescribeTwinResponse.MetaResult.toObject = function(includeInst
     inputsList: jspb.Message.toObjectList(msg.getInputsList(),
     proto.iotics.api.InputMeta.toObject, includeInstance),
     propertiesList: jspb.Message.toObjectList(msg.getPropertiesList(),
-    iotics_api_common_pb.Property.toObject, includeInstance)
+    iotics_api_common_pb.Property.toObject, includeInstance),
+    createdat: (f = msg.getCreatedat()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    updatedat: (f = msg.getUpdatedat()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -4117,6 +4223,16 @@ proto.iotics.api.DescribeTwinResponse.MetaResult.deserializeBinaryFromReader = f
       var value = new iotics_api_common_pb.Property;
       reader.readMessage(value,iotics_api_common_pb.Property.deserializeBinaryFromReader);
       msg.addProperties(value);
+      break;
+    case 7:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreatedat(value);
+      break;
+    case 8:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setUpdatedat(value);
       break;
     default:
       reader.skipField();
@@ -4177,6 +4293,22 @@ proto.iotics.api.DescribeTwinResponse.MetaResult.serializeBinaryToWriter = funct
       6,
       f,
       iotics_api_common_pb.Property.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreatedat();
+  if (f != null) {
+    writer.writeMessage(
+      7,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getUpdatedat();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -4330,6 +4462,80 @@ proto.iotics.api.DescribeTwinResponse.MetaResult.prototype.addProperties = funct
  */
 proto.iotics.api.DescribeTwinResponse.MetaResult.prototype.clearPropertiesList = function() {
   return this.setPropertiesList([]);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp createdAt = 7;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.iotics.api.DescribeTwinResponse.MetaResult.prototype.getCreatedat = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 7));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.iotics.api.DescribeTwinResponse.MetaResult} returns this
+*/
+proto.iotics.api.DescribeTwinResponse.MetaResult.prototype.setCreatedat = function(value) {
+  return jspb.Message.setWrapperField(this, 7, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.iotics.api.DescribeTwinResponse.MetaResult} returns this
+ */
+proto.iotics.api.DescribeTwinResponse.MetaResult.prototype.clearCreatedat = function() {
+  return this.setCreatedat(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.iotics.api.DescribeTwinResponse.MetaResult.prototype.hasCreatedat = function() {
+  return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp updatedAt = 8;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.iotics.api.DescribeTwinResponse.MetaResult.prototype.getUpdatedat = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 8));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.iotics.api.DescribeTwinResponse.MetaResult} returns this
+*/
+proto.iotics.api.DescribeTwinResponse.MetaResult.prototype.setUpdatedat = function(value) {
+  return jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.iotics.api.DescribeTwinResponse.MetaResult} returns this
+ */
+proto.iotics.api.DescribeTwinResponse.MetaResult.prototype.clearUpdatedat = function() {
+  return this.setUpdatedat(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.iotics.api.DescribeTwinResponse.MetaResult.prototype.hasUpdatedat = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 

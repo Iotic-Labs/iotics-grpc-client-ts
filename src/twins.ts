@@ -33,6 +33,7 @@ import { GeoLocation, Headers, HostID, Property, PropertyUpdate, TwinID } from '
 import { UpsertFeedWithMeta } from './client/iotics/api/feed_pb';
 import { TwinAPIClient } from './client/iotics/api/twin_pb_service';
 import { getShortUUID } from './helpers';
+import { UpsertInputWithMeta } from './client/iotics/api/input_pb';
 
 /**
  * Scope is a request parameter used to apply a scope to a given request.
@@ -128,6 +129,7 @@ export const upsertTwinApi = async (
     visibility: Visibility,
     properties: Array<Property>,
     feedsList: Array<UpsertFeedWithMeta>,
+    inputs: Array<UpsertInputWithMeta>,
     geoLocation: GeoLocation | undefined,
     transactionRef?: string,
 ) => {
@@ -153,6 +155,7 @@ export const upsertTwinApi = async (
         payload.setLocation(geoLocation);
         payload.setPropertiesList(properties);
         payload.setFeedsList(feedsList);
+        payload.setInputsList(inputs);
 
         request.setPayload(payload);
         client.upsertTwin(request, metadata, (error, responseMessage) => {

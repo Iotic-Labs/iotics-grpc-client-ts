@@ -8,7 +8,8 @@
     "run-describe-twin": "ts-node src/describeTwin.ts",
     "run-sparql-query": "ts-node src/sparqlQuery.ts",
     "run-explorer-query": "ts-node src/explorerQuery.ts",
-    "run-sparql-update": "ts-node src/sparqlUpdate.ts"
+    "run-sparql-update": "ts-node src/sparqlUpdate.ts",
+    "run-inputs": "ts-node src/inputs.ts"
   },
   "devDependencies": {
     "@improbable-eng/grpc-web": "^0.15.0",
