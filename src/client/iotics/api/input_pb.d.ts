@@ -5,31 +5,31 @@ import * as jspb from "google-protobuf";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as iotics_api_common_pb from "../../iotics/api/common_pb";
 
-export class Input extends jspb.Message {
-  hasId(): boolean;
-  clearId(): void;
-  getId(): iotics_api_common_pb.InputID | undefined;
-  setId(value?: iotics_api_common_pb.InputID): void;
+export class InputID extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
 
-  hasTwinid(): boolean;
-  clearTwinid(): void;
-  getTwinid(): iotics_api_common_pb.TwinID | undefined;
-  setTwinid(value?: iotics_api_common_pb.TwinID): void;
+  getTwinid(): string;
+  setTwinid(value: string): void;
+
+  getHostid(): string;
+  setHostid(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Input.AsObject;
-  static toObject(includeInstance: boolean, msg: Input): Input.AsObject;
+  toObject(includeInstance?: boolean): InputID.AsObject;
+  static toObject(includeInstance: boolean, msg: InputID): InputID.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Input, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Input;
-  static deserializeBinaryFromReader(message: Input, reader: jspb.BinaryReader): Input;
+  static serializeBinaryToWriter(message: InputID, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InputID;
+  static deserializeBinaryFromReader(message: InputID, reader: jspb.BinaryReader): InputID;
 }
 
-export namespace Input {
+export namespace InputID {
   export type AsObject = {
-    id?: iotics_api_common_pb.InputID.AsObject,
-    twinid?: iotics_api_common_pb.TwinID.AsObject,
+    id: string,
+    twinid: string,
+    hostid: string,
   }
 }
 
@@ -61,10 +61,10 @@ export namespace DeleteInputRequest {
   }
 
   export class Arguments extends jspb.Message {
-    hasInput(): boolean;
-    clearInput(): void;
-    getInput(): Input | undefined;
-    setInput(value?: Input): void;
+    hasInputid(): boolean;
+    clearInputid(): void;
+    getInputid(): InputID | undefined;
+    setInputid(value?: InputID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Arguments.AsObject;
@@ -78,7 +78,7 @@ export namespace DeleteInputRequest {
 
   export namespace Arguments {
     export type AsObject = {
-      input?: Input.AsObject,
+      inputid?: InputID.AsObject,
     }
   }
 }
@@ -111,10 +111,10 @@ export namespace DeleteInputResponse {
   }
 
   export class Payload extends jspb.Message {
-    hasInput(): boolean;
-    clearInput(): void;
-    getInput(): Input | undefined;
-    setInput(value?: Input): void;
+    hasInputid(): boolean;
+    clearInputid(): void;
+    getInputid(): InputID | undefined;
+    setInputid(value?: InputID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Payload.AsObject;
@@ -128,7 +128,7 @@ export namespace DeleteInputResponse {
 
   export namespace Payload {
     export type AsObject = {
-      input?: Input.AsObject,
+      inputid?: InputID.AsObject,
     }
   }
 }
@@ -161,15 +161,10 @@ export namespace DescribeInputRequest {
   }
 
   export class Arguments extends jspb.Message {
-    hasInput(): boolean;
-    clearInput(): void;
-    getInput(): Input | undefined;
-    setInput(value?: Input): void;
-
-    hasRemotehostid(): boolean;
-    clearRemotehostid(): void;
-    getRemotehostid(): iotics_api_common_pb.HostID | undefined;
-    setRemotehostid(value?: iotics_api_common_pb.HostID): void;
+    hasInputid(): boolean;
+    clearInputid(): void;
+    getInputid(): InputID | undefined;
+    setInputid(value?: InputID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Arguments.AsObject;
@@ -183,8 +178,7 @@ export namespace DescribeInputRequest {
 
   export namespace Arguments {
     export type AsObject = {
-      input?: Input.AsObject,
-      remotehostid?: iotics_api_common_pb.HostID.AsObject,
+      inputid?: InputID.AsObject,
     }
   }
 }
@@ -245,20 +239,15 @@ export namespace DescribeInputResponse {
   }
 
   export class Payload extends jspb.Message {
-    hasInput(): boolean;
-    clearInput(): void;
-    getInput(): Input | undefined;
-    setInput(value?: Input): void;
+    hasInputid(): boolean;
+    clearInputid(): void;
+    getInputid(): InputID | undefined;
+    setInputid(value?: InputID): void;
 
     hasResult(): boolean;
     clearResult(): void;
     getResult(): DescribeInputResponse.MetaResult | undefined;
     setResult(value?: DescribeInputResponse.MetaResult): void;
-
-    hasRemotehostid(): boolean;
-    clearRemotehostid(): void;
-    getRemotehostid(): iotics_api_common_pb.HostID | undefined;
-    setRemotehostid(value?: iotics_api_common_pb.HostID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Payload.AsObject;
@@ -272,9 +261,8 @@ export namespace DescribeInputResponse {
 
   export namespace Payload {
     export type AsObject = {
-      input?: Input.AsObject,
+      inputid?: InputID.AsObject,
       result?: DescribeInputResponse.MetaResult.AsObject,
-      remotehostid?: iotics_api_common_pb.HostID.AsObject,
     }
   }
 }
@@ -371,10 +359,10 @@ export namespace ReceiveInputMessageRequest {
   }
 
   export class Arguments extends jspb.Message {
-    hasInput(): boolean;
-    clearInput(): void;
-    getInput(): Input | undefined;
-    setInput(value?: Input): void;
+    hasInputid(): boolean;
+    clearInputid(): void;
+    getInputid(): InputID | undefined;
+    setInputid(value?: InputID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Arguments.AsObject;
@@ -388,7 +376,7 @@ export namespace ReceiveInputMessageRequest {
 
   export namespace Arguments {
     export type AsObject = {
-      input?: Input.AsObject,
+      inputid?: InputID.AsObject,
     }
   }
 }
@@ -421,10 +409,10 @@ export namespace ReceiveInputMessageResponse {
   }
 
   export class Payload extends jspb.Message {
-    hasInput(): boolean;
-    clearInput(): void;
-    getInput(): Input | undefined;
-    setInput(value?: Input): void;
+    hasInputid(): boolean;
+    clearInputid(): void;
+    getInputid(): InputID | undefined;
+    setInputid(value?: InputID): void;
 
     hasMessage(): boolean;
     clearMessage(): void;
@@ -443,7 +431,7 @@ export namespace ReceiveInputMessageResponse {
 
   export namespace Payload {
     export type AsObject = {
-      input?: Input.AsObject,
+      inputid?: InputID.AsObject,
       message?: InputMessage.AsObject,
     }
   }

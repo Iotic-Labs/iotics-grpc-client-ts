@@ -147,10 +147,10 @@ export namespace SearchResponse {
   }
 
   export class FeedDetails extends jspb.Message {
-    hasFeed(): boolean;
-    clearFeed(): void;
-    getFeed(): iotics_api_feed_pb.Feed | undefined;
-    setFeed(value?: iotics_api_feed_pb.Feed): void;
+    hasFeedid(): boolean;
+    clearFeedid(): void;
+    getFeedid(): iotics_api_feed_pb.FeedID | undefined;
+    setFeedid(value?: iotics_api_feed_pb.FeedID): void;
 
     getStorelast(): boolean;
     setStorelast(value: boolean): void;
@@ -172,17 +172,17 @@ export namespace SearchResponse {
 
   export namespace FeedDetails {
     export type AsObject = {
-      feed?: iotics_api_feed_pb.Feed.AsObject,
+      feedid?: iotics_api_feed_pb.FeedID.AsObject,
       storelast: boolean,
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
     }
   }
 
   export class InputDetails extends jspb.Message {
-    hasInput(): boolean;
-    clearInput(): void;
-    getInput(): iotics_api_input_pb.Input | undefined;
-    setInput(value?: iotics_api_input_pb.Input): void;
+    hasInputid(): boolean;
+    clearInputid(): void;
+    getInputid(): iotics_api_input_pb.InputID | undefined;
+    setInputid(value?: iotics_api_input_pb.InputID): void;
 
     clearPropertiesList(): void;
     getPropertiesList(): Array<iotics_api_common_pb.Property>;
@@ -201,16 +201,16 @@ export namespace SearchResponse {
 
   export namespace InputDetails {
     export type AsObject = {
-      input?: iotics_api_input_pb.Input.AsObject,
+      inputid?: iotics_api_input_pb.InputID.AsObject,
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
     }
   }
 
   export class TwinDetails extends jspb.Message {
-    hasId(): boolean;
-    clearId(): void;
-    getId(): iotics_api_common_pb.TwinID | undefined;
-    setId(value?: iotics_api_common_pb.TwinID): void;
+    hasTwinid(): boolean;
+    clearTwinid(): void;
+    getTwinid(): iotics_api_common_pb.TwinID | undefined;
+    setTwinid(value?: iotics_api_common_pb.TwinID): void;
 
     hasLocation(): boolean;
     clearLocation(): void;
@@ -257,7 +257,7 @@ export namespace SearchResponse {
 
   export namespace TwinDetails {
     export type AsObject = {
-      id?: iotics_api_common_pb.TwinID.AsObject,
+      twinid?: iotics_api_common_pb.TwinID.AsObject,
       location?: iotics_api_common_pb.GeoLocation.AsObject,
       visibility: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap],
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
@@ -277,10 +277,8 @@ export namespace SearchResponse {
     getStatus(): google_rpc_status_pb.Status | undefined;
     setStatus(value?: google_rpc_status_pb.Status): void;
 
-    hasRemotehostid(): boolean;
-    clearRemotehostid(): void;
-    getRemotehostid(): iotics_api_common_pb.HostID | undefined;
-    setRemotehostid(value?: iotics_api_common_pb.HostID): void;
+    getHostid(): string;
+    setHostid(value: string): void;
 
     clearTwinsList(): void;
     getTwinsList(): Array<SearchResponse.TwinDetails>;
@@ -301,7 +299,7 @@ export namespace SearchResponse {
     export type AsObject = {
       responsetype: ResponseTypeMap[keyof ResponseTypeMap],
       status?: google_rpc_status_pb.Status.AsObject,
-      remotehostid?: iotics_api_common_pb.HostID.AsObject,
+      hostid: string,
       twinsList: Array<SearchResponse.TwinDetails.AsObject>,
     }
   }

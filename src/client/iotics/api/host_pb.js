@@ -13,7 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var iotics_api_common_pb = require('../../iotics/api/common_pb.js');
 goog.object.extend(proto, iotics_api_common_pb);

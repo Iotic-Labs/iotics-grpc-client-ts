@@ -9,7 +9,8 @@
     "run-sparql-query": "ts-node src/sparqlQuery.ts",
     "run-explorer-query": "ts-node src/explorerQuery.ts",
     "run-sparql-update": "ts-node src/sparqlUpdate.ts",
-    "run-inputs": "ts-node src/inputs.ts"
+    "run-inputs": "ts-node src/inputs.ts",
+    "run-host": "ts-node src/host.ts"
   },
   "devDependencies": {
     "@improbable-eng/grpc-web": "^0.15.0",

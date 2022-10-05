@@ -29,7 +29,7 @@ import {
     DeleteTwinResponse,
     DeleteTwinRequest,
 } from './client/iotics/api/twin_pb';
-import { GeoLocation, Headers, HostID, Property, PropertyUpdate, TwinID } from './client/iotics/api/common_pb';
+import { GeoLocation, Headers, Property, PropertyUpdate, TwinID } from './client/iotics/api/common_pb';
 import { UpsertFeedWithMeta } from './client/iotics/api/feed_pb';
 import { TwinAPIClient } from './client/iotics/api/twin_pb_service';
 import { getShortUUID } from './helpers';
@@ -82,15 +82,14 @@ export const describeTwinApi = async (
         }
         request.setHeaders(headers);
         const twin = new TwinID();
-        twin.setValue(twinId);
-        const args = new DescribeTwinRequest.Arguments();
-        args.setTwinid(twin);
+        twin.setId(twinId);
 
         if (remoteHostId) {
-            const host = new HostID();
-            host.setValue(remoteHostId);
-            args.setRemotehostid(host);
+            twin.setHostid(remoteHostId);
         }
+
+        const args = new DescribeTwinRequest.Arguments();
+        args.setTwinid(twin);
 
         request.setArgs(args);
         client.describeTwin(request, metadata, (error, responseMessage) => {
@@ -147,9 +146,9 @@ export const upsertTwinApi = async (
         request.setHeaders(headers);
 
         const twin = new TwinID();
-        twin.setValue(twinId);
+        twin.setId(twinId);
         const payload = new UpsertTwinRequest.Payload();
-        payload.setTwinid(twin.getValue());
+        payload.setTwinid(twin);
 
         payload.setVisibility(visibility);
         payload.setLocation(geoLocation);
@@ -222,7 +221,7 @@ export const updateTwinApi = async (
         }
 
         const twin = new TwinID();
-        twin.setValue(twinId);
+        twin.setId(twinId);
         const args = new UpdateTwinRequest.Arguments();
         args.setTwinid(twin);
         request.setArgs(args);
@@ -276,7 +275,7 @@ export const deleteTwinApi = async (
         request.setHeaders(headers);
 
         const twin = new TwinID();
-        twin.setValue(twinId);
+        twin.setId(twinId);
         const args = new DeleteTwinRequest.Arguments();
         args.setTwinid(twin);
         request.setArgs(args);

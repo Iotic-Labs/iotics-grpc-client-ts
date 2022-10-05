@@ -60,12 +60,13 @@ function* searchModels(grpcUrl: string, accessToken: string) {
 function* searchModelsWatcher(channel: EventChannel<ISearchResult>) {
     // Handle search results in here:
     let hosts = new Map<string, number>();
+
     try {
         // Use while loop to ensure that all result messages are handled, i.e. results from remote spaces.
         while (true) {
             console.info('Waiting for a message… ');
             const message: ISearchResult = yield take(channel);
-            const hostId = message.results?.getRemotehostid()?.getValue() ?? 'local';
+            const hostId = message.results?.getHostid() ?? 'local';
             const twinCount = message.results?.getTwinsList().length ?? 0;
             hosts.set(hostId, (hosts.get(hostId) ?? 0) + twinCount);
             console.info(`Status: "${message.status}" host (ID): "${hostId}" number of twins found: ${twinCount}.`);

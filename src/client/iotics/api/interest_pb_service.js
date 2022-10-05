@@ -28,33 +28,6 @@ InterestAPI.FetchLastStored = {
   responseType: iotics_api_interest_pb.FetchInterestResponse
 };
 
-InterestAPI.ListAllInterests = {
-  methodName: "ListAllInterests",
-  service: InterestAPI,
-  requestStream: false,
-  responseStream: false,
-  requestType: iotics_api_interest_pb.ListAllInterestsRequest,
-  responseType: iotics_api_interest_pb.ListAllInterestsResponse
-};
-
-InterestAPI.CreateInterest = {
-  methodName: "CreateInterest",
-  service: InterestAPI,
-  requestStream: false,
-  responseStream: false,
-  requestType: iotics_api_interest_pb.CreateInterestRequest,
-  responseType: iotics_api_interest_pb.CreateInterestResponse
-};
-
-InterestAPI.DeleteInterest = {
-  methodName: "DeleteInterest",
-  service: InterestAPI,
-  requestStream: false,
-  responseStream: false,
-  requestType: iotics_api_interest_pb.DeleteInterestRequest,
-  responseType: iotics_api_interest_pb.DeleteInterestResponse
-};
-
 InterestAPI.SendInputMessage = {
   methodName: "SendInputMessage",
   service: InterestAPI,
@@ -115,99 +88,6 @@ InterestAPIClient.prototype.fetchLastStored = function fetchLastStored(requestMe
     callback = arguments[1];
   }
   var client = grpc.unary(InterestAPI.FetchLastStored, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-InterestAPIClient.prototype.listAllInterests = function listAllInterests(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(InterestAPI.ListAllInterests, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-InterestAPIClient.prototype.createInterest = function createInterest(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(InterestAPI.CreateInterest, {
-    request: requestMessage,
-    host: this.serviceHost,
-    metadata: metadata,
-    transport: this.options.transport,
-    debug: this.options.debug,
-    onEnd: function (response) {
-      if (callback) {
-        if (response.status !== grpc.Code.OK) {
-          var err = new Error(response.statusMessage);
-          err.code = response.status;
-          err.metadata = response.trailers;
-          callback(err, null);
-        } else {
-          callback(null, response.message);
-        }
-      }
-    }
-  });
-  return {
-    cancel: function () {
-      callback = null;
-      client.close();
-    }
-  };
-};
-
-InterestAPIClient.prototype.deleteInterest = function deleteInterest(requestMessage, metadata, callback) {
-  if (arguments.length === 2) {
-    callback = arguments[1];
-  }
-  var client = grpc.unary(InterestAPI.DeleteInterest, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,

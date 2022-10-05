@@ -5,31 +5,31 @@ import * as jspb from "google-protobuf";
 import * as google_protobuf_wrappers_pb from "google-protobuf/google/protobuf/wrappers_pb";
 import * as iotics_api_common_pb from "../../iotics/api/common_pb";
 
-export class Feed extends jspb.Message {
-  hasId(): boolean;
-  clearId(): void;
-  getId(): iotics_api_common_pb.FeedID | undefined;
-  setId(value?: iotics_api_common_pb.FeedID): void;
+export class FeedID extends jspb.Message {
+  getId(): string;
+  setId(value: string): void;
 
-  hasTwinid(): boolean;
-  clearTwinid(): void;
-  getTwinid(): iotics_api_common_pb.TwinID | undefined;
-  setTwinid(value?: iotics_api_common_pb.TwinID): void;
+  getTwinid(): string;
+  setTwinid(value: string): void;
+
+  getHostid(): string;
+  setHostid(value: string): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Feed.AsObject;
-  static toObject(includeInstance: boolean, msg: Feed): Feed.AsObject;
+  toObject(includeInstance?: boolean): FeedID.AsObject;
+  static toObject(includeInstance: boolean, msg: FeedID): FeedID.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: Feed, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Feed;
-  static deserializeBinaryFromReader(message: Feed, reader: jspb.BinaryReader): Feed;
+  static serializeBinaryToWriter(message: FeedID, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FeedID;
+  static deserializeBinaryFromReader(message: FeedID, reader: jspb.BinaryReader): FeedID;
 }
 
-export namespace Feed {
+export namespace FeedID {
   export type AsObject = {
-    id?: iotics_api_common_pb.FeedID.AsObject,
-    twinid?: iotics_api_common_pb.TwinID.AsObject,
+    id: string,
+    twinid: string,
+    hostid: string,
   }
 }
 
@@ -67,10 +67,8 @@ export namespace CreateFeedRequest {
   }
 
   export class Payload extends jspb.Message {
-    hasFeedid(): boolean;
-    clearFeedid(): void;
-    getFeedid(): iotics_api_common_pb.FeedID | undefined;
-    setFeedid(value?: iotics_api_common_pb.FeedID): void;
+    getId(): string;
+    setId(value: string): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Payload.AsObject;
@@ -84,7 +82,7 @@ export namespace CreateFeedRequest {
 
   export namespace Payload {
     export type AsObject = {
-      feedid?: iotics_api_common_pb.FeedID.AsObject,
+      id: string,
     }
   }
 
@@ -139,10 +137,10 @@ export namespace CreateFeedResponse {
   }
 
   export class Payload extends jspb.Message {
-    hasFeed(): boolean;
-    clearFeed(): void;
-    getFeed(): Feed | undefined;
-    setFeed(value?: Feed): void;
+    hasFeedid(): boolean;
+    clearFeedid(): void;
+    getFeedid(): FeedID | undefined;
+    setFeedid(value?: FeedID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Payload.AsObject;
@@ -156,7 +154,7 @@ export namespace CreateFeedResponse {
 
   export namespace Payload {
     export type AsObject = {
-      feed?: Feed.AsObject,
+      feedid?: FeedID.AsObject,
     }
   }
 }
@@ -189,10 +187,10 @@ export namespace DeleteFeedRequest {
   }
 
   export class Arguments extends jspb.Message {
-    hasFeed(): boolean;
-    clearFeed(): void;
-    getFeed(): Feed | undefined;
-    setFeed(value?: Feed): void;
+    hasFeedid(): boolean;
+    clearFeedid(): void;
+    getFeedid(): FeedID | undefined;
+    setFeedid(value?: FeedID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Arguments.AsObject;
@@ -206,7 +204,7 @@ export namespace DeleteFeedRequest {
 
   export namespace Arguments {
     export type AsObject = {
-      feed?: Feed.AsObject,
+      feedid?: FeedID.AsObject,
     }
   }
 }
@@ -239,10 +237,10 @@ export namespace DeleteFeedResponse {
   }
 
   export class Payload extends jspb.Message {
-    hasFeed(): boolean;
-    clearFeed(): void;
-    getFeed(): Feed | undefined;
-    setFeed(value?: Feed): void;
+    hasFeedid(): boolean;
+    clearFeedid(): void;
+    getFeedid(): FeedID | undefined;
+    setFeedid(value?: FeedID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Payload.AsObject;
@@ -256,7 +254,7 @@ export namespace DeleteFeedResponse {
 
   export namespace Payload {
     export type AsObject = {
-      feed?: Feed.AsObject,
+      feedid?: FeedID.AsObject,
     }
   }
 }
@@ -329,10 +327,10 @@ export namespace UpdateFeedRequest {
   }
 
   export class Arguments extends jspb.Message {
-    hasFeed(): boolean;
-    clearFeed(): void;
-    getFeed(): Feed | undefined;
-    setFeed(value?: Feed): void;
+    hasFeedid(): boolean;
+    clearFeedid(): void;
+    getFeedid(): FeedID | undefined;
+    setFeedid(value?: FeedID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Arguments.AsObject;
@@ -346,7 +344,7 @@ export namespace UpdateFeedRequest {
 
   export namespace Arguments {
     export type AsObject = {
-      feed?: Feed.AsObject,
+      feedid?: FeedID.AsObject,
     }
   }
 }
@@ -379,10 +377,10 @@ export namespace UpdateFeedResponse {
   }
 
   export class Payload extends jspb.Message {
-    hasFeed(): boolean;
-    clearFeed(): void;
-    getFeed(): Feed | undefined;
-    setFeed(value?: Feed): void;
+    hasFeedid(): boolean;
+    clearFeedid(): void;
+    getFeedid(): FeedID | undefined;
+    setFeedid(value?: FeedID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Payload.AsObject;
@@ -396,7 +394,7 @@ export namespace UpdateFeedResponse {
 
   export namespace Payload {
     export type AsObject = {
-      feed?: Feed.AsObject,
+      feedid?: FeedID.AsObject,
     }
   }
 }
@@ -457,10 +455,10 @@ export namespace ShareFeedDataRequest {
   }
 
   export class Arguments extends jspb.Message {
-    hasFeed(): boolean;
-    clearFeed(): void;
-    getFeed(): Feed | undefined;
-    setFeed(value?: Feed): void;
+    hasFeedid(): boolean;
+    clearFeedid(): void;
+    getFeedid(): FeedID | undefined;
+    setFeedid(value?: FeedID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Arguments.AsObject;
@@ -474,7 +472,7 @@ export namespace ShareFeedDataRequest {
 
   export namespace Arguments {
     export type AsObject = {
-      feed?: Feed.AsObject,
+      feedid?: FeedID.AsObject,
     }
   }
 }
@@ -585,10 +583,10 @@ export namespace ListAllFeedsResponse {
   }
 
   export class Payload extends jspb.Message {
-    clearFeedsList(): void;
-    getFeedsList(): Array<Feed>;
-    setFeedsList(value: Array<Feed>): void;
-    addFeeds(value?: Feed, index?: number): Feed;
+    clearFeedidsList(): void;
+    getFeedidsList(): Array<FeedID>;
+    setFeedidsList(value: Array<FeedID>): void;
+    addFeedids(value?: FeedID, index?: number): FeedID;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Payload.AsObject;
@@ -602,7 +600,7 @@ export namespace ListAllFeedsResponse {
 
   export namespace Payload {
     export type AsObject = {
-      feedsList: Array<Feed.AsObject>,
+      feedidsList: Array<FeedID.AsObject>,
     }
   }
 }
@@ -635,15 +633,10 @@ export namespace DescribeFeedRequest {
   }
 
   export class Arguments extends jspb.Message {
-    hasFeed(): boolean;
-    clearFeed(): void;
-    getFeed(): Feed | undefined;
-    setFeed(value?: Feed): void;
-
-    hasRemotehostid(): boolean;
-    clearRemotehostid(): void;
-    getRemotehostid(): iotics_api_common_pb.HostID | undefined;
-    setRemotehostid(value?: iotics_api_common_pb.HostID): void;
+    hasFeedid(): boolean;
+    clearFeedid(): void;
+    getFeedid(): FeedID | undefined;
+    setFeedid(value?: FeedID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Arguments.AsObject;
@@ -657,8 +650,7 @@ export namespace DescribeFeedRequest {
 
   export namespace Arguments {
     export type AsObject = {
-      feed?: Feed.AsObject,
-      remotehostid?: iotics_api_common_pb.HostID.AsObject,
+      feedid?: FeedID.AsObject,
     }
   }
 }
@@ -723,20 +715,15 @@ export namespace DescribeFeedResponse {
   }
 
   export class Payload extends jspb.Message {
-    hasFeed(): boolean;
-    clearFeed(): void;
-    getFeed(): Feed | undefined;
-    setFeed(value?: Feed): void;
+    hasFeedid(): boolean;
+    clearFeedid(): void;
+    getFeedid(): FeedID | undefined;
+    setFeedid(value?: FeedID): void;
 
     hasResult(): boolean;
     clearResult(): void;
     getResult(): DescribeFeedResponse.MetaResult | undefined;
     setResult(value?: DescribeFeedResponse.MetaResult): void;
-
-    hasRemotehostid(): boolean;
-    clearRemotehostid(): void;
-    getRemotehostid(): iotics_api_common_pb.HostID | undefined;
-    setRemotehostid(value?: iotics_api_common_pb.HostID): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Payload.AsObject;
@@ -750,9 +737,8 @@ export namespace DescribeFeedResponse {
 
   export namespace Payload {
     export type AsObject = {
-      feed?: Feed.AsObject,
+      feedid?: FeedID.AsObject,
       result?: DescribeFeedResponse.MetaResult.AsObject,
-      remotehostid?: iotics_api_common_pb.HostID.AsObject,
     }
   }
 }

@@ -22,33 +22,6 @@ type InterestAPIFetchLastStored = {
   readonly responseType: typeof iotics_api_interest_pb.FetchInterestResponse;
 };
 
-type InterestAPIListAllInterests = {
-  readonly methodName: string;
-  readonly service: typeof InterestAPI;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof iotics_api_interest_pb.ListAllInterestsRequest;
-  readonly responseType: typeof iotics_api_interest_pb.ListAllInterestsResponse;
-};
-
-type InterestAPICreateInterest = {
-  readonly methodName: string;
-  readonly service: typeof InterestAPI;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof iotics_api_interest_pb.CreateInterestRequest;
-  readonly responseType: typeof iotics_api_interest_pb.CreateInterestResponse;
-};
-
-type InterestAPIDeleteInterest = {
-  readonly methodName: string;
-  readonly service: typeof InterestAPI;
-  readonly requestStream: false;
-  readonly responseStream: false;
-  readonly requestType: typeof iotics_api_interest_pb.DeleteInterestRequest;
-  readonly responseType: typeof iotics_api_interest_pb.DeleteInterestResponse;
-};
-
 type InterestAPISendInputMessage = {
   readonly methodName: string;
   readonly service: typeof InterestAPI;
@@ -62,9 +35,6 @@ export class InterestAPI {
   static readonly serviceName: string;
   static readonly FetchInterests: InterestAPIFetchInterests;
   static readonly FetchLastStored: InterestAPIFetchLastStored;
-  static readonly ListAllInterests: InterestAPIListAllInterests;
-  static readonly CreateInterest: InterestAPICreateInterest;
-  static readonly DeleteInterest: InterestAPIDeleteInterest;
   static readonly SendInputMessage: InterestAPISendInputMessage;
 }
 
@@ -109,33 +79,6 @@ export class InterestAPIClient {
   fetchLastStored(
     requestMessage: iotics_api_interest_pb.FetchLastStoredRequest,
     callback: (error: ServiceError|null, responseMessage: iotics_api_interest_pb.FetchInterestResponse|null) => void
-  ): UnaryResponse;
-  listAllInterests(
-    requestMessage: iotics_api_interest_pb.ListAllInterestsRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: iotics_api_interest_pb.ListAllInterestsResponse|null) => void
-  ): UnaryResponse;
-  listAllInterests(
-    requestMessage: iotics_api_interest_pb.ListAllInterestsRequest,
-    callback: (error: ServiceError|null, responseMessage: iotics_api_interest_pb.ListAllInterestsResponse|null) => void
-  ): UnaryResponse;
-  createInterest(
-    requestMessage: iotics_api_interest_pb.CreateInterestRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: iotics_api_interest_pb.CreateInterestResponse|null) => void
-  ): UnaryResponse;
-  createInterest(
-    requestMessage: iotics_api_interest_pb.CreateInterestRequest,
-    callback: (error: ServiceError|null, responseMessage: iotics_api_interest_pb.CreateInterestResponse|null) => void
-  ): UnaryResponse;
-  deleteInterest(
-    requestMessage: iotics_api_interest_pb.DeleteInterestRequest,
-    metadata: grpc.Metadata,
-    callback: (error: ServiceError|null, responseMessage: iotics_api_interest_pb.DeleteInterestResponse|null) => void
-  ): UnaryResponse;
-  deleteInterest(
-    requestMessage: iotics_api_interest_pb.DeleteInterestRequest,
-    callback: (error: ServiceError|null, responseMessage: iotics_api_interest_pb.DeleteInterestResponse|null) => void
   ): UnaryResponse;
   sendInputMessage(
     requestMessage: iotics_api_interest_pb.SendInputMessageRequest,

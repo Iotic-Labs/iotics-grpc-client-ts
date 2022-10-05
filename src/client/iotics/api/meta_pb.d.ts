@@ -147,10 +147,8 @@ export namespace SparqlQueryResponse {
   }
 
   export class Payload extends jspb.Message {
-    hasRemotehostid(): boolean;
-    clearRemotehostid(): void;
-    getRemotehostid(): iotics_api_common_pb.HostID | undefined;
-    setRemotehostid(value?: iotics_api_common_pb.HostID): void;
+    getHostid(): string;
+    setHostid(value: string): void;
 
     getSeqnum(): number;
     setSeqnum(value: number): void;
@@ -183,7 +181,7 @@ export namespace SparqlQueryResponse {
 
   export namespace Payload {
     export type AsObject = {
-      remotehostid?: iotics_api_common_pb.HostID.AsObject,
+      hostid: string,
       seqnum: number,
       last: boolean,
       status?: google_rpc_status_pb.Status.AsObject,
