@@ -59,7 +59,7 @@ export const runSparqlQuery = async (query: string) => {
         process.exit(1);
     }
 
-    console.info(`Sparql Query for twin models in "${url}".`);
+    console.info(`Sparql Query in "${url}".`);
 
     const channel: EventChannel<IQueryResult> = sparqlQuery(
         token,

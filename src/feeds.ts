@@ -46,20 +46,16 @@ export const describeFeedApi = async (
             headers.setTransactionrefList([clientRef]);
         }
         request.setHeaders(headers as unknown as pbCommonModel.Headers);
-        const twinID = new pbCommonModel.TwinID();
-        twinID.setValue(twinId);
-        const feedID = new pbCommonModel.FeedID();
-        feedID.setValue(feedId);
-        const feed = new pbFeedModel.Feed();
-        feed.setTwinid(twinID);
-        feed.setId(feedID);
-        const args = new pbFeedModel.DescribeFeedRequest.Arguments();
-        args.setFeed(feed);
+
+        const feedID = new pbFeedModel.FeedID();
+        feedID.setId(feedId);
+        feedID.setTwinid(twinId);
         if (hostId) {
-            const hostID = new pbCommonModel.HostID();
-            hostID.setValue(hostId);
-            args.setRemotehostid(hostID);
+            feedID.setHostid(hostId);
         }
+
+        const args = new pbFeedModel.DescribeFeedRequest.Arguments();
+        args.setFeedid(feedID);
         request.setArgs(args);
 
         client.describeFeed(request, metadata, (error, responseMessage) => {
@@ -114,15 +110,13 @@ export const shareFeedDataApi = async (
             headers.setTransactionrefList([clientRef]);
         }
         request.setHeaders(headers as unknown as pbCommonModel.Headers);
-        const twinID = new pbCommonModel.TwinID();
-        twinID.setValue(twinId);
-        const feedID = new pbCommonModel.FeedID();
-        feedID.setValue(feedId);
-        const feed = new pbFeedModel.Feed();
-        feed.setTwinid(twinID);
-        feed.setId(feedID);
+
+        const feedID = new pbFeedModel.FeedID();
+        feedID.setId(feedId);
+        feedID.setTwinid(twinId);
+
         const args = new pbFeedModel.ShareFeedDataRequest.Arguments();
-        args.setFeed(feed);
+        args.setFeedid(feedID);
         request.setArgs(args);
 
         const payload = new pbFeedModel.ShareFeedDataRequest.Payload();

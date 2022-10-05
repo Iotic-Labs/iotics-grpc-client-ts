@@ -25,3 +25,5 @@ to communicate with IOTICSpaces to e.g. search twin models.
     * `yarn run-explorer-query` - default timeout: 10 seconds.
   * [`inputs.ts`](./src/inputs.ts) - send input (aka control) messages from one twin to another:
     * `SENDER_TWIN_DID=did:iotics:abcdefg1 RECEIVER_TWIN_DID=did:iotics:abcdefg2 yarn run-inputs`
+  * [`host.ts`](./src/host.ts) - get the DID of the local host:
+    * `yarn run-host`

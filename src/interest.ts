@@ -20,14 +20,15 @@ import { grpc } from '@improbable-eng/grpc-web';
 import { END, eventChannel } from 'redux-saga';
 import { BoolValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 
-import { createInputObj, getShortUUID, Status, TOKEN_EXPIRED_STATUS_CODE } from './helpers';
+import { getShortUUID, Status, TOKEN_EXPIRED_STATUS_CODE } from './helpers';
 import * as pbCommonModel from './client/iotics/api/common_pb';
-import { Feed } from './client/iotics/api/feed_pb';
+import * as pbInput from './client/iotics/api/input_pb';
 import { FetchInterestRequest, Interest, SendInputMessageRequest } from './client/iotics/api/interest_pb';
 import * as pbInterestService from './client/iotics/api/interest_pb_service';
 import * as pbInterestModel from './client/iotics/api/interest_pb';
 import { InputMessage } from './client/iotics/api/input_pb';
 import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
+import { FeedID } from '.';
 
 export interface IInterestResult {
     status: string;
@@ -61,24 +62,16 @@ export const follow = (
         headers.setTransactionrefList([clientAppId]);
         requestMessage.setHeaders(headers);
 
-        const feed = new Feed();
-        const feedId = new pbCommonModel.FeedID();
-        feedId.setValue(followedFeedId);
-        const twinId = new pbCommonModel.TwinID();
-        twinId.setValue(followedTwinId);
-        feed.setId(feedId);
-        feed.setTwinid(twinId);
+        const feedId = new FeedID();
+        feedId.setId(followedFeedId);
+        feedId.setHostid(followedHostId);
+        feedId.setTwinid(followedTwinId);
 
-        const followedFeed = new Interest.FollowedFeed();
-        const hostId = new pbCommonModel.HostID();
-        hostId.setValue(followedHostId);
-        followedFeed.setHostid(hostId);
-        followedFeed.setFeed(feed);
+        const followerTwin = new pbCommonModel.TwinID();
+        followerTwin.setId(followerTwinId);
 
         const interest = new Interest();
-        interest.setFollowedfeed(followedFeed);
-        const followerTwin = new pbCommonModel.TwinID();
-        followerTwin.setValue(followerTwinId);
+        interest.setFollowedfeedid(feedId);
         interest.setFollowertwinid(followerTwin);
 
         const args = new FetchInterestRequest.Arguments();
@@ -152,20 +145,17 @@ export const sendInputMessage = (
         headers.setClientappid(clientAppId);
         headers.setTransactionrefList([clientAppId]);
 
-        const destinationInput = new pbInterestModel.InputInterest.DestinationInput();
-        destinationInput.setInput(createInputObj(receiverTwinId, inputId));
-
-        if (remoteHostId) {
-            const hostIdObj = new pbCommonModel.HostID();
-            hostIdObj.setValue(remoteHostId);
-            destinationInput.setHostid(hostIdObj);
-        }
-
         const inputInterest = new pbInterestModel.InputInterest();
-        const senderTwinIdObj = new pbCommonModel.TwinID();
-        senderTwinIdObj.setValue(senderTwinId);
-        inputInterest.setSendertwinid(senderTwinIdObj);
-        inputInterest.setDestinput(destinationInput);
+        const senderTwin = new pbCommonModel.TwinID();
+        senderTwin.setId(senderTwinId);
+        inputInterest.setSendertwinid(senderTwin);
+        const input = new pbInput.InputID();
+        input.setId(inputId);
+        if (remoteHostId) {
+            input.setHostid(remoteHostId);
+        }
+        input.setTwinid(receiverTwinId);
+        inputInterest.setDestinputid(input);
 
         const inputMessage = new InputMessage();
         const currentTimestamp = new Timestamp();

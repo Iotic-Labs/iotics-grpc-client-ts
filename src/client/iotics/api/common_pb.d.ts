@@ -338,29 +338,12 @@ export namespace SubscriptionHeaders {
   }
 }
 
-export class HostID extends jspb.Message {
-  getValue(): string;
-  setValue(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): HostID.AsObject;
-  static toObject(includeInstance: boolean, msg: HostID): HostID.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: HostID, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): HostID;
-  static deserializeBinaryFromReader(message: HostID, reader: jspb.BinaryReader): HostID;
-}
-
-export namespace HostID {
-  export type AsObject = {
-    value: string,
-  }
-}
-
 export class TwinID extends jspb.Message {
-  getValue(): string;
-  setValue(value: string): void;
+  getId(): string;
+  setId(value: string): void;
+
+  getHostid(): string;
+  setHostid(value: string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TwinID.AsObject;
@@ -374,47 +357,8 @@ export class TwinID extends jspb.Message {
 
 export namespace TwinID {
   export type AsObject = {
-    value: string,
-  }
-}
-
-export class FeedID extends jspb.Message {
-  getValue(): string;
-  setValue(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FeedID.AsObject;
-  static toObject(includeInstance: boolean, msg: FeedID): FeedID.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FeedID, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FeedID;
-  static deserializeBinaryFromReader(message: FeedID, reader: jspb.BinaryReader): FeedID;
-}
-
-export namespace FeedID {
-  export type AsObject = {
-    value: string,
-  }
-}
-
-export class InputID extends jspb.Message {
-  getValue(): string;
-  setValue(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): InputID.AsObject;
-  static toObject(includeInstance: boolean, msg: InputID): InputID.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: InputID, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): InputID;
-  static deserializeBinaryFromReader(message: InputID, reader: jspb.BinaryReader): InputID;
-}
-
-export namespace InputID {
-  export type AsObject = {
-    value: string,
+    id: string,
+    hostid: string,
   }
 }
 

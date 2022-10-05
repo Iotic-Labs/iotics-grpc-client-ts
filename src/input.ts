@@ -2,6 +2,7 @@ import { grpc } from '@improbable-eng/grpc-web';
 import { END, eventChannel } from 'redux-saga';
 
 import * as pbCommonModel from './client/iotics/api/common_pb';
+import * as pbInput from './client/iotics/api/input_pb';
 import {
     DeleteInputRequest,
     DeleteInputResponse,
@@ -10,7 +11,7 @@ import {
     ReceiveInputMessageRequest,
     ReceiveInputMessageResponse,
 } from './client/iotics/api/input_pb';
-import { createInputObj, getShortUUID, Status, TOKEN_EXPIRED_STATUS_CODE } from './helpers';
+import { getShortUUID, Status, TOKEN_EXPIRED_STATUS_CODE } from './helpers';
 import { InputAPIClient } from './client/iotics/api/input_pb_service';
 
 export interface IInputResult {
@@ -37,16 +38,15 @@ export const describeInput = async (
         headers.setTransactionrefList([clientAppId]);
         requestMessage.setHeaders(headers);
 
-        const input = createInputObj(twinId, inputId);
+        const input = new pbInput.InputID();
+        input.setId(inputId);
+        input.setTwinid(twinId);
+        if (remoteHostId) {
+            input.setHostid(remoteHostId);
+        }
 
         const args = new DescribeInputRequest.Arguments();
-        args.setInput(input);
-
-        if (remoteHostId) {
-            const remoteHost = new pbCommonModel.HostID();
-            remoteHost.setValue(remoteHostId);
-            args.setRemotehostid(remoteHost);
-        }
+        args.setInputid(input);
 
         requestMessage.setArgs(args);
 
@@ -73,10 +73,12 @@ export const deleteInput = async (grpcUrl: string, accessToken: string, twinId: 
         headers.setTransactionrefList([clientAppId]);
         requestMessage.setHeaders(headers);
 
-        const input = createInputObj(twinId, inputId);
+        const input = new pbInput.InputID();
+        input.setId(inputId);
+        input.setTwinid(twinId);
 
         const args = new DeleteInputRequest.Arguments();
-        args.setInput(input);
+        args.setInputid(input);
 
         requestMessage.setArgs(args);
 
@@ -103,12 +105,14 @@ export const receiveInputMessages = (grpcUrl: string, accessToken: string, twinI
         const metadata = new grpc.Metadata();
         metadata.set('authorization', `bearer ${accessToken}`);
 
-        const input = createInputObj(twinId, inputId);
+        const input = new pbInput.InputID();
+        input.setId(inputId);
+        input.setTwinid(twinId);
 
         const requestMessage = new ReceiveInputMessageRequest();
 
         const args = new ReceiveInputMessageRequest.Arguments();
-        args.setInput(input);
+        args.setInputid(input);
         requestMessage.setArgs(args);
 
         const headers = new pbCommonModel.Headers();

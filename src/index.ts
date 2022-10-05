@@ -21,7 +21,6 @@ import 'whatwg-fetch';
 export { grpc } from '@improbable-eng/grpc-web';
 
 export {
-    FeedID,
     TwinID,
     Value,
     GeoCircle,
@@ -34,7 +33,7 @@ export {
     Uri,
     Visibility,
 } from './client/iotics/api/common_pb';
-export { DescribeFeedResponse, Feed, UpsertFeedWithMeta } from './client/iotics/api/feed_pb';
+export { DescribeFeedResponse, FeedID, UpsertFeedWithMeta } from './client/iotics/api/feed_pb';
 export { FetchInterestResponse } from './client/iotics/api/interest_pb';
 export { ResponseType, SearchRequest, SearchResponse } from './client/iotics/api/search_pb';
 export {
@@ -45,7 +44,6 @@ export {
     UpdateTwinResponse,
     VisibilityUpdate,
     GeoLocationUpdate,
-    Twin,
     FeedMeta,
     ListAllTwinsRequest,
     ListAllTwinsResponse,
@@ -81,6 +79,7 @@ export { explorerQuery } from './explorerQuery';
 export type { IQueryResult } from './sparqlQuery';
 export { sparqlUpdate } from './sparqlUpdate';
 export { channelToGenerator } from './helpers';
+export { getLocalHostId } from './host';
 
 // https://grpc.github.io/grpc/core/md_doc_statuscodes.html
 export enum GRPCStatusCodes {

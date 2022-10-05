@@ -13,7 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_rpc_status_pb = require('../../google/rpc/status_pb.js');
 goog.object.extend(proto, google_rpc_status_pb);
@@ -1186,7 +1186,7 @@ proto.iotics.api.SparqlQueryResponse.Payload.prototype.toObject = function(opt_i
  */
 proto.iotics.api.SparqlQueryResponse.Payload.toObject = function(includeInstance, msg) {
   var f, obj = {
-    remotehostid: (f = msg.getRemotehostid()) && iotics_api_common_pb.HostID.toObject(includeInstance, f),
+    hostid: jspb.Message.getFieldWithDefault(msg, 1, ""),
     seqnum: jspb.Message.getFieldWithDefault(msg, 2, 0),
     last: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     status: (f = msg.getStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f),
@@ -1229,9 +1229,8 @@ proto.iotics.api.SparqlQueryResponse.Payload.deserializeBinaryFromReader = funct
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new iotics_api_common_pb.HostID;
-      reader.readMessage(value,iotics_api_common_pb.HostID.deserializeBinaryFromReader);
-      msg.setRemotehostid(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setHostid(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readUint64());
@@ -1283,12 +1282,11 @@ proto.iotics.api.SparqlQueryResponse.Payload.prototype.serializeBinary = functio
  */
 proto.iotics.api.SparqlQueryResponse.Payload.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRemotehostid();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getHostid();
+  if (f.length > 0) {
+    writer.writeString(
       1,
-      f,
-      iotics_api_common_pb.HostID.serializeBinaryToWriter
+      f
     );
   }
   f = message.getSeqnum();
@@ -1331,39 +1329,20 @@ proto.iotics.api.SparqlQueryResponse.Payload.serializeBinaryToWriter = function(
 
 
 /**
- * optional HostID remoteHostId = 1;
- * @return {?proto.iotics.api.HostID}
+ * optional string hostId = 1;
+ * @return {string}
  */
-proto.iotics.api.SparqlQueryResponse.Payload.prototype.getRemotehostid = function() {
-  return /** @type{?proto.iotics.api.HostID} */ (
-    jspb.Message.getWrapperField(this, iotics_api_common_pb.HostID, 1));
+proto.iotics.api.SparqlQueryResponse.Payload.prototype.getHostid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {?proto.iotics.api.HostID|undefined} value
- * @return {!proto.iotics.api.SparqlQueryResponse.Payload} returns this
-*/
-proto.iotics.api.SparqlQueryResponse.Payload.prototype.setRemotehostid = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {string} value
  * @return {!proto.iotics.api.SparqlQueryResponse.Payload} returns this
  */
-proto.iotics.api.SparqlQueryResponse.Payload.prototype.clearRemotehostid = function() {
-  return this.setRemotehostid(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.iotics.api.SparqlQueryResponse.Payload.prototype.hasRemotehostid = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.iotics.api.SparqlQueryResponse.Payload.prototype.setHostid = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

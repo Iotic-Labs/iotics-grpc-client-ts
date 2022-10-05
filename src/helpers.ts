@@ -19,8 +19,6 @@
 import shortUUID from 'short-uuid';
 import { END, EventChannel } from 'redux-saga';
 import { NotUndefined } from '@redux-saga/types';
-import * as pbCommonModel from './client/iotics/api/common_pb';
-import { Input } from './client/iotics/api/input_pb';
 
 export const getShortUUID = () => shortUUID().new();
 
@@ -65,15 +63,4 @@ export async function* channelToGenerator<T extends NotUndefined>(channel: Event
             return;
         }
     }
-}
-
-export function createInputObj(twinId: string, inputId: string) {
-    const input = new Input();
-    const twinIdObj = new pbCommonModel.TwinID();
-    twinIdObj.setValue(twinId);
-    input.setTwinid(twinIdObj);
-    const inputIdObj = new pbCommonModel.InputID();
-    inputIdObj.setValue(inputId);
-    input.setId(inputIdObj);
-    return input;
 }

@@ -13,7 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = Function('return this')();
+var global = (function() { return this || window || global || self || Function('return this')(); }).call(null);
 
 var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js');
 goog.object.extend(proto, google_protobuf_wrappers_pb);
@@ -1221,7 +1221,7 @@ proto.iotics.api.SearchResponse.FeedDetails.prototype.toObject = function(opt_in
  */
 proto.iotics.api.SearchResponse.FeedDetails.toObject = function(includeInstance, msg) {
   var f, obj = {
-    feed: (f = msg.getFeed()) && iotics_api_feed_pb.Feed.toObject(includeInstance, f),
+    feedid: (f = msg.getFeedid()) && iotics_api_feed_pb.FeedID.toObject(includeInstance, f),
     storelast: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     propertiesList: jspb.Message.toObjectList(msg.getPropertiesList(),
     iotics_api_common_pb.Property.toObject, includeInstance)
@@ -1262,9 +1262,9 @@ proto.iotics.api.SearchResponse.FeedDetails.deserializeBinaryFromReader = functi
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new iotics_api_feed_pb.Feed;
-      reader.readMessage(value,iotics_api_feed_pb.Feed.deserializeBinaryFromReader);
-      msg.setFeed(value);
+      var value = new iotics_api_feed_pb.FeedID;
+      reader.readMessage(value,iotics_api_feed_pb.FeedID.deserializeBinaryFromReader);
+      msg.setFeedid(value);
       break;
     case 3:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -1304,12 +1304,12 @@ proto.iotics.api.SearchResponse.FeedDetails.prototype.serializeBinary = function
  */
 proto.iotics.api.SearchResponse.FeedDetails.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getFeed();
+  f = message.getFeedid();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      iotics_api_feed_pb.Feed.serializeBinaryToWriter
+      iotics_api_feed_pb.FeedID.serializeBinaryToWriter
     );
   }
   f = message.getStorelast();
@@ -1331,20 +1331,20 @@ proto.iotics.api.SearchResponse.FeedDetails.serializeBinaryToWriter = function(m
 
 
 /**
- * optional Feed feed = 1;
- * @return {?proto.iotics.api.Feed}
+ * optional FeedID feedId = 1;
+ * @return {?proto.iotics.api.FeedID}
  */
-proto.iotics.api.SearchResponse.FeedDetails.prototype.getFeed = function() {
-  return /** @type{?proto.iotics.api.Feed} */ (
-    jspb.Message.getWrapperField(this, iotics_api_feed_pb.Feed, 1));
+proto.iotics.api.SearchResponse.FeedDetails.prototype.getFeedid = function() {
+  return /** @type{?proto.iotics.api.FeedID} */ (
+    jspb.Message.getWrapperField(this, iotics_api_feed_pb.FeedID, 1));
 };
 
 
 /**
- * @param {?proto.iotics.api.Feed|undefined} value
+ * @param {?proto.iotics.api.FeedID|undefined} value
  * @return {!proto.iotics.api.SearchResponse.FeedDetails} returns this
 */
-proto.iotics.api.SearchResponse.FeedDetails.prototype.setFeed = function(value) {
+proto.iotics.api.SearchResponse.FeedDetails.prototype.setFeedid = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -1353,8 +1353,8 @@ proto.iotics.api.SearchResponse.FeedDetails.prototype.setFeed = function(value) 
  * Clears the message field making it undefined.
  * @return {!proto.iotics.api.SearchResponse.FeedDetails} returns this
  */
-proto.iotics.api.SearchResponse.FeedDetails.prototype.clearFeed = function() {
-  return this.setFeed(undefined);
+proto.iotics.api.SearchResponse.FeedDetails.prototype.clearFeedid = function() {
+  return this.setFeedid(undefined);
 };
 
 
@@ -1362,7 +1362,7 @@ proto.iotics.api.SearchResponse.FeedDetails.prototype.clearFeed = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.iotics.api.SearchResponse.FeedDetails.prototype.hasFeed = function() {
+proto.iotics.api.SearchResponse.FeedDetails.prototype.hasFeedid = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -1462,7 +1462,7 @@ proto.iotics.api.SearchResponse.InputDetails.prototype.toObject = function(opt_i
  */
 proto.iotics.api.SearchResponse.InputDetails.toObject = function(includeInstance, msg) {
   var f, obj = {
-    input: (f = msg.getInput()) && iotics_api_input_pb.Input.toObject(includeInstance, f),
+    inputid: (f = msg.getInputid()) && iotics_api_input_pb.InputID.toObject(includeInstance, f),
     propertiesList: jspb.Message.toObjectList(msg.getPropertiesList(),
     iotics_api_common_pb.Property.toObject, includeInstance)
   };
@@ -1502,9 +1502,9 @@ proto.iotics.api.SearchResponse.InputDetails.deserializeBinaryFromReader = funct
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new iotics_api_input_pb.Input;
-      reader.readMessage(value,iotics_api_input_pb.Input.deserializeBinaryFromReader);
-      msg.setInput(value);
+      var value = new iotics_api_input_pb.InputID;
+      reader.readMessage(value,iotics_api_input_pb.InputID.deserializeBinaryFromReader);
+      msg.setInputid(value);
       break;
     case 4:
       var value = new iotics_api_common_pb.Property;
@@ -1540,12 +1540,12 @@ proto.iotics.api.SearchResponse.InputDetails.prototype.serializeBinary = functio
  */
 proto.iotics.api.SearchResponse.InputDetails.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getInput();
+  f = message.getInputid();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      iotics_api_input_pb.Input.serializeBinaryToWriter
+      iotics_api_input_pb.InputID.serializeBinaryToWriter
     );
   }
   f = message.getPropertiesList();
@@ -1560,20 +1560,20 @@ proto.iotics.api.SearchResponse.InputDetails.serializeBinaryToWriter = function(
 
 
 /**
- * optional Input input = 1;
- * @return {?proto.iotics.api.Input}
+ * optional InputID inputId = 1;
+ * @return {?proto.iotics.api.InputID}
  */
-proto.iotics.api.SearchResponse.InputDetails.prototype.getInput = function() {
-  return /** @type{?proto.iotics.api.Input} */ (
-    jspb.Message.getWrapperField(this, iotics_api_input_pb.Input, 1));
+proto.iotics.api.SearchResponse.InputDetails.prototype.getInputid = function() {
+  return /** @type{?proto.iotics.api.InputID} */ (
+    jspb.Message.getWrapperField(this, iotics_api_input_pb.InputID, 1));
 };
 
 
 /**
- * @param {?proto.iotics.api.Input|undefined} value
+ * @param {?proto.iotics.api.InputID|undefined} value
  * @return {!proto.iotics.api.SearchResponse.InputDetails} returns this
 */
-proto.iotics.api.SearchResponse.InputDetails.prototype.setInput = function(value) {
+proto.iotics.api.SearchResponse.InputDetails.prototype.setInputid = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -1582,8 +1582,8 @@ proto.iotics.api.SearchResponse.InputDetails.prototype.setInput = function(value
  * Clears the message field making it undefined.
  * @return {!proto.iotics.api.SearchResponse.InputDetails} returns this
  */
-proto.iotics.api.SearchResponse.InputDetails.prototype.clearInput = function() {
-  return this.setInput(undefined);
+proto.iotics.api.SearchResponse.InputDetails.prototype.clearInputid = function() {
+  return this.setInputid(undefined);
 };
 
 
@@ -1591,7 +1591,7 @@ proto.iotics.api.SearchResponse.InputDetails.prototype.clearInput = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.iotics.api.SearchResponse.InputDetails.prototype.hasInput = function() {
+proto.iotics.api.SearchResponse.InputDetails.prototype.hasInputid = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -1673,7 +1673,7 @@ proto.iotics.api.SearchResponse.TwinDetails.prototype.toObject = function(opt_in
  */
 proto.iotics.api.SearchResponse.TwinDetails.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: (f = msg.getId()) && iotics_api_common_pb.TwinID.toObject(includeInstance, f),
+    twinid: (f = msg.getTwinid()) && iotics_api_common_pb.TwinID.toObject(includeInstance, f),
     location: (f = msg.getLocation()) && iotics_api_common_pb.GeoLocation.toObject(includeInstance, f),
     visibility: jspb.Message.getFieldWithDefault(msg, 3, 0),
     propertiesList: jspb.Message.toObjectList(msg.getPropertiesList(),
@@ -1723,7 +1723,7 @@ proto.iotics.api.SearchResponse.TwinDetails.deserializeBinaryFromReader = functi
     case 1:
       var value = new iotics_api_common_pb.TwinID;
       reader.readMessage(value,iotics_api_common_pb.TwinID.deserializeBinaryFromReader);
-      msg.setId(value);
+      msg.setTwinid(value);
       break;
     case 2:
       var value = new iotics_api_common_pb.GeoLocation;
@@ -1788,7 +1788,7 @@ proto.iotics.api.SearchResponse.TwinDetails.prototype.serializeBinary = function
  */
 proto.iotics.api.SearchResponse.TwinDetails.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getTwinid();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -1855,10 +1855,10 @@ proto.iotics.api.SearchResponse.TwinDetails.serializeBinaryToWriter = function(m
 
 
 /**
- * optional TwinID id = 1;
+ * optional TwinID twinId = 1;
  * @return {?proto.iotics.api.TwinID}
  */
-proto.iotics.api.SearchResponse.TwinDetails.prototype.getId = function() {
+proto.iotics.api.SearchResponse.TwinDetails.prototype.getTwinid = function() {
   return /** @type{?proto.iotics.api.TwinID} */ (
     jspb.Message.getWrapperField(this, iotics_api_common_pb.TwinID, 1));
 };
@@ -1868,7 +1868,7 @@ proto.iotics.api.SearchResponse.TwinDetails.prototype.getId = function() {
  * @param {?proto.iotics.api.TwinID|undefined} value
  * @return {!proto.iotics.api.SearchResponse.TwinDetails} returns this
 */
-proto.iotics.api.SearchResponse.TwinDetails.prototype.setId = function(value) {
+proto.iotics.api.SearchResponse.TwinDetails.prototype.setTwinid = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -1877,8 +1877,8 @@ proto.iotics.api.SearchResponse.TwinDetails.prototype.setId = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.iotics.api.SearchResponse.TwinDetails} returns this
  */
-proto.iotics.api.SearchResponse.TwinDetails.prototype.clearId = function() {
-  return this.setId(undefined);
+proto.iotics.api.SearchResponse.TwinDetails.prototype.clearTwinid = function() {
+  return this.setTwinid(undefined);
 };
 
 
@@ -1886,7 +1886,7 @@ proto.iotics.api.SearchResponse.TwinDetails.prototype.clearId = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.iotics.api.SearchResponse.TwinDetails.prototype.hasId = function() {
+proto.iotics.api.SearchResponse.TwinDetails.prototype.hasTwinid = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -2175,7 +2175,7 @@ proto.iotics.api.SearchResponse.Payload.toObject = function(includeInstance, msg
   var f, obj = {
     responsetype: jspb.Message.getFieldWithDefault(msg, 1, 0),
     status: (f = msg.getStatus()) && google_rpc_status_pb.Status.toObject(includeInstance, f),
-    remotehostid: (f = msg.getRemotehostid()) && iotics_api_common_pb.HostID.toObject(includeInstance, f),
+    hostid: jspb.Message.getFieldWithDefault(msg, 3, ""),
     twinsList: jspb.Message.toObjectList(msg.getTwinsList(),
     proto.iotics.api.SearchResponse.TwinDetails.toObject, includeInstance)
   };
@@ -2223,10 +2223,9 @@ proto.iotics.api.SearchResponse.Payload.deserializeBinaryFromReader = function(m
       reader.readMessage(value,google_rpc_status_pb.Status.deserializeBinaryFromReader);
       msg.setStatus(value);
       break;
-    case 4:
-      var value = new iotics_api_common_pb.HostID;
-      reader.readMessage(value,iotics_api_common_pb.HostID.deserializeBinaryFromReader);
-      msg.setRemotehostid(value);
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setHostid(value);
       break;
     case 10:
       var value = new proto.iotics.api.SearchResponse.TwinDetails;
@@ -2277,12 +2276,11 @@ proto.iotics.api.SearchResponse.Payload.serializeBinaryToWriter = function(messa
       google_rpc_status_pb.Status.serializeBinaryToWriter
     );
   }
-  f = message.getRemotehostid();
-  if (f != null) {
-    writer.writeMessage(
-      4,
-      f,
-      iotics_api_common_pb.HostID.serializeBinaryToWriter
+  f = message.getHostid();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
     );
   }
   f = message.getTwinsList();
@@ -2352,39 +2350,20 @@ proto.iotics.api.SearchResponse.Payload.prototype.hasStatus = function() {
 
 
 /**
- * optional HostID remoteHostId = 4;
- * @return {?proto.iotics.api.HostID}
+ * optional string hostId = 3;
+ * @return {string}
  */
-proto.iotics.api.SearchResponse.Payload.prototype.getRemotehostid = function() {
-  return /** @type{?proto.iotics.api.HostID} */ (
-    jspb.Message.getWrapperField(this, iotics_api_common_pb.HostID, 4));
+proto.iotics.api.SearchResponse.Payload.prototype.getHostid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
- * @param {?proto.iotics.api.HostID|undefined} value
- * @return {!proto.iotics.api.SearchResponse.Payload} returns this
-*/
-proto.iotics.api.SearchResponse.Payload.prototype.setRemotehostid = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {string} value
  * @return {!proto.iotics.api.SearchResponse.Payload} returns this
  */
-proto.iotics.api.SearchResponse.Payload.prototype.clearRemotehostid = function() {
-  return this.setRemotehostid(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.iotics.api.SearchResponse.Payload.prototype.hasRemotehostid = function() {
-  return jspb.Message.getField(this, 4) != null;
+proto.iotics.api.SearchResponse.Payload.prototype.setHostid = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

@@ -122,12 +122,11 @@ const handleDataResponse = (
 
     const chunkData = responsePayload?.getResultchunk_asB64();
     const chunkSeqNum = responsePayload?.getSeqnum();
-    const hostId = responsePayload?.getRemotehostid();
-    const hostIdValue = hostId?.getValue() ?? LOCAL_HOST_ID;
+    const hostId = responsePayload?.getHostid() ?? LOCAL_HOST_ID;
 
     if (chunkData === undefined || chunkSeqNum === undefined) {
         console.error(
-            `sparqlQuery received an empty chunk of data or one with an undefined chunkSeqNum from host ${hostIdValue}`,
+            `sparqlQuery received an empty chunk of data or one with an undefined chunkSeqNum from host ${hostId}`,
         );
         return;
     }
@@ -137,15 +136,15 @@ const handleDataResponse = (
         lastValue: !!responsePayload?.getLast(),
     };
 
-    if (!resultChunks[hostIdValue]) {
-        resultChunks[hostIdValue] = new Map();
+    if (!resultChunks[hostId]) {
+        resultChunks[hostId] = new Map();
     }
-    resultChunks[hostIdValue].set(chunkSeqNum, chunk);
+    resultChunks[hostId].set(chunkSeqNum, chunk);
 
     let decodedData;
 
     try {
-        decodedData = checkDecodeData(resultChunks[hostIdValue]);
+        decodedData = checkDecodeData(resultChunks[hostId]);
     } catch (error: any) {
         console.error('sparqlQuery failed decoding results', error);
         return;
@@ -155,7 +154,7 @@ const handleDataResponse = (
         emit({
             status: { message: 'OK' },
             results: {
-                hostId: hostId?.getValue(),
+                hostId: hostId,
                 data: decodedData,
             },
         } as IQueryResult);
