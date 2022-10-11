@@ -2,10 +2,12 @@
 A JavaScript/TypeScript client for interacting with Iotics API.
 
 
-## Usage
-```shell
-yarn add @iotics/grpc-client
-```
+## Usage and Version Compatibility with Iotics host:
+
+| iotics-grpc-client-ts | iotics-host |
+|----------------------| ----------- |
+|      `yarn add @iotics/grpc-client@^2`       | `>= 5`       |
+|      `yarn add @iotics/grpc-client@^1`      | `>= 4`     |
 
 
 # Examples
