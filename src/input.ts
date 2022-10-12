@@ -99,7 +99,7 @@ export const deleteInput = async (grpcUrl: string, accessToken: string, twinId: 
  * @returns a channel that emits input messages
  */
 export const receiveInputMessages = (grpcUrl: string, accessToken: string, twinId: string, inputId: string) => {
-    return eventChannel((emit) => {
+    return eventChannel<ReceiveInputMessageResponse.Payload | IInputResult>((emit) => {
         const inputAPIClient = new InputAPIClient(grpcUrl);
 
         const metadata = new grpc.Metadata();
