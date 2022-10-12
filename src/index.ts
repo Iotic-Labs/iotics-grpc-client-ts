@@ -64,6 +64,16 @@ export { Status } from './helpers';
 export type { IInterestResult } from './interest';
 export { receiveInputMessages, deleteInput, describeInput } from './input';
 export type { IInputResult } from './input';
+export { 
+    DeleteInputRequest,
+    DeleteInputResponse,
+    DescribeInputRequest,
+    DescribeInputResponse,
+    UpsertInputWithMeta, 
+    InputMessage, 
+    ReceiveInputMessageRequest, 
+    ReceiveInputMessageResponse 
+} from './client/iotics/api/input_pb';
 export { listAllTwins, LIST_ALL_TWINS_PAGE_LENGTH } from './listAllTwins';
 export type { IListResult } from './listAllTwins';
 export { PropertyType, createProperty } from './properties';
