@@ -117,7 +117,7 @@ async function transmitAndReceiveMessages(
  */
 async function createTwins(url: string, token: string, senderTwinDid: string, receiverTwinDid: string) {
     // create the sender twin
-    await upsertTwinApi(url, token, getShortUUID(), getShortUUID(), senderTwinDid, 0, [], [], [], undefined);
+    await upsertTwinApi(url, token, getShortUUID(), getShortUUID(), senderTwinDid, [], [], [], undefined);
 
     // just for this example describe the twin so the user can see what the twin looks like
     const descResults = await describeTwinApi(url, token, getShortUUID(), getShortUUID(), senderTwinDid, undefined);
@@ -134,7 +134,7 @@ async function createTwins(url: string, token: string, senderTwinDid: string, re
 
     input.setValuesList([inputValue]);
     // create the receiver twin with an input on it
-    await upsertTwinApi(url, token, getShortUUID(), getShortUUID(), receiverTwinDid, 0, [], [], [input], undefined);
+    await upsertTwinApi(url, token, getShortUUID(), getShortUUID(), receiverTwinDid, [], [], [input], undefined);
 
     // just for this example describe the twin so the user can see what the twin looks like
     const descReceiverTwinResults = await describeTwinApi(

@@ -24,7 +24,6 @@ import {
     UpsertTwinResponse,
     UpdateTwinRequest,
     UpdateTwinResponse,
-    VisibilityUpdate,
     GeoLocationUpdate,
     DeleteTwinResponse,
     DeleteTwinRequest,
@@ -45,18 +44,6 @@ import { UpsertInputWithMeta } from './client/iotics/api/input_pb';
 export enum Scope {
     GLOBAL = 0,
     LOCAL = 1,
-}
-
-/**
- * Visibility defines who a twin is visible to.
- * PRIVATE - the twin is only visible in a LOCAL scope.
- * PUBLIC - the twin is visible in any scope.
- * @export
- * @enum {string}
- */
-export enum Visibility {
-    Private = 0,
-    Public = 1,
 }
 
 export const describeTwinApi = async (
@@ -125,7 +112,6 @@ export const upsertTwinApi = async (
     clientRef: string,
     clientAppId: string,
     twinId: string,
-    visibility: Visibility,
     properties: Array<Property>,
     feedsList: Array<UpsertFeedWithMeta>,
     inputs: Array<UpsertInputWithMeta>,
@@ -150,7 +136,6 @@ export const upsertTwinApi = async (
         const payload = new UpsertTwinRequest.Payload();
         payload.setTwinid(twin);
 
-        payload.setVisibility(visibility);
         payload.setLocation(geoLocation);
         payload.setPropertiesList(properties);
         payload.setFeedsList(feedsList);
@@ -190,7 +175,6 @@ export const updateTwinApi = async (
     clientRef: string,
     clientAppId: string,
     twinId: string,
-    visibilityUpdate?: VisibilityUpdate,
     propertyUpdate?: PropertyUpdate,
     geoLocationUpdate?: GeoLocationUpdate,
     transactionRef?: string,
@@ -210,9 +194,6 @@ export const updateTwinApi = async (
 
         const payload = new UpdateTwinRequest.Payload();
 
-        if (visibilityUpdate !== undefined) {
-            payload.setNewvisibility(visibilityUpdate);
-        }
         if (geoLocationUpdate !== undefined) {
             payload.setLocation(geoLocationUpdate);
         }
