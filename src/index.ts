@@ -31,7 +31,6 @@ export {
     PropertyUpdate,
     StringLiteral,
     Uri,
-    Visibility,
 } from './client/iotics/api/common_pb';
 export { DescribeFeedResponse, FeedID, UpsertFeedWithMeta } from './client/iotics/api/feed_pb';
 export { FetchInterestResponse } from './client/iotics/api/interest_pb';
@@ -42,7 +41,6 @@ export {
     UpsertTwinResponse,
     UpdateTwinRequest,
     UpdateTwinResponse,
-    VisibilityUpdate,
     GeoLocationUpdate,
     FeedMeta,
     ListAllTwinsRequest,
@@ -51,28 +49,21 @@ export {
 export { describeFeedApi, shareFeedDataApi } from './feeds';
 export { search } from './search';
 export type { ISearchResult } from './search';
-export {
-    Scope,
-    Visibility as TwinVisibility,
-    describeTwinApi,
-    upsertTwinApi,
-    updateTwinApi,
-    deleteTwinApi,
-} from './twins';
+export { Scope, describeTwinApi, upsertTwinApi, updateTwinApi, deleteTwinApi } from './twins';
 export { follow, sendInputMessage } from './interest';
 export { Status } from './helpers';
 export type { IInterestResult } from './interest';
 export { receiveInputMessages, deleteInput, describeInput } from './input';
 export type { IInputResult } from './input';
-export { 
+export {
     DeleteInputRequest,
     DeleteInputResponse,
     DescribeInputRequest,
     DescribeInputResponse,
-    UpsertInputWithMeta, 
-    InputMessage, 
-    ReceiveInputMessageRequest, 
-    ReceiveInputMessageResponse 
+    UpsertInputWithMeta,
+    InputMessage,
+    ReceiveInputMessageRequest,
+    ReceiveInputMessageResponse,
 } from './client/iotics/api/input_pb';
 export { listAllTwins, LIST_ALL_TWINS_PAGE_LENGTH } from './listAllTwins';
 export type { IListResult } from './listAllTwins';

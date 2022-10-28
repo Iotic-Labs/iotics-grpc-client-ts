@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+- Removed deprecated visibility
+
+## [2.0.1] - 2022-10-12
+- Exposed missing import types
 
 ## [2.0.2] - 2022-10-31
 - change to use API v0.0.16 instead of PR
