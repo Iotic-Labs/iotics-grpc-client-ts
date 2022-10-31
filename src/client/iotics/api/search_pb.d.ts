@@ -119,6 +119,68 @@ export namespace SearchRequest {
   }
 }
 
+export class AdvancedSearchRequest extends jspb.Message {
+  hasHeaders(): boolean;
+  clearHeaders(): void;
+  getHeaders(): iotics_api_common_pb.Headers | undefined;
+  setHeaders(value?: iotics_api_common_pb.Headers): void;
+
+  getScope(): iotics_api_common_pb.ScopeMap[keyof iotics_api_common_pb.ScopeMap];
+  setScope(value: iotics_api_common_pb.ScopeMap[keyof iotics_api_common_pb.ScopeMap]): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): AdvancedSearchRequest.Payload | undefined;
+  setPayload(value?: AdvancedSearchRequest.Payload): void;
+
+  hasRange(): boolean;
+  clearRange(): void;
+  getRange(): iotics_api_common_pb.Range | undefined;
+  setRange(value?: iotics_api_common_pb.Range): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AdvancedSearchRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AdvancedSearchRequest): AdvancedSearchRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AdvancedSearchRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AdvancedSearchRequest;
+  static deserializeBinaryFromReader(message: AdvancedSearchRequest, reader: jspb.BinaryReader): AdvancedSearchRequest;
+}
+
+export namespace AdvancedSearchRequest {
+  export type AsObject = {
+    headers?: iotics_api_common_pb.Headers.AsObject,
+    scope: iotics_api_common_pb.ScopeMap[keyof iotics_api_common_pb.ScopeMap],
+    payload?: AdvancedSearchRequest.Payload.AsObject,
+    range?: iotics_api_common_pb.Range.AsObject,
+  }
+
+  export class Payload extends jspb.Message {
+    getResponsetype(): ResponseTypeMap[keyof ResponseTypeMap];
+    setResponsetype(value: ResponseTypeMap[keyof ResponseTypeMap]): void;
+
+    getFilter(): string;
+    setFilter(value: string): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Payload.AsObject;
+    static toObject(includeInstance: boolean, msg: Payload): Payload.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Payload, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Payload;
+    static deserializeBinaryFromReader(message: Payload, reader: jspb.BinaryReader): Payload;
+  }
+
+  export namespace Payload {
+    export type AsObject = {
+      responsetype: ResponseTypeMap[keyof ResponseTypeMap],
+      filter: string,
+    }
+  }
+}
+
 export class SearchResponse extends jspb.Message {
   hasHeaders(): boolean;
   clearHeaders(): void;

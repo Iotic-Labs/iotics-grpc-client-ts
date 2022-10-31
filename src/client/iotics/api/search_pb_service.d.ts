@@ -32,11 +32,21 @@ type SearchAPIReceiveAllSearchResponses = {
   readonly responseType: typeof iotics_api_search_pb.SearchResponse;
 };
 
+type SearchAPIAdvancedSearch = {
+  readonly methodName: string;
+  readonly service: typeof SearchAPI;
+  readonly requestStream: false;
+  readonly responseStream: true;
+  readonly requestType: typeof iotics_api_search_pb.AdvancedSearchRequest;
+  readonly responseType: typeof iotics_api_search_pb.SearchResponse;
+};
+
 export class SearchAPI {
   static readonly serviceName: string;
   static readonly DispatchSearchRequest: SearchAPIDispatchSearchRequest;
   static readonly SynchronousSearch: SearchAPISynchronousSearch;
   static readonly ReceiveAllSearchResponses: SearchAPIReceiveAllSearchResponses;
+  static readonly AdvancedSearch: SearchAPIAdvancedSearch;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -82,5 +92,6 @@ export class SearchAPIClient {
   ): UnaryResponse;
   synchronousSearch(requestMessage: iotics_api_search_pb.SearchRequest, metadata?: grpc.Metadata): ResponseStream<iotics_api_search_pb.SearchResponse>;
   receiveAllSearchResponses(requestMessage: iotics_api_common_pb.SubscriptionHeaders, metadata?: grpc.Metadata): ResponseStream<iotics_api_search_pb.SearchResponse>;
+  advancedSearch(requestMessage: iotics_api_search_pb.AdvancedSearchRequest, metadata?: grpc.Metadata): ResponseStream<iotics_api_search_pb.SearchResponse>;
 }
 
