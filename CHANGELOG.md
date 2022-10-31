@@ -6,7 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+## [2.0.2] - 2022-10-31
 - change to use API v0.0.16 instead of PR
+
+## [2.0.1] - 2022-10-12
+- Exposed missing import types
 
 ## [2.0.0] - 2022-10-11
 - BREAKING CHANGE - Update to handle breaking changes in Iotics API, major change here is the change of TwinID Protobuf definition to include hostId (HostTwinDID)
@@ -69,8 +74,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release of `iotics-grpc-client-ts`.
 
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v2.0.1...HEAD
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v2.0.0...v2.0.1
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v2.0.1...v2.0.2
+[2.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.5.0...v2.0.0
 [1.5.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.3.0...v1.4.0
