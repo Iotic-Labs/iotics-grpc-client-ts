@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+## [3.0.0] - 2022-11-01
 - Removed deprecated visibility
 
 ## [2.0.1] - 2022-10-12
@@ -78,7 +80,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release of `iotics-grpc-client-ts`.
 
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v2.0.2...HEAD
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v2.0.1...v3.0.0
 [2.0.2]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v1.5.0...v2.0.0
