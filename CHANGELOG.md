@@ -6,7 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
- - Added function to convert js Date to google protobuf timestamp
+
+## [3.0.2] - 2022-12-14
+- Added function to convert js Date to google protobuf timestamp
 
 ## [3.0.1] - 2022-11-01
 - README compatibility table update
