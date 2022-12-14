@@ -19,6 +19,7 @@
 import shortUUID from 'short-uuid';
 import { END, EventChannel } from 'redux-saga';
 import { NotUndefined } from '@redux-saga/types';
+import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
 
 export const getShortUUID = () => shortUUID().new();
 
@@ -63,4 +64,11 @@ export async function* channelToGenerator<T extends NotUndefined>(channel: Event
             return;
         }
     }
+}
+
+export function timestampFromDate(value?: Date): Timestamp  {
+    const innerValue = value || new Date();
+    const ts = new Timestamp();
+    ts.fromDate(innerValue);
+    return ts;
 }
