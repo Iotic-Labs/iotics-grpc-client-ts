@@ -51,7 +51,7 @@ export { search } from './search';
 export type { ISearchResult } from './search';
 export { Scope, describeTwinApi, upsertTwinApi, updateTwinApi, deleteTwinApi } from './twins';
 export { follow, sendInputMessage } from './interest';
-export { Status } from './helpers';
+export { Status, timestampFromDate } from './helpers';
 export type { IInterestResult } from './interest';
 export { receiveInputMessages, deleteInput, describeInput } from './input';
 export type { IInputResult } from './input';
