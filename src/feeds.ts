@@ -124,6 +124,7 @@ export const shareFeedDataApi = async (
         payloadData.setOccurredat(Timestamp.fromDate(occurredAt ?? new Date()));
         const encodedData = btoa(JSON.stringify(data));
         payloadData.setData(encodedData);
+        payloadData.setMime('application/json');
         payload.setSample(payloadData);
         request.setPayload(payload);
 
