@@ -11,7 +11,24 @@ A JavaScript/TypeScript client for interacting with Iotics API.
 |      `yarn add @iotics/grpc-client@^1`      | `>= 4`     |
 
 
-# Examples
+### gRPC-Web transports
+Iotics client can be run over WebSocket in case HTTP2 is not available or bidirectional streaming is required. To use
+WebSockets instead of HTTP, import the `grpc` from the Iotics client and set the default transport like so:
+```ts
+import { grpc } from '@iotics/grpc-client';
+grpc.setDefaultTransport(grpc.WebsocketTransport());
+```
+Additionally, to be able to run Iotics client using Node.js (see [Examples](#examples) section below), the transport could be set to:
+```ts
+grpc.setDefaultTransport(NodeHttpTransport());
+```
+By default, the transport is set to cross browser:
+```ts
+grpc.setDefaultTransport(grpc.CrossBrowserHttpTransport({ withCredentials: false }));
+```
+
+
+### Examples
 * [ts-node](./examples/README.md) - example usages within Node.js runtime environment.
 
 
