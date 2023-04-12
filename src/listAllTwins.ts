@@ -69,12 +69,6 @@ const callBackListAllTwins = (
     metadata: grpc.Metadata,
 ) => {
     const listCallback = (error: ServiceError | null, responseMessage: ListAllTwinsResponse | null) => {
-        const headers = responseMessage?.getHeaders();
-        const clientRef = headers?.getClientref();
-        const page = parseInt(clientRef!.split('_page')[1], 10);
-        const payload = responseMessage?.getPayload();
-        const twins = payload?.getTwinsList();
-
         if (error) {
             // eslint-disable-next-line no-console
             console.warn('listAllTwinsApi:', error);
@@ -84,6 +78,7 @@ const callBackListAllTwins = (
             emit(END);
             return;
         }
+
         if (responseMessage == null) {
             const msg = 'ERROR: Response message is null.';
             // eslint-disable-next-line no-console
@@ -95,6 +90,7 @@ const callBackListAllTwins = (
             return;
         }
 
+        const payload = responseMessage?.getPayload();
         if (!payload) {
             const msg = 'listAllTwinsApi: Payload is empty.';
             // eslint-disable-next-line no-console
@@ -110,7 +106,11 @@ const callBackListAllTwins = (
         listResult.results = payload;
         emit(listResult);
 
+        const twins = payload?.getTwinsList();
         if (twins && twins.length >= LIST_ALL_TWINS_PAGE_LENGTH) {
+            const headers = responseMessage?.getHeaders();
+            const clientRef = headers?.getClientref();
+            const page = parseInt(clientRef!.split('_page')[1], 10);
             requestListAllTwins(client, clientAppId, metadata, page + 1, listCallback);
         } else {
             emit(END);
