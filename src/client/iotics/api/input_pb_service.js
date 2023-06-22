@@ -37,6 +37,24 @@ InputAPI.ReceiveInputMessages = {
   responseType: iotics_api_input_pb.ReceiveInputMessageResponse
 };
 
+InputAPI.CreateInput = {
+  methodName: "CreateInput",
+  service: InputAPI,
+  requestStream: false,
+  responseStream: false,
+  requestType: iotics_api_input_pb.CreateInputRequest,
+  responseType: iotics_api_input_pb.CreateInputResponse
+};
+
+InputAPI.UpdateInput = {
+  methodName: "UpdateInput",
+  service: InputAPI,
+  requestStream: false,
+  responseStream: false,
+  requestType: iotics_api_input_pb.UpdateInputRequest,
+  responseType: iotics_api_input_pb.UpdateInputResponse
+};
+
 exports.InputAPI = InputAPI;
 
 function InputAPIClient(serviceHost, options) {
@@ -140,6 +158,68 @@ InputAPIClient.prototype.receiveInputMessages = function receiveInputMessages(re
     },
     cancel: function () {
       listeners = null;
+      client.close();
+    }
+  };
+};
+
+InputAPIClient.prototype.createInput = function createInput(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(InputAPI.CreateInput, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
+      client.close();
+    }
+  };
+};
+
+InputAPIClient.prototype.updateInput = function updateInput(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  var client = grpc.unary(InputAPI.UpdateInput, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          var err = new Error(response.statusMessage);
+          err.code = response.status;
+          err.metadata = response.trailers;
+          callback(err, null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+  return {
+    cancel: function () {
+      callback = null;
       client.close();
     }
   };
