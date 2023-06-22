@@ -279,9 +279,6 @@ export namespace SearchResponse {
     getLocation(): iotics_api_common_pb.GeoLocation | undefined;
     setLocation(value?: iotics_api_common_pb.GeoLocation): void;
 
-    getVisibility(): iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap];
-    setVisibility(value: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap]): void;
-
     clearPropertiesList(): void;
     getPropertiesList(): Array<iotics_api_common_pb.Property>;
     setPropertiesList(value: Array<iotics_api_common_pb.Property>): void;
@@ -321,7 +318,6 @@ export namespace SearchResponse {
     export type AsObject = {
       twinid?: iotics_api_common_pb.TwinID.AsObject,
       location?: iotics_api_common_pb.GeoLocation.AsObject,
-      visibility: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap],
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
       feedsList: Array<SearchResponse.FeedDetails.AsObject>,
       inputsList: Array<SearchResponse.InputDetails.AsObject>,

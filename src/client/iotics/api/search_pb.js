@@ -2162,7 +2162,6 @@ proto.iotics.api.SearchResponse.TwinDetails.toObject = function(includeInstance,
   var f, obj = {
     twinid: (f = msg.getTwinid()) && iotics_api_common_pb.TwinID.toObject(includeInstance, f),
     location: (f = msg.getLocation()) && iotics_api_common_pb.GeoLocation.toObject(includeInstance, f),
-    visibility: jspb.Message.getFieldWithDefault(msg, 3, 0),
     propertiesList: jspb.Message.toObjectList(msg.getPropertiesList(),
     iotics_api_common_pb.Property.toObject, includeInstance),
     feedsList: jspb.Message.toObjectList(msg.getFeedsList(),
@@ -2216,10 +2215,6 @@ proto.iotics.api.SearchResponse.TwinDetails.deserializeBinaryFromReader = functi
       var value = new iotics_api_common_pb.GeoLocation;
       reader.readMessage(value,iotics_api_common_pb.GeoLocation.deserializeBinaryFromReader);
       msg.setLocation(value);
-      break;
-    case 3:
-      var value = /** @type {!proto.iotics.api.Visibility} */ (reader.readEnum());
-      msg.setVisibility(value);
       break;
     case 5:
       var value = new iotics_api_common_pb.Property;
@@ -2289,13 +2284,6 @@ proto.iotics.api.SearchResponse.TwinDetails.serializeBinaryToWriter = function(m
       2,
       f,
       iotics_api_common_pb.GeoLocation.serializeBinaryToWriter
-    );
-  }
-  f = message.getVisibility();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      3,
-      f
     );
   }
   f = message.getPropertiesList();
@@ -2412,24 +2400,6 @@ proto.iotics.api.SearchResponse.TwinDetails.prototype.clearLocation = function()
  */
 proto.iotics.api.SearchResponse.TwinDetails.prototype.hasLocation = function() {
   return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional Visibility visibility = 3;
- * @return {!proto.iotics.api.Visibility}
- */
-proto.iotics.api.SearchResponse.TwinDetails.prototype.getVisibility = function() {
-  return /** @type {!proto.iotics.api.Visibility} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/**
- * @param {!proto.iotics.api.Visibility} value
- * @return {!proto.iotics.api.SearchResponse.TwinDetails} returns this
- */
-proto.iotics.api.SearchResponse.TwinDetails.prototype.setVisibility = function(value) {
-  return jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 

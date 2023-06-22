@@ -68,9 +68,6 @@ export namespace ListAllTwinsResponse {
     getTwinid(): iotics_api_common_pb.TwinID | undefined;
     setTwinid(value?: iotics_api_common_pb.TwinID): void;
 
-    getVisibility(): iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap];
-    setVisibility(value: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap]): void;
-
     hasLocation(): boolean;
     clearLocation(): void;
     getLocation(): iotics_api_common_pb.GeoLocation | undefined;
@@ -104,7 +101,6 @@ export namespace ListAllTwinsResponse {
   export namespace TwinDetails {
     export type AsObject = {
       twinid?: iotics_api_common_pb.TwinID.AsObject,
-      visibility: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap],
       location?: iotics_api_common_pb.GeoLocation.AsObject,
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
       createdat?: google_protobuf_timestamp_pb.Timestamp.AsObject,
@@ -464,9 +460,6 @@ export namespace DescribeTwinResponse {
     getLocation(): iotics_api_common_pb.GeoLocation | undefined;
     setLocation(value?: iotics_api_common_pb.GeoLocation): void;
 
-    getVisibility(): iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap];
-    setVisibility(value: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap]): void;
-
     clearFeedsList(): void;
     getFeedsList(): Array<FeedMeta>;
     setFeedsList(value: Array<FeedMeta>): void;
@@ -505,7 +498,6 @@ export namespace DescribeTwinResponse {
   export namespace MetaResult {
     export type AsObject = {
       location?: iotics_api_common_pb.GeoLocation.AsObject,
-      visibility: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap],
       feedsList: Array<FeedMeta.AsObject>,
       inputsList: Array<InputMeta.AsObject>,
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
@@ -540,26 +532,6 @@ export namespace DescribeTwinResponse {
       twinid?: iotics_api_common_pb.TwinID.AsObject,
       result?: DescribeTwinResponse.MetaResult.AsObject,
     }
-  }
-}
-
-export class VisibilityUpdate extends jspb.Message {
-  getVisibility(): iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap];
-  setVisibility(value: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap]): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): VisibilityUpdate.AsObject;
-  static toObject(includeInstance: boolean, msg: VisibilityUpdate): VisibilityUpdate.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: VisibilityUpdate, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): VisibilityUpdate;
-  static deserializeBinaryFromReader(message: VisibilityUpdate, reader: jspb.BinaryReader): VisibilityUpdate;
-}
-
-export namespace VisibilityUpdate {
-  export type AsObject = {
-    visibility: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap],
   }
 }
 
@@ -641,11 +613,6 @@ export namespace UpdateTwinRequest {
   }
 
   export class Payload extends jspb.Message {
-    hasNewvisibility(): boolean;
-    clearNewvisibility(): void;
-    getNewvisibility(): VisibilityUpdate | undefined;
-    setNewvisibility(value?: VisibilityUpdate): void;
-
     hasProperties(): boolean;
     clearProperties(): void;
     getProperties(): iotics_api_common_pb.PropertyUpdate | undefined;
@@ -668,7 +635,6 @@ export namespace UpdateTwinRequest {
 
   export namespace Payload {
     export type AsObject = {
-      newvisibility?: VisibilityUpdate.AsObject,
       properties?: iotics_api_common_pb.PropertyUpdate.AsObject,
       location?: GeoLocationUpdate.AsObject,
     }
@@ -758,9 +724,6 @@ export namespace UpsertTwinRequest {
     getTwinid(): iotics_api_common_pb.TwinID | undefined;
     setTwinid(value?: iotics_api_common_pb.TwinID): void;
 
-    getVisibility(): iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap];
-    setVisibility(value: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap]): void;
-
     clearPropertiesList(): void;
     getPropertiesList(): Array<iotics_api_common_pb.Property>;
     setPropertiesList(value: Array<iotics_api_common_pb.Property>): void;
@@ -794,7 +757,6 @@ export namespace UpsertTwinRequest {
   export namespace Payload {
     export type AsObject = {
       twinid?: iotics_api_common_pb.TwinID.AsObject,
-      visibility: iotics_api_common_pb.VisibilityMap[keyof iotics_api_common_pb.VisibilityMap],
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
       location?: iotics_api_common_pb.GeoLocation.AsObject,
       feedsList: Array<iotics_api_feed_pb.UpsertFeedWithMeta.AsObject>,

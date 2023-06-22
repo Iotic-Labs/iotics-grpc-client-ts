@@ -133,6 +133,266 @@ export namespace DeleteInputResponse {
   }
 }
 
+export class CreateInputRequest extends jspb.Message {
+  hasHeaders(): boolean;
+  clearHeaders(): void;
+  getHeaders(): iotics_api_common_pb.Headers | undefined;
+  setHeaders(value?: iotics_api_common_pb.Headers): void;
+
+  hasArgs(): boolean;
+  clearArgs(): void;
+  getArgs(): CreateInputRequest.Arguments | undefined;
+  setArgs(value?: CreateInputRequest.Arguments): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): CreateInputRequest.Payload | undefined;
+  setPayload(value?: CreateInputRequest.Payload): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateInputRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateInputRequest): CreateInputRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateInputRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateInputRequest;
+  static deserializeBinaryFromReader(message: CreateInputRequest, reader: jspb.BinaryReader): CreateInputRequest;
+}
+
+export namespace CreateInputRequest {
+  export type AsObject = {
+    headers?: iotics_api_common_pb.Headers.AsObject,
+    args?: CreateInputRequest.Arguments.AsObject,
+    payload?: CreateInputRequest.Payload.AsObject,
+  }
+
+  export class Payload extends jspb.Message {
+    getId(): string;
+    setId(value: string): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Payload.AsObject;
+    static toObject(includeInstance: boolean, msg: Payload): Payload.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Payload, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Payload;
+    static deserializeBinaryFromReader(message: Payload, reader: jspb.BinaryReader): Payload;
+  }
+
+  export namespace Payload {
+    export type AsObject = {
+      id: string,
+    }
+  }
+
+  export class Arguments extends jspb.Message {
+    hasTwinid(): boolean;
+    clearTwinid(): void;
+    getTwinid(): iotics_api_common_pb.TwinID | undefined;
+    setTwinid(value?: iotics_api_common_pb.TwinID): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Arguments.AsObject;
+    static toObject(includeInstance: boolean, msg: Arguments): Arguments.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Arguments, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Arguments;
+    static deserializeBinaryFromReader(message: Arguments, reader: jspb.BinaryReader): Arguments;
+  }
+
+  export namespace Arguments {
+    export type AsObject = {
+      twinid?: iotics_api_common_pb.TwinID.AsObject,
+    }
+  }
+}
+
+export class CreateInputResponse extends jspb.Message {
+  hasHeaders(): boolean;
+  clearHeaders(): void;
+  getHeaders(): iotics_api_common_pb.Headers | undefined;
+  setHeaders(value?: iotics_api_common_pb.Headers): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): CreateInputResponse.Payload | undefined;
+  setPayload(value?: CreateInputResponse.Payload): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CreateInputResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateInputResponse): CreateInputResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: CreateInputResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateInputResponse;
+  static deserializeBinaryFromReader(message: CreateInputResponse, reader: jspb.BinaryReader): CreateInputResponse;
+}
+
+export namespace CreateInputResponse {
+  export type AsObject = {
+    headers?: iotics_api_common_pb.Headers.AsObject,
+    payload?: CreateInputResponse.Payload.AsObject,
+  }
+
+  export class Payload extends jspb.Message {
+    hasInputid(): boolean;
+    clearInputid(): void;
+    getInputid(): InputID | undefined;
+    setInputid(value?: InputID): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Payload.AsObject;
+    static toObject(includeInstance: boolean, msg: Payload): Payload.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Payload, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Payload;
+    static deserializeBinaryFromReader(message: Payload, reader: jspb.BinaryReader): Payload;
+  }
+
+  export namespace Payload {
+    export type AsObject = {
+      inputid?: InputID.AsObject,
+    }
+  }
+}
+
+export class UpdateInputRequest extends jspb.Message {
+  hasHeaders(): boolean;
+  clearHeaders(): void;
+  getHeaders(): iotics_api_common_pb.Headers | undefined;
+  setHeaders(value?: iotics_api_common_pb.Headers): void;
+
+  hasArgs(): boolean;
+  clearArgs(): void;
+  getArgs(): UpdateInputRequest.Arguments | undefined;
+  setArgs(value?: UpdateInputRequest.Arguments): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): UpdateInputRequest.Payload | undefined;
+  setPayload(value?: UpdateInputRequest.Payload): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateInputRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateInputRequest): UpdateInputRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateInputRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateInputRequest;
+  static deserializeBinaryFromReader(message: UpdateInputRequest, reader: jspb.BinaryReader): UpdateInputRequest;
+}
+
+export namespace UpdateInputRequest {
+  export type AsObject = {
+    headers?: iotics_api_common_pb.Headers.AsObject,
+    args?: UpdateInputRequest.Arguments.AsObject,
+    payload?: UpdateInputRequest.Payload.AsObject,
+  }
+
+  export class Payload extends jspb.Message {
+    hasValues(): boolean;
+    clearValues(): void;
+    getValues(): iotics_api_common_pb.Values | undefined;
+    setValues(value?: iotics_api_common_pb.Values): void;
+
+    hasProperties(): boolean;
+    clearProperties(): void;
+    getProperties(): iotics_api_common_pb.PropertyUpdate | undefined;
+    setProperties(value?: iotics_api_common_pb.PropertyUpdate): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Payload.AsObject;
+    static toObject(includeInstance: boolean, msg: Payload): Payload.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Payload, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Payload;
+    static deserializeBinaryFromReader(message: Payload, reader: jspb.BinaryReader): Payload;
+  }
+
+  export namespace Payload {
+    export type AsObject = {
+      values?: iotics_api_common_pb.Values.AsObject,
+      properties?: iotics_api_common_pb.PropertyUpdate.AsObject,
+    }
+  }
+
+  export class Arguments extends jspb.Message {
+    hasInputid(): boolean;
+    clearInputid(): void;
+    getInputid(): InputID | undefined;
+    setInputid(value?: InputID): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Arguments.AsObject;
+    static toObject(includeInstance: boolean, msg: Arguments): Arguments.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Arguments, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Arguments;
+    static deserializeBinaryFromReader(message: Arguments, reader: jspb.BinaryReader): Arguments;
+  }
+
+  export namespace Arguments {
+    export type AsObject = {
+      inputid?: InputID.AsObject,
+    }
+  }
+}
+
+export class UpdateInputResponse extends jspb.Message {
+  hasHeaders(): boolean;
+  clearHeaders(): void;
+  getHeaders(): iotics_api_common_pb.Headers | undefined;
+  setHeaders(value?: iotics_api_common_pb.Headers): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): UpdateInputResponse.Payload | undefined;
+  setPayload(value?: UpdateInputResponse.Payload): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateInputResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateInputResponse): UpdateInputResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateInputResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateInputResponse;
+  static deserializeBinaryFromReader(message: UpdateInputResponse, reader: jspb.BinaryReader): UpdateInputResponse;
+}
+
+export namespace UpdateInputResponse {
+  export type AsObject = {
+    headers?: iotics_api_common_pb.Headers.AsObject,
+    payload?: UpdateInputResponse.Payload.AsObject,
+  }
+
+  export class Payload extends jspb.Message {
+    hasInputid(): boolean;
+    clearInputid(): void;
+    getInputid(): InputID | undefined;
+    setInputid(value?: InputID): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Payload.AsObject;
+    static toObject(includeInstance: boolean, msg: Payload): Payload.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Payload, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Payload;
+    static deserializeBinaryFromReader(message: Payload, reader: jspb.BinaryReader): Payload;
+  }
+
+  export namespace Payload {
+    export type AsObject = {
+      inputid?: InputID.AsObject,
+    }
+  }
+}
+
 export class DescribeInputRequest extends jspb.Message {
   hasHeaders(): boolean;
   clearHeaders(): void;

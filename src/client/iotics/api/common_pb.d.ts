@@ -492,13 +492,6 @@ export namespace PropertyUpdate {
   }
 }
 
-export interface VisibilityMap {
-  PRIVATE: 0;
-  PUBLIC: 1;
-}
-
-export const Visibility: VisibilityMap;
-
 export interface ScopeMap {
   GLOBAL: 0;
   LOCAL: 1;

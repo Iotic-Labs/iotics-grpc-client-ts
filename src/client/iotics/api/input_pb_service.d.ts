@@ -31,11 +31,31 @@ type InputAPIReceiveInputMessages = {
   readonly responseType: typeof iotics_api_input_pb.ReceiveInputMessageResponse;
 };
 
+type InputAPICreateInput = {
+  readonly methodName: string;
+  readonly service: typeof InputAPI;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof iotics_api_input_pb.CreateInputRequest;
+  readonly responseType: typeof iotics_api_input_pb.CreateInputResponse;
+};
+
+type InputAPIUpdateInput = {
+  readonly methodName: string;
+  readonly service: typeof InputAPI;
+  readonly requestStream: false;
+  readonly responseStream: false;
+  readonly requestType: typeof iotics_api_input_pb.UpdateInputRequest;
+  readonly responseType: typeof iotics_api_input_pb.UpdateInputResponse;
+};
+
 export class InputAPI {
   static readonly serviceName: string;
   static readonly DeleteInput: InputAPIDeleteInput;
   static readonly DescribeInput: InputAPIDescribeInput;
   static readonly ReceiveInputMessages: InputAPIReceiveInputMessages;
+  static readonly CreateInput: InputAPICreateInput;
+  static readonly UpdateInput: InputAPIUpdateInput;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -89,5 +109,23 @@ export class InputAPIClient {
     callback: (error: ServiceError|null, responseMessage: iotics_api_input_pb.DescribeInputResponse|null) => void
   ): UnaryResponse;
   receiveInputMessages(requestMessage: iotics_api_input_pb.ReceiveInputMessageRequest, metadata?: grpc.Metadata): ResponseStream<iotics_api_input_pb.ReceiveInputMessageResponse>;
+  createInput(
+    requestMessage: iotics_api_input_pb.CreateInputRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: iotics_api_input_pb.CreateInputResponse|null) => void
+  ): UnaryResponse;
+  createInput(
+    requestMessage: iotics_api_input_pb.CreateInputRequest,
+    callback: (error: ServiceError|null, responseMessage: iotics_api_input_pb.CreateInputResponse|null) => void
+  ): UnaryResponse;
+  updateInput(
+    requestMessage: iotics_api_input_pb.UpdateInputRequest,
+    metadata: grpc.Metadata,
+    callback: (error: ServiceError|null, responseMessage: iotics_api_input_pb.UpdateInputResponse|null) => void
+  ): UnaryResponse;
+  updateInput(
+    requestMessage: iotics_api_input_pb.UpdateInputRequest,
+    callback: (error: ServiceError|null, responseMessage: iotics_api_input_pb.UpdateInputResponse|null) => void
+  ): UnaryResponse;
 }
 

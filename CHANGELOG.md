@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+- Updated IOTICS API to v0.0.19
 
 ## [3.0.4] - 2023-04-21
 - Updated README with how to use WebSocket transport.
