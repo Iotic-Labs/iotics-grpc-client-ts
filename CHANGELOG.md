@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+
+## [3.1.0] - 2023-06-28
 - Updated IOTICS API to v0.0.19
 
 ## [3.0.4] - 2023-04-21
@@ -95,7 +97,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release of `iotics-grpc-client-ts`.
 
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v3.0.4...HEAD
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v3.0.4...v3.1.0
 [3.0.4]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v3.0.1...v3.0.2
