@@ -40,6 +40,15 @@ type FeedAPIShareFeedData = {
   readonly responseType: typeof iotics_api_feed_pb.ShareFeedDataResponse;
 };
 
+type FeedAPIStreamFeedData = {
+  readonly methodName: string;
+  readonly service: typeof FeedAPI;
+  readonly requestStream: true;
+  readonly responseStream: false;
+  readonly requestType: typeof iotics_api_feed_pb.ShareFeedDataRequest;
+  readonly responseType: typeof iotics_api_feed_pb.ShareFeedDataResponse;
+};
+
 type FeedAPIListAllFeeds = {
   readonly methodName: string;
   readonly service: typeof FeedAPI;
@@ -64,6 +73,7 @@ export class FeedAPI {
   static readonly DeleteFeed: FeedAPIDeleteFeed;
   static readonly UpdateFeed: FeedAPIUpdateFeed;
   static readonly ShareFeedData: FeedAPIShareFeedData;
+  static readonly StreamFeedData: FeedAPIStreamFeedData;
   static readonly ListAllFeeds: FeedAPIListAllFeeds;
   static readonly DescribeFeed: FeedAPIDescribeFeed;
 }
@@ -136,6 +146,7 @@ export class FeedAPIClient {
     requestMessage: iotics_api_feed_pb.ShareFeedDataRequest,
     callback: (error: ServiceError|null, responseMessage: iotics_api_feed_pb.ShareFeedDataResponse|null) => void
   ): UnaryResponse;
+  streamFeedData(metadata?: grpc.Metadata): RequestStream<iotics_api_feed_pb.ShareFeedDataRequest>;
   listAllFeeds(
     requestMessage: iotics_api_feed_pb.ListAllFeedsRequest,
     metadata: grpc.Metadata,
