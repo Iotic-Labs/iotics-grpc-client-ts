@@ -46,6 +46,15 @@ FeedAPI.ShareFeedData = {
   responseType: iotics_api_feed_pb.ShareFeedDataResponse
 };
 
+FeedAPI.StreamFeedData = {
+  methodName: "StreamFeedData",
+  service: FeedAPI,
+  requestStream: true,
+  responseStream: false,
+  requestType: iotics_api_feed_pb.ShareFeedDataRequest,
+  responseType: iotics_api_feed_pb.ShareFeedDataResponse
+};
+
 FeedAPI.ListAllFeeds = {
   methodName: "ListAllFeeds",
   service: FeedAPI,
@@ -190,6 +199,47 @@ FeedAPIClient.prototype.shareFeedData = function shareFeedData(requestMessage, m
   return {
     cancel: function () {
       callback = null;
+      client.close();
+    }
+  };
+};
+
+FeedAPIClient.prototype.streamFeedData = function streamFeedData(metadata) {
+  var listeners = {
+    end: [],
+    status: []
+  };
+  var client = grpc.client(FeedAPI.StreamFeedData, {
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport
+  });
+  client.onEnd(function (status, statusMessage, trailers) {
+    listeners.status.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners.end.forEach(function (handler) {
+      handler({ code: status, details: statusMessage, metadata: trailers });
+    });
+    listeners = null;
+  });
+  return {
+    on: function (type, handler) {
+      listeners[type].push(handler);
+      return this;
+    },
+    write: function (requestMessage) {
+      if (!client.started) {
+        client.start(metadata);
+      }
+      client.send(requestMessage);
+      return this;
+    },
+    end: function () {
+      client.finishSend();
+    },
+    cancel: function () {
+      listeners = null;
       client.close();
     }
   };

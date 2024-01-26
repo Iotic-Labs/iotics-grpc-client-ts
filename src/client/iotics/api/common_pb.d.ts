@@ -264,6 +264,31 @@ export namespace GeoCircle {
   }
 }
 
+export class RequestInfo extends jspb.Message {
+  hasStarttime(): boolean;
+  clearStarttime(): void;
+  getStarttime(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStarttime(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  getTracectxMap(): jspb.Map<string, string>;
+  clearTracectxMap(): void;
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RequestInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: RequestInfo): RequestInfo.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RequestInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RequestInfo;
+  static deserializeBinaryFromReader(message: RequestInfo, reader: jspb.BinaryReader): RequestInfo;
+}
+
+export namespace RequestInfo {
+  export type AsObject = {
+    starttime?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    tracectxMap: Array<[string, string]>,
+  }
+}
+
 export class Headers extends jspb.Message {
   getClientref(): string;
   setClientref(value: string): void;
@@ -286,6 +311,11 @@ export class Headers extends jspb.Message {
   getRequesttimeout(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setRequesttimeout(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
+  hasRequestinfo(): boolean;
+  clearRequestinfo(): void;
+  getRequestinfo(): RequestInfo | undefined;
+  setRequestinfo(value?: RequestInfo): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Headers.AsObject;
   static toObject(includeInstance: boolean, msg: Headers): Headers.AsObject;
@@ -303,6 +333,7 @@ export namespace Headers {
     transactionrefList: Array<string>,
     consumergroup?: google_protobuf_wrappers_pb.StringValue.AsObject,
     requesttimeout?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    requestinfo?: RequestInfo.AsObject,
   }
 }
 

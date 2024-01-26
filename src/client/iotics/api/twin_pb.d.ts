@@ -78,11 +78,6 @@ export namespace ListAllTwinsResponse {
     setPropertiesList(value: Array<iotics_api_common_pb.Property>): void;
     addProperties(value?: iotics_api_common_pb.Property, index?: number): iotics_api_common_pb.Property;
 
-    hasCreatedat(): boolean;
-    clearCreatedat(): void;
-    getCreatedat(): google_protobuf_timestamp_pb.Timestamp | undefined;
-    setCreatedat(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
     hasUpdatedat(): boolean;
     clearUpdatedat(): void;
     getUpdatedat(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -103,7 +98,6 @@ export namespace ListAllTwinsResponse {
       twinid?: iotics_api_common_pb.TwinID.AsObject,
       location?: iotics_api_common_pb.GeoLocation.AsObject,
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
-      createdat?: google_protobuf_timestamp_pb.Timestamp.AsObject,
       updatedat?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
   }
@@ -475,11 +469,6 @@ export namespace DescribeTwinResponse {
     setPropertiesList(value: Array<iotics_api_common_pb.Property>): void;
     addProperties(value?: iotics_api_common_pb.Property, index?: number): iotics_api_common_pb.Property;
 
-    hasCreatedat(): boolean;
-    clearCreatedat(): void;
-    getCreatedat(): google_protobuf_timestamp_pb.Timestamp | undefined;
-    setCreatedat(value?: google_protobuf_timestamp_pb.Timestamp): void;
-
     hasUpdatedat(): boolean;
     clearUpdatedat(): void;
     getUpdatedat(): google_protobuf_timestamp_pb.Timestamp | undefined;
@@ -501,7 +490,6 @@ export namespace DescribeTwinResponse {
       feedsList: Array<FeedMeta.AsObject>,
       inputsList: Array<InputMeta.AsObject>,
       propertiesList: Array<iotics_api_common_pb.Property.AsObject>,
-      createdat?: google_protobuf_timestamp_pb.Timestamp.AsObject,
       updatedat?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     }
   }
