@@ -6,6 +6,7 @@ A JavaScript/TypeScript client for interacting with Iotics API.
 
 | iotics-grpc-client-ts | iotics-host |
 |----------------------| ----------- |
+|      `yarn add @iotics/grpc-client@^4`       | `>= 5`       |
 |      `yarn add @iotics/grpc-client@^3`       | `>= 5`       |
 |      `yarn add @iotics/grpc-client@^2`       | `>= 5`       |
 |      `yarn add @iotics/grpc-client@^1`      | `>= 4`     |
