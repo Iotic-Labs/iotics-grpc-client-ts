@@ -3,24 +3,29 @@
   "version": "0.0.1",
   "description": "Example usage of Iotics gRPC-Web client.",
   "private": true,
+  "type": "module",
   "scripts": {
-    "search-twin-models": "ts-node src/searchModels.ts",
-    "run-describe-twin": "ts-node src/describeTwin.ts",
-    "run-sparql-query": "ts-node src/sparqlQuery.ts",
-    "run-explorer-query": "ts-node src/explorerQuery.ts",
-    "run-sparql-update": "ts-node src/sparqlUpdate.ts",
-    "run-inputs": "ts-node src/inputs.ts",
-    "run-host": "ts-node src/host.ts"
+    "search-twin-models": "tsx ./src/searchModels.ts",
+    "run-describe-twin": "tsx src/describeTwin.ts",
+    "run-sparql-query": "tsx src/sparqlQuery.ts",
+    "run-explorer-query": "tsx src/explorerQuery.ts",
+    "run-sparql-update": "tsx src/sparqlUpdate.ts",
+    "run-inputs": "tsx src/inputs.ts",
+    "run-host": "tsx src/host.ts"
   },
   "devDependencies": {
     "@improbable-eng/grpc-web": "^0.15.0",
     "@improbable-eng/grpc-web-node-http-transport": "^0.15.0",
-    "@types/node": "^17.0.21",
-    "eslint": "^7.32.0",
+    "@types/node": "^20.11.25",
+    "eslint": "^8.57.0",
     "google-protobuf": "^3.20.0-rc.2",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.2"
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.2"
   },
   "author": "Iotic Labs",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@babel/core": "*",
+    "@iotics/grpc-client": "file:.."
+  }
 }

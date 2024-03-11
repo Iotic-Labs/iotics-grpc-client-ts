@@ -23,10 +23,9 @@ import {
     grpc,
     sparqlUpdate,
     GRPCStatusCodes,
-} from '../../src';
-import { DEFAULT_TIMEOUT } from '../../src/sparqlUpdate';
-import { runSparqlQuery } from './sparqlQuery';
-import { sleep } from './helpers';
+} from '@iotics/grpc-client';
+import { sleep } from './helpers.ts';
+import { runSparqlQuery } from './sparqlQuery.ts';
 
 // Enable the use of gRPC-Web in NodeJS.
 grpc.setDefaultTransport(NodeHttpTransport());
@@ -35,7 +34,7 @@ async function main() {
     // Get values from environment variables:
     const url = process.env.GRPC_URL;
     const token = process.env.GRPC_TOKEN;
-    const timeoutInS = parseFloat(process.env.GRPC_TIMEOUT ?? DEFAULT_TIMEOUT.toString());
+    const timeoutInS = parseFloat(process.env.GRPC_TIMEOUT ?? '5');
     let update = `
 PREFIX iotg: <http://data.iotics.com/graph#>
 INSERT DATA {

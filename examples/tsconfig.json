@@ -1,9 +1,19 @@
 {
-  "extends": "../tsconfig.base.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "strict": true
-  },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+    "extends": "../tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "strict": true,
+        "esModuleInterop": true,
+        "target": "ES2022",
+        "module": "ES2022",
+        "emitDeclarationOnly": true,
+        "allowImportingTsExtensions": true,
+    },
+    "type": "module",
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }
