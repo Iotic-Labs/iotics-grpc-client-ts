@@ -22,8 +22,9 @@ import {
     grpc,
     describeTwinApi,
     GRPCStatusCodes,
-} from '../../src';
-import { getShortUUID } from '../../src/helpers';
+    getShortUUID,
+} from '@iotics/grpc-client';
+
 
 // Enable the use of gRPC-Web in NodeJS.
 grpc.setDefaultTransport(NodeHttpTransport());

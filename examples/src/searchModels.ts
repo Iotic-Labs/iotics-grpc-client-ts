@@ -29,7 +29,7 @@ import {
     // the `@iotics/grpc-client` is using (in a case of multiple `node_modules`).
     grpc,
     search,
-} from '../../src';
+} from '@iotics/grpc-client';
 
 const DEFAULT_TIMEOUT = 3; // Seconds
 

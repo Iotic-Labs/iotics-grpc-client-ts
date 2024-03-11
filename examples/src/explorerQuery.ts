@@ -19,8 +19,7 @@
 import { NodeHttpTransport } from '@improbable-eng/grpc-web-node-http-transport';
 import { EventChannel } from 'redux-saga';
 
-import { explorerQuery, grpc, GRPCStatusCodes, IQueryResult, Scope, SparqlResultType } from '../../src';
-import { channelToGenerator } from '../../src/helpers';
+import { explorerQuery, grpc, GRPCStatusCodes, IQueryResult, Scope, SparqlResultType, channelToGenerator } from '@iotics/grpc-client';
 
 const DEFAULT_TIMEOUT = 10;
 // Enable the use of gRPC-Web in NodeJS.

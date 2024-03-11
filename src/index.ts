@@ -79,7 +79,7 @@ export { sparqlQuery } from './sparqlQuery';
 export { explorerQuery } from './explorerQuery';
 export type { IQueryResult } from './sparqlQuery';
 export { sparqlUpdate } from './sparqlUpdate';
-export { channelToGenerator } from './helpers';
+export { channelToGenerator, getShortUUID } from './helpers';
 export { getLocalHostId } from './host';
 
 // https://grpc.github.io/grpc/core/md_doc_statuscodes.html

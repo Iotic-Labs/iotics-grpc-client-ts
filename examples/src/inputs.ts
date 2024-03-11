@@ -31,9 +31,11 @@ import {
     receiveInputMessages,
     describeInput,
     deleteInput,
-} from '../../src';
-import { UpsertInputWithMeta } from '../../src/client/iotics/api/input_pb';
-import { channelToGenerator, getShortUUID, Status } from '../../src/helpers';
+    channelToGenerator,
+    getShortUUID,
+    Status,
+    UpsertInputWithMeta,
+} from '@iotics/grpc-client';
 
 const INPUT_NAME = 'test message input';
 const VALUE_NAME = 'a character of the test message';

@@ -22,7 +22,7 @@ import {
     grpc,
     getLocalHostId,
     GRPCStatusCodes,
-} from '../../src';
+} from '@iotics/grpc-client';
 
 // Enable the use of gRPC-Web in NodeJS.
 grpc.setDefaultTransport(NodeHttpTransport());
