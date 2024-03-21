@@ -50,7 +50,7 @@ export { describeFeedApi, shareFeedDataApi } from './feeds';
 export { search } from './search';
 export type { ISearchResult } from './search';
 export { Scope, describeTwinApi, upsertTwinApi, updateTwinApi, deleteTwinApi } from './twins';
-export { follow, sendInputMessage } from './interest';
+export { follow, sendInputMessage, fetchLastStored } from './interest';
 export { Status, timestampFromDate } from './helpers';
 export type { IInterestResult } from './interest';
 export { receiveInputMessages, deleteInput, describeInput } from './input';
