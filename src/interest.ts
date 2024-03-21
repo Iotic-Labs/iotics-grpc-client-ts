@@ -22,6 +22,7 @@ import { BoolValue } from 'google-protobuf/google/protobuf/wrappers_pb';
 
 import { getShortUUID, Status, TOKEN_EXPIRED_STATUS_CODE } from './helpers';
 import * as pbCommonModel from './client/iotics/api/common_pb';
+import * as pbFeedModel from './client/iotics/api/feed_pb';
 import * as pbInput from './client/iotics/api/input_pb';
 import { FetchInterestRequest, Interest, SendInputMessageRequest } from './client/iotics/api/interest_pb';
 import * as pbInterestService from './client/iotics/api/interest_pb_service';
@@ -188,6 +189,86 @@ export const sendInputMessage = (
                 return;
             }
             resolve(responseMessage);
+        });
+    });
+};
+
+/**
+ *  Fetch the last stored value for a given twin's feed.
+ * @param followerTwinId the DID of the twin that is asking for the last stored value
+ * @param followedTwinId the DID of the twin that owns the feed
+ * @param followedFeedId the ID of the feed
+ * @param remoteHostId optionally the ID of the host where the twin is stored otherwise local host is assumed
+ * @param transactionRef optional transaction reference
+ * @returns 
+ */
+export const fetchLastStored = async (
+    hostAddress: string,
+    accessToken: string,
+    clientAppId: string,
+    clientRef: string,
+    followerTwinId: string,
+    followedTwinId: string,
+    followedFeedId: string,
+    remoteHostId?: string,
+    transactionRef?: string,
+) => {
+    return new Promise<pbInterestModel.FetchInterestResponse.Payload>((resolve, reject) => {
+        const client = new pbInterestService.InterestAPIClient(hostAddress);
+        const metadata = new grpc.Metadata();
+        metadata.set('authorization', `bearer ${accessToken}`);
+        const request = new pbInterestModel.FetchLastStoredRequest();
+        const headers = new pbCommonModel.Headers();
+        headers.setClientappid(clientAppId);
+        headers.setClientref(clientRef);
+        if (transactionRef) {
+            headers.setTransactionrefList([transactionRef]);
+        } else {
+            headers.setTransactionrefList([clientRef]);
+        }
+        request.setHeaders(headers as unknown as pbCommonModel.Headers);
+
+        const interest = new pbInterestModel.Interest();
+        const followerTwin = new pbCommonModel.TwinID();
+        followerTwin.setId(followerTwinId);
+        interest.setFollowertwinid(followerTwin);
+
+        const feedID = new pbFeedModel.FeedID();
+        feedID.setId(followedFeedId);
+        feedID.setTwinid(followedTwinId);
+        if (remoteHostId) {
+            feedID.setHostid(remoteHostId);
+        }
+        interest.setFollowedfeedid(feedID);
+
+        const args = new pbInterestModel.FetchLastStoredRequest.Arguments();
+        args.setInterest(interest);
+
+        request.setArgs(args);
+
+        client.fetchLastStored(request, metadata, (error, responseMessage) => {
+            if (error) {
+                // eslint-disable-next-line no-console
+                console.warn('fetchLastStored:', error);
+                reject(error);
+                return;
+            }
+            if (responseMessage == null) {
+                const msg = 'fetchLastStored: Response message is null.';
+                // eslint-disable-next-line no-console
+                console.warn(msg);
+                reject(new Error(msg));
+                return;
+            }
+            const payload = responseMessage.getPayload();
+            if (!payload) {
+                const msg = 'fetchLastStored: Payload is empty.';
+                // eslint-disable-next-line no-console
+                console.warn(msg);
+                reject(new Error(msg));
+                return;
+            }
+            resolve(payload);
         });
     });
 };

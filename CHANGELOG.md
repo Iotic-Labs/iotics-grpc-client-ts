@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.1.0] - 2024-03-25
+
+-   Add exposing fetch store last call and example
+
 ## [4.0.1] - 2024-03-15
 
 -   Fixed how we're declaring how we do modules in the package
@@ -130,7 +134,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Initial release of `iotics-grpc-client-ts`.
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.0.1...HEAD
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.1.0...HEAD
+[4.1.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.0.1...v4.1.0
 [4.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v3.1.0...v4.0.0
 [3.1.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v3.0.4...v3.1.0

@@ -23,6 +23,8 @@ import {
     describeTwinApi,
     GRPCStatusCodes,
     getShortUUID,
+    describeFeedApi,
+    fetchLastStored,
 } from '@iotics/grpc-client';
 
 
@@ -53,10 +55,56 @@ async function main() {
 
     console.info(`Describe twin "${twinDid}".`);
 
+    let results;
     try {
-        const results = await describeTwinApi(url, token, getShortUUID(), getShortUUID(), twinDid, remoteHostId);
+        results = await describeTwinApi(url, token, getShortUUID(), getShortUUID(), twinDid, remoteHostId);
         console.log(JSON.stringify(results.toObject(), undefined, 4));
     } catch (error: any) {
+        if (error?.code === GRPCStatusCodes.UNAUTHENTICATED) {
+            console.info('Your GRPC_TOKEN may have expired please try setting another one');
+        }
+    }
+
+    const feedsList = results?.getResult()?.getFeedsList() ?? [];
+
+    if (feedsList.length === 0) {
+        console.info('No feeds to describe');
+        return;
+    }
+
+    console.info(`Describing feeds of twin "${twinDid}".`);
+
+    try {
+        for (const feedMeta of feedsList) {
+            const feedId = feedMeta.getFeedid()?.getId();
+            if (!feedId) {
+                console.error(`Could not get feed id of feed ${feedMeta}`);
+                continue;
+            }
+
+            const feedDescribePayload = await describeFeedApi(url, token, getShortUUID(),
+                getShortUUID(), remoteHostId ?? '', twinDid, feedId);
+
+            console.log(JSON.stringify(feedDescribePayload.toObject(), undefined, 4));
+
+            console.info(`Getting last value on feed id: "${feedId}".`);
+
+            const lastStoredPayload = await fetchLastStored(url, token, getShortUUID(),
+                getShortUUID(), twinDid, twinDid, feedId, remoteHostId);
+
+            console.log(JSON.stringify(lastStoredPayload?.getFeeddata()?.toObject()));
+
+            console.info('Decoding feed data.');
+            const data64 = lastStoredPayload?.getFeeddata()?.getData_asB64() ?? '';
+            const decodedData = decodeURIComponent(escape(atob(data64)));
+            try {
+                console.log(JSON.stringify(JSON.parse(decodedData)));
+            } catch (err) {
+                console.error(`Failed parsing update from twin: ${twinDid}, data: ${data64}`);
+            }
+        }
+    }
+    catch (error: any) {
         if (error?.code === GRPCStatusCodes.UNAUTHENTICATED) {
             console.info('Your GRPC_TOKEN may have expired please try setting another one');
         }
