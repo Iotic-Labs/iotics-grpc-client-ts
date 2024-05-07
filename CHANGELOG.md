@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+-   Updated IOTICS API to v1.1.0
+    -   Now a federated knowledge graph (FKG) query is performed on a call to SparqlQuery when global scope is requested
+
 ## [4.1.0] - 2024-03-25
 
 -   Add exposing fetch store last call and example

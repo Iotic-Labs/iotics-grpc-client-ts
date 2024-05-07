@@ -28,7 +28,7 @@ type MetaAPIExplorerQuery = {
   readonly requestStream: false;
   readonly responseStream: true;
   readonly requestType: typeof iotics_api_meta_pb.ExplorerRequest;
-  readonly responseType: typeof iotics_api_meta_pb.SparqlQueryResponse;
+  readonly responseType: typeof iotics_api_meta_pb.ExplorerResponse;
 };
 
 export class MetaAPI {
@@ -80,6 +80,6 @@ export class MetaAPIClient {
     requestMessage: iotics_api_meta_pb.SparqlUpdateRequest,
     callback: (error: ServiceError|null, responseMessage: iotics_api_meta_pb.SparqlUpdateResponse|null) => void
   ): UnaryResponse;
-  explorerQuery(requestMessage: iotics_api_meta_pb.ExplorerRequest, metadata?: grpc.Metadata): ResponseStream<iotics_api_meta_pb.SparqlQueryResponse>;
+  explorerQuery(requestMessage: iotics_api_meta_pb.ExplorerRequest, metadata?: grpc.Metadata): ResponseStream<iotics_api_meta_pb.ExplorerResponse>;
 }
 
