@@ -33,9 +33,8 @@ import {
 import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
 
 export interface IQueryResult {
-    status: { code?: number; message: string };
+    status: { code?: number; message: string; };
     results?: {
-        hostId?: string;
         data: string;
     };
 }
@@ -44,8 +43,6 @@ interface IChunk {
     b64data: string;
     lastValue: boolean;
 }
-
-const LOCAL_HOST_ID = 'local';
 
 const createRequest = (
     timeout: number,
@@ -104,7 +101,7 @@ const checkDecodeData = (hostData: Map<number, IChunk>): string | undefined => {
 
 const handleDataResponse = (
     response: SparqlQueryResponse,
-    resultChunks: Record<string, Map<number, IChunk>>,
+    resultChunks: Map<number, IChunk>,
     emit: (input: NotUndefined | END) => void,
 ) => {
     const responsePayload = response.getPayload();
@@ -122,11 +119,10 @@ const handleDataResponse = (
 
     const chunkData = responsePayload?.getResultchunk_asB64();
     const chunkSeqNum = responsePayload?.getSeqnum();
-    const hostId = responsePayload?.getHostid() ?? LOCAL_HOST_ID;
 
     if (chunkData === undefined || chunkSeqNum === undefined) {
         console.error(
-            `sparqlQuery received an empty chunk of data or one with an undefined chunkSeqNum from host ${hostId}`,
+            'sparqlQuery received an empty chunk of data or one with an undefined chunkSeqNum',
         );
         return;
     }
@@ -136,15 +132,15 @@ const handleDataResponse = (
         lastValue: !!responsePayload?.getLast(),
     };
 
-    if (!resultChunks[hostId]) {
-        resultChunks[hostId] = new Map();
+    if (!resultChunks) {
+        resultChunks = new Map();
     }
-    resultChunks[hostId].set(chunkSeqNum, chunk);
+    resultChunks.set(chunkSeqNum, chunk);
 
     let decodedData;
 
     try {
-        decodedData = checkDecodeData(resultChunks[hostId]);
+        decodedData = checkDecodeData(resultChunks);
     } catch (error: any) {
         console.error('sparqlQuery failed decoding results', error);
         return;
@@ -154,7 +150,6 @@ const handleDataResponse = (
         emit({
             status: { message: 'OK' },
             results: {
-                hostId: hostId,
                 data: decodedData,
             },
         } as IQueryResult);
@@ -179,7 +174,7 @@ export const sparqlQuery = (
     resultContentType: SparqlResultTypeMap[keyof SparqlResultTypeMap] = SparqlResultType.SPARQL_JSON,
     timeout: number = 5,
 ) => {
-    return eventChannel((emit) => {
+    return eventChannel((emit: any) => {
         const request = createRequest(timeout, query, resultContentType, scope);
 
         const metadata = new grpc.Metadata();
@@ -188,13 +183,13 @@ export const sparqlQuery = (
         const client = new pbMetaService.MetaAPIClient(grpcUrl);
         const responseStream = client.sparqlQuery(request, metadata);
 
-        const resultChunks: Record<string, Map<number, IChunk>> = {};
+        const resultChunks: Map<number, IChunk> = new Map();
 
-        responseStream.on('data', (response) => {
+        responseStream.on('data', (response: SparqlQueryResponse) => {
             handleDataResponse(response, resultChunks, emit);
         });
 
-        responseStream.on('end', (status) => {
+        responseStream.on('end', (status: any) => {
             emit({
                 status: { message: status?.details, code: status?.code },
             } as IQueryResult);

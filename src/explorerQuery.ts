@@ -26,14 +26,14 @@ import * as pbCommonModel from './client/iotics/api/common_pb';
 import * as pbMetaService from './client/iotics/api/meta_pb_service';
 import {
     ExplorerRequest,
-    SparqlQueryResponse,
+    ExplorerResponse,
     SparqlResultType,
     SparqlResultTypeMap,
 } from './client/iotics/api/meta_pb';
 import { Timestamp } from 'google-protobuf/google/protobuf/timestamp_pb';
 
 export interface IQueryResult {
-    status: { code?: number; message: string };
+    status: { code?: number; message: string; };
     results?: {
         hostId?: string;
         data: string;
@@ -104,7 +104,7 @@ const checkDecodeData = (hostData: Map<number, IChunk>): string | undefined => {
 };
 
 const handleDataResponse = (
-    response: SparqlQueryResponse,
+    response: ExplorerResponse,
     resultChunks: Record<string, Map<number, IChunk>>,
     emit: (input: NotUndefined | END) => void,
 ) => {
@@ -180,7 +180,7 @@ export const explorerQuery = (
     resultContentType: SparqlResultTypeMap[keyof SparqlResultTypeMap] = SparqlResultType.RDF_TURTLE,
     timeout: number = 10,
 ) => {
-    return eventChannel((emit) => {
+    return eventChannel((emit: any) => {
         const request = createRequest(timeout, keyword, resultContentType, scope);
 
         const metadata = new grpc.Metadata();
@@ -191,11 +191,11 @@ export const explorerQuery = (
 
         const resultChunks: Record<string, Map<number, IChunk>> = {};
 
-        responseStream.on('data', (response) => {
+        responseStream.on('data', (response: any) => {
             handleDataResponse(response, resultChunks, emit);
         });
 
-        responseStream.on('end', (status) => {
+        responseStream.on('end', (status: any) => {
             emit({
                 status: { message: status?.details, code: status?.code },
             } as IQueryResult);

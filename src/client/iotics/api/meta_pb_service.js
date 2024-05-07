@@ -34,7 +34,7 @@ MetaAPI.ExplorerQuery = {
   requestStream: false,
   responseStream: true,
   requestType: iotics_api_meta_pb.ExplorerRequest,
-  responseType: iotics_api_meta_pb.SparqlQueryResponse
+  responseType: iotics_api_meta_pb.ExplorerResponse
 };
 
 exports.MetaAPI = MetaAPI;

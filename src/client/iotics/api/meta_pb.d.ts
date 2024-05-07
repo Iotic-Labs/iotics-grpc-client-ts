@@ -147,6 +147,74 @@ export namespace SparqlQueryResponse {
   }
 
   export class Payload extends jspb.Message {
+    getSeqnum(): number;
+    setSeqnum(value: number): void;
+
+    getLast(): boolean;
+    setLast(value: boolean): void;
+
+    hasStatus(): boolean;
+    clearStatus(): void;
+    getStatus(): google_rpc_status_pb.Status | undefined;
+    setStatus(value?: google_rpc_status_pb.Status): void;
+
+    getContenttype(): SparqlResultTypeMap[keyof SparqlResultTypeMap];
+    setContenttype(value: SparqlResultTypeMap[keyof SparqlResultTypeMap]): void;
+
+    getResultchunk(): Uint8Array | string;
+    getResultchunk_asU8(): Uint8Array;
+    getResultchunk_asB64(): string;
+    setResultchunk(value: Uint8Array | string): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Payload.AsObject;
+    static toObject(includeInstance: boolean, msg: Payload): Payload.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Payload, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Payload;
+    static deserializeBinaryFromReader(message: Payload, reader: jspb.BinaryReader): Payload;
+  }
+
+  export namespace Payload {
+    export type AsObject = {
+      seqnum: number,
+      last: boolean,
+      status?: google_rpc_status_pb.Status.AsObject,
+      contenttype: SparqlResultTypeMap[keyof SparqlResultTypeMap],
+      resultchunk: Uint8Array | string,
+    }
+  }
+}
+
+export class ExplorerResponse extends jspb.Message {
+  hasHeaders(): boolean;
+  clearHeaders(): void;
+  getHeaders(): iotics_api_common_pb.Headers | undefined;
+  setHeaders(value?: iotics_api_common_pb.Headers): void;
+
+  hasPayload(): boolean;
+  clearPayload(): void;
+  getPayload(): ExplorerResponse.Payload | undefined;
+  setPayload(value?: ExplorerResponse.Payload): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ExplorerResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ExplorerResponse): ExplorerResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ExplorerResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ExplorerResponse;
+  static deserializeBinaryFromReader(message: ExplorerResponse, reader: jspb.BinaryReader): ExplorerResponse;
+}
+
+export namespace ExplorerResponse {
+  export type AsObject = {
+    headers?: iotics_api_common_pb.Headers.AsObject,
+    payload?: ExplorerResponse.Payload.AsObject,
+  }
+
+  export class Payload extends jspb.Message {
     getHostid(): string;
     setHostid(value: string): void;
 
