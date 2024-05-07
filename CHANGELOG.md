@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.2.0] - 2024-05-07
+
 -   Updated IOTICS API to v1.1.0
     -   Now a federated knowledge graph (FKG) query is performed on a call to SparqlQuery when global scope is requested
 
@@ -137,7 +139,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Initial release of `iotics-grpc-client-ts`.
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.1.0...HEAD
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.2.0...HEAD
+[4.2.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.0.1...v4.1.0
 [4.0.1]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v3.1.0...v4.0.0
