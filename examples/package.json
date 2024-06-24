@@ -8,7 +8,6 @@
     "search-twin-models": "tsx ./src/searchModels.ts",
     "run-describe-twin": "tsx src/describeTwin.ts",
     "run-sparql-query": "tsx src/sparqlQuery.ts",
-    "run-explorer-query": "tsx src/explorerQuery.ts",
     "run-sparql-update": "tsx src/sparqlUpdate.ts",
     "run-inputs": "tsx src/inputs.ts",
     "run-host": "tsx src/host.ts"
