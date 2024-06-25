@@ -76,7 +76,6 @@ export {
     SparqlUpdateResponse,
 } from './client/iotics/api/meta_pb';
 export { sparqlQuery } from './sparqlQuery';
-export { explorerQuery } from './explorerQuery';
 export type { IQueryResult } from './sparqlQuery';
 export { sparqlUpdate } from './sparqlUpdate';
 export { channelToGenerator, getShortUUID } from './helpers';
