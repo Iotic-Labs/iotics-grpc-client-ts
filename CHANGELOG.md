@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.0.0] - 2024-07-10
+
+-   BREAKING CHANGE - Allow passing in of optional mime type to sending an input message
+    -   This is a breaking change as the function signature has changed and mime type now defaults to `application/json; charset=utf-8` instead of `application/json`
+
 ## [5.0.0] - 2024-05-07
 
 -   Updated IOTICS API to v1.3.0
@@ -144,7 +149,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Initial release of `iotics-grpc-client-ts`.
 
-[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v5.0.0...HEAD
+[Unreleased]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v6.0.0...HEAD
+[6.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v5.0.0...v6.0.0
 [5.0.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.2.0...v5.0.0
 [4.2.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.1.0...v4.2.0
 [4.1.0]: https://github.com/Iotic-Labs/iotics-grpc-client-ts/compare/v4.0.1...v4.1.0
