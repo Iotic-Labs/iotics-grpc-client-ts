@@ -134,6 +134,7 @@ export const sendInputMessage = (
     senderTwinId: string,
     receiverTwinId: string,
     inputId: string,
+    mimeType?: string,
     remoteHostId?: string,
 ) => {
     return new Promise<pbInterestModel.SendInputMessageResponse>((resolve, reject) => {
@@ -162,7 +163,7 @@ export const sendInputMessage = (
         const currentTimestamp = new Timestamp();
         currentTimestamp.fromDate(new Date());
         inputMessage.setOccurredat(currentTimestamp);
-        inputMessage.setMime('application/json');
+        inputMessage.setMime(mimeType ?? 'application/json; charset=utf-8');
         inputMessage.setData(new TextEncoder().encode(JSON.stringify(message)));
 
         const request = new SendInputMessageRequest();

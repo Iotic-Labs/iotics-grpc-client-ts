@@ -95,6 +95,7 @@ export const shareFeedDataApi = async (
     data: Record<string, string | number>,
     occurredAt?: Date,
     transactionRef?: string,
+    mimeType?: string,
 ) => {
     return new Promise<pbFeedModel.ShareFeedDataResponse>((resolve, reject) => {
         const client = new FeedAPIClient(hostAddress);
@@ -124,7 +125,7 @@ export const shareFeedDataApi = async (
         payloadData.setOccurredat(Timestamp.fromDate(occurredAt ?? new Date()));
         const encodedData = btoa(JSON.stringify(data));
         payloadData.setData(encodedData);
-        payloadData.setMime('application/json');
+        payloadData.setMime(mimeType ?? 'application/json; charset=utf-8');
         payload.setSample(payloadData);
         request.setPayload(payload);
 
